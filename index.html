@@ -3,127 +3,1468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia - Hello World</title>
+    <title>Tecnologia 4t d'ESO — Què és la Tecnologia?</title>
+    <meta name="description" content="Unitat didàctica interactiva de 2 hores per a 4t d'ESO: Conceptes, Ciència, Tècnica, Història, Coltan i Procés Tecnològic.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #0f172a;
+            --primary-dark: #1d4ed8;
+            --accent: #f59e0b;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ef4444;
+            --bg: #0b1329;
             --card-bg: #1e293b;
-            --text: #f8fafc;
+            --card-sub: #172033;
+            --card-border: #334155;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
             --text-muted: #94a3b8;
-            --border: #334155;
+            --radius-lg: 1rem;
+            --radius-md: 0.75rem;
+            --radius-sm: 0.5rem;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
         }
 
-        .container {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2.5rem;
-            max-width: 500px;
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 23, 42, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tag-pill {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 0.3rem 0.65rem;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+        }
+
+        .header-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .stat-badge strong {
+            color: var(--accent);
+        }
+
+        /* PROGRESS BAR */
+        .progress-bar-container {
             width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.6s ease-out;
+            height: 6px;
+            background: #1e293b;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2563eb, #10b981);
+            transition: width 0.4s ease;
+        }
+
+        /* NAVIGATION TABS */
+        nav.tabs-nav {
+            background: #161f36;
+            border-bottom: 1px solid var(--card-border);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .tabs-nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0.5rem 1rem;
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+
+        .tab-pill {
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 0.72rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 9999px;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.25rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .module-section {
+            display: none;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .module-section.active {
+            display: block;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(37, 99, 235, 0.15);
-            color: #60a5fa;
-            font-size: 0.875rem;
-            font-weight: 600;
-            padding: 0.35rem 0.85rem;
+        /* BANNERS */
+        .hero-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, rgba(139, 92, 246, 0.16) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timing-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fcd34d;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.35rem 0.8rem;
             border-radius: 9999px;
-            margin-bottom: 1.25rem;
-            border: 1px solid rgba(96, 165, 250, 0.2);
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.85rem;
         }
 
-        h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0.65rem;
         }
 
-        p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1.75rem;
+        .hero-card p {
+            color: var(--text-sub);
             font-size: 1.05rem;
+            max-width: 820px;
+        }
+
+        /* CONTENT CARDS */
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.35rem;
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* INTERACTIVE GAME PANELS */
+        .game-card {
+            background: var(--card-sub);
+            border: 2px dashed #3b82f6;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .game-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .game-badge {
+            background: #8b5cf6;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: #ffffff;
-            font-weight: 600;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            transition: all 0.2s ease;
+            background: var(--primary);
+            color: white;
             border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            font-size: 1rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn:hover {
-            background-color: var(--primary-hover);
+            background: var(--primary-dark);
             transform: translateY(-1px);
         }
 
-        .footer {
-            margin-top: 1.75rem;
-            font-size: 0.8rem;
+        .btn-success {
+            background: var(--accent-green);
+        }
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-sub);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: #ffffff;
+        }
+
+        /* QUIZ OPTIONS */
+        .quiz-opt {
+            background: #243046;
+            border: 1px solid var(--card-border);
+            padding: 0.85rem 1.1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            text-align: left;
+            color: var(--text-sub);
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-opt:hover {
+            background: #2c3c58;
+            color: white;
+            border-color: #60a5fa;
+        }
+
+        .quiz-opt.correct {
+            background: rgba(16, 185, 129, 0.2) !important;
+            border-color: #10b981 !important;
+            color: #6ee7b7 !important;
+            font-weight: 700;
+        }
+
+        .quiz-opt.wrong {
+            background: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
+            color: #fca5a5 !important;
+        }
+
+        .feedback-box {
+            display: none;
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-sm);
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box.correct {
+            background: rgba(16, 185, 129, 0.15);
+            color: #a7f3d0;
+            border-left: 4px solid #10b981;
+        }
+
+        .feedback-box.wrong {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fecaca;
+            border-left: 4px solid #ef4444;
+        }
+
+        /* TABLES */
+        .styled-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 1.25rem 0;
+            font-size: 0.92rem;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 0.9rem 1.1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .styled-table th {
+            background: #22314d;
+            color: white;
+            font-weight: 700;
+        }
+
+        .styled-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ANIMAL CARDS */
+        .item-card {
+            background: #243046;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .item-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        .icon-large {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* SIMULATOR COMPONENT */
+        .sim-gauge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.25rem 0;
+            text-align: center;
+        }
+
+        .gauge-card {
+            background: #1e293b;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem;
+        }
+
+        .gauge-val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 0.25rem;
+        }
+
+        /* PROCESS STEPS FLOW */
+        .step-item {
+            background: #243046;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.65rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .step-item:hover {
+            border-color: #3b82f6;
+            transform: translateX(4px);
+        }
+
+        .step-badge {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            color: white;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* MODAL */
+        .modal-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 1rem;
+        }
+
+        .modal-bg.active {
+            display: flex;
+        }
+
+        .diploma-card {
+            background: #ffffff;
+            color: #0f172a;
+            border: 6px double #2563eb;
+            border-radius: var(--radius-md);
+            padding: 2.25rem;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .diploma-card h2 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #080d1c;
+            border-top: 1px solid var(--card-border);
+            padding: 2rem 1.5rem;
+            text-align: center;
             color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero-card { padding: 1.5rem 1rem; }
+            .hero-card h2 { font-size: 1.5rem; }
+            .sim-gauge-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="badge">🚀 Projecte Tecnologia</div>
-        <h1>Hello World!</h1>
-        <p>Aquesta és la teva pàgina web de prova connectada al repositori de GitHub <strong>tecnologia</strong>.</p>
-        <button class="btn" onclick="saluda()">Fes clic aquí</button>
-        <div class="footer" id="missatge">Creat amb èxit</div>
+
+    <!-- TOP BAR -->
+    <header>
+        <div class="header-inner">
+            <div class="brand-box">
+                <span class="tag-pill">4t d'ESO</span>
+                <h2>Què és la Tecnologia?</h2>
+            </div>
+            <div class="header-stats">
+                <div class="stat-badge">
+                    <span>⏱️ Cronograma:</span>
+                    <strong>Unitat 2 hores</strong>
+                </div>
+                <div class="stat-badge">
+                    <span>⭐ Experiència (XP):</span>
+                    <strong id="stat-xp">0 XP</strong>
+                </div>
+                <div class="stat-badge">
+                    <span>🏅 Reptes completats:</span>
+                    <strong id="stat-badges">0 / 6</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="main-progress-bar"></div>
     </div>
 
+    <!-- TABS -->
+    <nav class="tabs-nav">
+        <div class="tabs-nav-inner">
+            <button class="tab-btn active" onclick="gotoTab(0)">
+                <span>1. El Concepte</span>
+                <span class="tab-pill">20 min</span>
+            </button>
+            <button class="tab-btn" onclick="gotoTab(1)">
+                <span>2. Animals & Tecnologia</span>
+                <span class="tab-pill">20 min</span>
+            </button>
+            <button class="tab-btn" onclick="gotoTab(2)">
+                <span>3. Les 3 Revolucions</span>
+                <span class="tab-pill">20 min</span>
+            </button>
+            <button class="tab-btn" onclick="gotoTab(3)">
+                <span>4. Ciència vs Tecnologia</span>
+                <span class="tab-pill">20 min</span>
+            </button>
+            <button class="tab-btn" onclick="gotoTab(4)">
+                <span>5. Ètica & Coltan</span>
+                <span class="tab-pill">20 min</span>
+            </button>
+            <button class="tab-btn" onclick="gotoTab(5)">
+                <span>6. El Procés Tecnològic</span>
+                <span class="tab-pill">20 min</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTENT MODULES -->
+    <main>
+
+        <!-- MODULE 0: CONCEPTE -->
+        <section class="module-section active" id="sec-0">
+            <div class="hero-card">
+                <div class="timing-chip">⏱️ Bloc 1 · 20 minuts d'aula</div>
+                <h2>Més enllà dels objectes: Definició de Tecnologia</h2>
+                <p>Quan sentim la paraula «tecnologia», acostumem a pensar en mòbils d'última generació o intel·ligència artificial. Però una simple cullera, una cadira de fusta o la roda són, en essència, pura tecnologia!</p>
+            </div>
+
+            <div class="content-card">
+                <h3>💡 Què és exactament la Tecnologia?</h3>
+                <p style="font-size: 1.15rem; color: #f1f5f9; line-height: 1.8;">
+                    La <strong>tecnologia</strong> és el conjunt de coneixements <em>tècnics, científics i socials</em> que, aplicats de manera sistemàtica i ordenada, ens permeten <strong>dissenyar i crear solucions</strong> (productes, serveis o processos) per resoldre problemes, satisfer necessitats humanes i <strong>transformar el nostre entorn</strong>.
+                </p>
+                <div style="background: rgba(37, 99, 235, 0.12); border-left: 4px solid var(--primary); padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                    <strong>Regla fonamental:</strong> Cap solució tecnològica és neutra. La seva creació i ús sempre comporta un impacte en quatre dimensions: <strong>social, econòmica, ètica i ambiental</strong>.
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>🔍 L'Evolució dels Objectes Quotidians</h3>
+                <p>Com ha canviat un objecte bàsic com l'escombra o la cadira al llarg del temps? Fes clic per explorar-ho:</p>
+                <div class="grid-3" style="margin-top: 1.25rem;">
+                    <div class="item-card" style="cursor: pointer;" onclick="toggleInfo('broom')">
+                        <div class="icon-large">🧹</div>
+                        <h4>L'Escombra i la Neteja</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">De branques lligades a aspiradors robotitzats.</p>
+                        <div id="info-broom" style="display:none; font-size: 0.85rem; color: #93c5fd; margin-top: 0.5rem;">
+                            Evolució: Eina manual mil·lenària ➔ Aspirador mecànic ➔ Aspirador elèctric ciclònic ➔ Robots autònoms amb sensors LIDAR. Necessitat: higiene, prevenció de malalties i estalvi de temps.
+                        </div>
+                    </div>
+                    <div class="item-card" style="cursor: pointer;" onclick="toggleInfo('cloth')">
+                        <div class="icon-large">🧥</div>
+                        <h4>La Roba i els Teixits</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">De pells d'animals a teixits tècnics transpirables.</p>
+                        <div id="info-cloth" style="display:none; font-size: 0.85rem; color: #93c5fd; margin-top: 0.5rem;">
+                            Evolució: Cosir pells amb agulles d'os ➔ Teler manual de llançadora ➔ Teixits sintètics impermeables (Gore-Tex) ➔ Roba intel·ligent amb biosensors. Necessitat: protecció tèrmica i supervivència.
+                        </div>
+                    </div>
+                    <div class="item-card" style="cursor: pointer;" onclick="toggleInfo('jewel')">
+                        <div class="icon-large">💍</div>
+                        <h4>L'Ofici de la Joieria (Tàrrega)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">El taller d'Anna Puig: Tècnica i creativitat.</p>
+                        <div id="info-jewel" style="display:none; font-size: 0.85rem; color: #93c5fd; margin-top: 0.5rem;">
+                            La joieria artesanal combina eines tradicionals (serres de marqueteria, llimes, bufadors) amb tècniques de fosa i precisió mil·limètrica. La tècnica permet donar forma a materials nobles per crear peces úniques.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOC 1 -->
+            <div class="game-card">
+                <div class="game-title-row">
+                    <div>
+                        <span class="game-badge">Mini-Test Ràpid</span>
+                        <h4 style="margin-top: 0.25rem;">Repte 1: Identifica el component clau</h4>
+                    </div>
+                    <span style="color: var(--accent); font-weight: 700;">+50 XP</span>
+                </div>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Per què un simple clip de paper o una forquilla es consideren objectes tecnològics?</p>
+                <button class="quiz-opt" onclick="answerQ(this, false, 'fb-q1', 'No cal electricitat ni ordinadors perquè un objecte sigui tecnologia.')">Perquè han de contenir circuits elèctrics o metalls semiconductors.</button>
+                <button class="quiz-opt" onclick="answerQ(this, true, 'fb-q1', 'Correcte! Són el resultat d’un procés de disseny humà per solucionar un problema concret (aguantar fulls o menjar amb higiene).', 50, 1)">Perquè han estat expressament dissenyats, calculats i transformats per l'ésser humà per resoldre una necessitat pràctica.</button>
+                <button class="quiz-opt" onclick="answerQ(this, false, 'fb-q1', 'El material per si sol no defineix la tecnologia, sinó la finalitat i el procés humà de creació.')">Només perquè estan fets de metall extret d'una mina.</button>
+                <div class="feedback-box" id="fb-q1"></div>
+            </div>
+
+            <div style="margin-top: 1.5rem; text-align: right;">
+                <button class="btn btn-success" onclick="gotoTab(1)">Continuar al Bloc 2: Animals o Tecnologia? ➔</button>
+            </div>
+        </section>
+
+        <!-- MODULE 1: ANIMALS O TECNOLOGIA -->
+        <section class="module-section" id="sec-1">
+            <div class="hero-card">
+                <div class="timing-chip">⏱️ Bloc 2 · 20 minuts d'aula</div>
+                <h2>Activitat: Això és Tecnologia? Els Animals i les Eines</h2>
+                <p>Observem animals que fan coses sorprenents a la natura. Utilitzen tecnologia? En quins aspectes ens assemblem i en quins ens diferenciem completament?</p>
+            </div>
+
+            <div class="content-card">
+                <h3>🐾 Els 6 Casos d'Estudi del Dossier</h3>
+                <p style="margin-bottom: 1.25rem;">Completa la teva anàlisi observant el material, la necessitat i la funció:</p>
+
+                <div class="grid-3">
+                    <div class="item-card">
+                        <div class="icon-large">🐒</div>
+                        <h4>Ximpanzés</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub);">Pelen branques primes i les fiquen al termiter per alimentar-se de tèrmits.</p>
+                        <div style="margin-top: 0.6rem; font-size: 0.8rem; background: #161f36; padding: 0.5rem; border-radius: 4px;">
+                            <strong>Material:</strong> Branques<br>
+                            <strong>Necessitat:</strong> Alimentació<br>
+                            <strong>Funció:</strong> Extracció mecànica
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="icon-large">🐬</div>
+                        <h4>Dofins</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub);">Col·loquen esponges marines al seu musell per protegir-se quan cerquen peixos entre roques.</p>
+                        <div style="margin-top: 0.6rem; font-size: 0.8rem; background: #161f36; padding: 0.5rem; border-radius: 4px;">
+                            <strong>Material:</strong> Esponges marines<br>
+                            <strong>Necessitat:</strong> Protecció corporal<br>
+                            <strong>Funció:</strong> Coixí contra talls
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="icon-large">🦫</div>
+                        <h4>Castors</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub);">Tallen troncs amb les dents i fan preses per aturar rius i construir caus inundats.</p>
+                        <div style="margin-top: 0.6rem; font-size: 0.8rem; background: #161f36; padding: 0.5rem; border-radius: 4px;">
+                            <strong>Material:</strong> Troncs, branques i fang<br>
+                            <strong>Necessitat:</strong> Hàbitat i seguretat<br>
+                            <strong>Funció:</strong> Enginyeria hidràulica instintiva
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="icon-large">🐦</div>
+                        <h4>Ocells Teixidors</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub);">Teixeixen nius esfèrics d'alta complexitat unint fibres vegetals amb nusos ferms.</p>
+                        <div style="margin-top: 0.6rem; font-size: 0.8rem; background: #161f36; padding: 0.5rem; border-radius: 4px;">
+                            <strong>Material:</strong> Fulles i fibres vegetals<br>
+                            <strong>Necessitat:</strong> Refugi i reproducció<br>
+                            <strong>Funció:</strong> Estructura resistent al vent
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="icon-large">🪨</div>
+                        <h4>Neandertals (fa 40.000 anys)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub);">Talla lítica de sílex mitjançant percussió i retoc per crear eines polivalents.</p>
+                        <div style="margin-top: 0.6rem; font-size: 0.8rem; background: #161f36; padding: 0.5rem; border-radius: 4px;">
+                            <strong>Material:</strong> Sílex, quarsita, ossos<br>
+                            <strong>Necessitat:</strong> Caça, carnisseria, pells<br>
+                            <strong>Funció:</strong> Ganivets, bifaços, raspadors
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="icon-large">🔥</div>
+                        <h4>Homo erectus (fa 1,5 M d'anys)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub);">Control, conservació i producció del foc picant pedres o per fricció de fustes.</p>
+                        <div style="margin-top: 0.6rem; font-size: 0.8rem; background: #161f36; padding: 0.5rem; border-radius: 4px;">
+                            <strong>Material:</strong> Pirita, sílex, fusta seca<br>
+                            <strong>Necessitat:</strong> Escalfar-se, cuinar, defensa<br>
+                            <strong>Funció:</strong> Energia tèrmica i lumínica
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULADOR DEBAT -->
+            <div class="game-card">
+                <div class="game-title-row">
+                    <div>
+                        <span class="game-badge">Debat Científic</span>
+                        <h4 style="margin-top: 0.25rem;">Repte 2: Aprenem de la mateixa manera animals i humans?</h4>
+                    </div>
+                    <span style="color: var(--accent); font-weight: 700;">+60 XP</span>
+                </div>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Per què la presa d'un castor no ha evolucionat des de fa 2 milions d'anys, mentre que els humans hem passat de cabanes de fang a gratacels sismològics?</p>
+                <button class="quiz-opt" onclick="answerQ(this, false, 'fb-q2', 'La intel·ligència humana no és només mida cerebral, sinó capacitat de codificar i transmetre tècnica.')">Perquè els castors són més mandrosos i no volen canviar.</button>
+                <button class="quiz-opt" onclick="answerQ(this, true, 'fb-q2', 'Exacte! Els animals actuen principalment per instint genètic. L’ésser humà fabrica eines mitjançant altres eines, acumula saber culturalment i el millora de forma intencionada a través del llenguatge.', 60, 2)">Perquè els animals segueixen pautes genètiques fixes (instint), mentre que els humans tenim transmissió cultural acumulativa, ciència i capacitat de fabricar eines per crear altres eines.</button>
+                <button class="quiz-opt" onclick="answerQ(this, false, 'fb-q2', 'Molts animals viuen milions d’anys més enllà que nosaltres i no han canviat la seva construcció.')">Perquè als animals els falta viure en societats de més individus.</button>
+                <div class="feedback-box" id="fb-q2"></div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                <button class="btn btn-outline" onclick="gotoTab(0)">⬅ Mòdul anterior</button>
+                <button class="btn btn-success" onclick="gotoTab(2)">Bloc 3: Les 3 Grans Revolucions ➔</button>
+            </div>
+        </section>
+
+        <!-- MODULE 2: LES 3 GRANS REVOLUCIONS -->
+        <section class="module-section" id="sec-2">
+            <div class="hero-card">
+                <div class="timing-chip">⏱️ Bloc 3 · 20 minuts d'aula</div>
+                <h2>L'Evolució Tecnològica: Les Grans Revolucions</h2>
+                <p>La història no ha avançat de manera uniforme: s'ha estructurat al voltant de 3 grans salts que han canviat la civilització per complet.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>📜 Els 3 Moments que ho van Canviar Tot</h3>
+                <div class="grid-3" style="margin-top: 1rem;">
+                    <div style="background: #172033; padding: 1.25rem; border-radius: var(--radius-md); border-top: 4px solid #10b981;">
+                        <span style="color: #10b981; font-weight: 800; font-size: 0.8rem;">10.000 aC</span>
+                        <h4 style="margin: 0.5rem 0;">Revolució Neolítica</h4>
+                        <p style="font-size: 0.88rem; color: var(--text-sub);">
+                            Pas del nomadisme a societats sedentàries gràcies a l'<strong>agricultura</strong> i la <strong>ramaderia</strong>. Apareixen l'arada, la ceràmica per emmagatzemar excedents i la domesticació.
+                        </p>
+                    </div>
+
+                    <div style="background: #172033; padding: 1.25rem; border-radius: var(--radius-md); border-top: 4px solid #3b82f6;">
+                        <span style="color: #60a5fa; font-weight: 800; font-size: 0.8rem;">Segles XVIII - XIX</span>
+                        <h4 style="margin: 0.5rem 0;">Revolució Industrial</h4>
+                        <p style="font-size: 0.88rem; color: var(--text-sub);">
+                            La <strong>màquina de vapor</strong> de James Watt permet transformar energia tèrmica en mecànica. Naixement de les fàbriques, el ferrocarril, el vaixell de vapor i la fabricació en sèrie.
+                        </p>
+                    </div>
+
+                    <div style="background: #172033; padding: 1.25rem; border-radius: var(--radius-md); border-top: 4px solid #8b5cf6;">
+                        <span style="color: #c084fc; font-weight: 800; font-size: 0.8rem;">Segles XX - XXI</span>
+                        <h4 style="margin: 0.5rem 0;">Revolució Digital</h4>
+                        <p style="font-size: 0.88rem; color: var(--text-sub);">
+                            L'electrònica, els microprocessadors, els ordinadors personals i <strong>Internet</strong> canvien la comunicació, l'accés instantani al coneixement i la societat hiperconnectada amb la IA.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOC 3: LÍNIA DEL TEMPS INTERACTIVA -->
+            <div class="game-card">
+                <div class="game-title-row">
+                    <div>
+                        <span class="game-badge">Simulador Cronològic</span>
+                        <h4 style="margin-top: 0.25rem;">Repte 3: Línia del Temps dels 7 Invents Clau (Activitat 3)</h4>
+                    </div>
+                    <span style="color: var(--accent); font-weight: 700;">+80 XP</span>
+                </div>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Assigna a cadascun dels invents de la taula la seva data/època aproximada:</p>
+
+                <div class="grid-2">
+                    <div class="item-card">
+                        <label><strong>🛞 1. La Roda:</strong></label>
+                        <select class="quiz-opt" id="time-roda" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria època --</option>
+                            <option value="ok">Prehistòria (~3500 aC, Mesopotàmia)</option>
+                            <option value="ko">Edat Mitjana (any 1200 dC)</option>
+                            <option value="ko">Segle XIX (any 1850 dC)</option>
+                        </select>
+                    </div>
+                    <div class="item-card">
+                        <label><strong>☀️ 2. Rellotge de Sol:</strong></label>
+                        <select class="quiz-opt" id="time-sol" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria època --</option>
+                            <option value="ko">Prehistòria (~20.000 aC)</option>
+                            <option value="ok">Edat Antiga (~1500 aC, Egipte i Babilònia)</option>
+                            <option value="ko">Segle XX (1920 dC)</option>
+                        </select>
+                    </div>
+                    <div class="item-card">
+                        <label><strong>📖 3. Impremta de Gutenberg:</strong></label>
+                        <select class="quiz-opt" id="time-imp" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria època --</option>
+                            <option value="ko">Edat Antiga (any 50 aC)</option>
+                            <option value="ok">Final de l'Edat Mitjana (~1440-1450 dC)</option>
+                            <option value="ko">Segle XVIII (1789 dC)</option>
+                        </select>
+                    </div>
+                    <div class="item-card">
+                        <label><strong>🚂 4. Motor de Vapor (Watt):</strong></label>
+                        <select class="quiz-opt" id="time-vap" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria època --</option>
+                            <option value="ok">Revolució Industrial (~1769 dC)</option>
+                            <option value="ko">Edat Mitjana (any 800 dC)</option>
+                            <option value="ko">Any 1969 dC</option>
+                        </select>
+                    </div>
+                    <div class="item-card">
+                        <label><strong>💡 5. Bombeta Elèctrica:</strong></label>
+                        <select class="quiz-opt" id="time-bomb" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria època --</option>
+                            <option value="ko">Edat Mitjana (any 1340 dC)</option>
+                            <option value="ok">Segle XIX (any 1879 dC, Edison/Swan)</option>
+                            <option value="ko">Any 2005 dC</option>
+                        </select>
+                    </div>
+                    <div class="item-card">
+                        <label><strong>☎️ 6. Telèfon:</strong></label>
+                        <select class="quiz-opt" id="time-tel" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria època --</option>
+                            <option value="ko">Any 1500 dC</option>
+                            <option value="ok">Segle XIX (any 1876 dC, Bell/Meucci)</option>
+                            <option value="ko">Any 1995 dC</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.25rem;">
+                    <button class="btn btn-primary" onclick="verifyTimeline()">Verificar Línia del Temps</button>
+                    <span id="timeline-res" style="margin-left: 1rem; font-weight: 700;"></span>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                <button class="btn btn-outline" onclick="gotoTab(1)">⬅ Mòdul anterior</button>
+                <button class="btn btn-success" onclick="gotoTab(3)">Bloc 4: Ciència vs Tecnologia ➔</button>
+            </div>
+        </section>
+
+        <!-- MODULE 3: CIENCIA VS TECNOLOGIA -->
+        <section class="module-section" id="sec-3">
+            <div class="hero-card">
+                <div class="timing-chip">⏱️ Bloc 4 · 20 minuts d'aula</div>
+                <h2>Ciència, Tècnica i Tecnologia: Tres Conceptes Diferents</h2>
+                <p>La ciència vol explicar el món; la tecnologia vol transformar-lo creant objectes i sistemes útils. Com es retroalimenten mútuament?</p>
+            </div>
+
+            <div class="content-card">
+                <h3>⚖️ La Taula Comparativa (Dossier pàg. 5)</h3>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>DIMENSIÓ</th>
+                            <th>🔬 CIÈNCIA</th>
+                            <th>🛠️ TECNOLOGIA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Motivació</strong></td>
+                            <td>Curiositat per conèixer la veritat de l'univers</td>
+                            <td>Resoldre problemes i necessitats de les persones</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Objectiu</strong></td>
+                            <td>Explicar, descriure i preveure els fenòmens naturals</td>
+                            <td>Dissenyar, planificar i crear solucions útils</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Procediment</strong></td>
+                            <td><strong>Mètode Científic</strong> (observació, hipòtesi, laboratori)</td>
+                            <td><strong>Procés Tecnològic</strong> (projecte, plànols, prototips)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resultat</strong></td>
+                            <td>Lleis físiques, teories, fórmules matemàtiques</td>
+                            <td>Productes, màquines, estructures, serveis, programari</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- JOC 4: EMPARELLAMENT CIÈNCIA I APLICACIÓ -->
+            <div class="game-card">
+                <div class="game-title-row">
+                    <div>
+                        <span class="game-badge">Joc de Connexions</span>
+                        <h4 style="margin-top: 0.25rem;">Repte 4: Descobriment Científic ➔ Aplicació Tecnològica (Activitat 4)</h4>
+                    </div>
+                    <span style="color: var(--accent); font-weight: 700;">+70 XP</span>
+                </div>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Emparella cada avenç de la ciència amb el seu invent tecnològic derivat:</p>
+
+                <div class="grid-2">
+                    <div class="item-card">
+                        <strong>⚡ 1. Descobriment de l'electricitat:</strong>
+                        <select class="quiz-opt" id="sci-opt-1" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria aplicació --</option>
+                            <option value="ko1">Desenvolupament de pròtesis humanes</option>
+                            <option value="ok">Creació de bombetes i aparells electrònics</option>
+                            <option value="ko2">Disseny de coets espacials</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <strong>💨 2. Estudi del vent i l'aerodinàmica:</strong>
+                        <select class="quiz-opt" id="sci-opt-2" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria aplicació --</option>
+                            <option value="ok">Construcció de molins per produir energia renovable</option>
+                            <option value="ko1">Construcció Torre Eiffel</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <strong>🔩 3. Estudi de les propietats dels metalls:</strong>
+                        <select class="quiz-opt" id="sci-opt-3" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria aplicació --</option>
+                            <option value="ko">Desenvolupament de bombetes</option>
+                            <option value="ok">Construcció de la Torre Eiffel i ponts metàl·lics</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <strong>🦴 4. Funcionament dels ossos i músculs:</strong>
+                        <select class="quiz-opt" id="sci-opt-4" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria aplicació --</option>
+                            <option value="ok">Desenvolupament de pròtesis humanes i implants</option>
+                            <option value="ko">Construcció de molins eòlics</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <strong>🚀 5. Física del moviment i la gravetat (Newton):</strong>
+                        <select class="quiz-opt" id="sci-opt-5" style="margin-top: 0.4rem;">
+                            <option value="">-- Tria aplicació --</option>
+                            <option value="ok">Disseny de coets i satèl·lits espacials</option>
+                            <option value="ko">Producció d'acer inoxidable</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.25rem;">
+                    <button class="btn btn-primary" onclick="verifyScienceMatch()">Comprovar Connexions</button>
+                    <span id="sci-res" style="margin-left: 1rem; font-weight: 700;"></span>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                <button class="btn btn-outline" onclick="gotoTab(2)">⬅ Mòdul anterior</button>
+                <button class="btn btn-success" onclick="gotoTab(4)">Bloc 5: Mòbils, Coltan i Ètica ➔</button>
+            </div>
+        </section>
+
+        <!-- MODULE 4: TECNOLOGIA, SOCIETAT I EL COLTAN -->
+        <section class="module-section" id="sec-4">
+            <div class="hero-card">
+                <div class="timing-chip">⏱️ Bloc 5 · 20 minuts d'aula</div>
+                <h2>Tecnologia, Societat i Medi Ambient: El Dilema del Smartphone</h2>
+                <p>Els telèfons mòbils han revolucionat la societat, però sovint oblidem l'impacte personal i la cara oculta de la seva fabricació internacional.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="content-card">
+                    <h3>📱 Ús de Pantalles i Salut Adolescent</h3>
+                    <p style="margin-bottom: 0.75rem;">Què ens alerten els estudis mèdics i educatius recents?</p>
+                    <ul style="padding-left: 1.25rem; color: var(--text-sub); display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.92rem;">
+                        <li><strong>Concentració i memòria:</strong> La dependència de notificacions constants fragmenta l'atenció i afecta el rendiment escolar.</li>
+                        <li><strong>Trastorns del son:</strong> La llum blava de les pantalles retarda la producció de melatonina, causant insomni i fatiga crònica.</li>
+                        <li><strong>Regulació a les aules:</strong> Per què molts instituts han prohibit els mòbils per millorar les relacions personals cara a cara?</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>⛏️ El Coltan i el Congo (R.D. Congo)</h3>
+                    <p style="margin-bottom: 0.75rem;">El preu humà i ambiental de la tecnologia:</p>
+                    <ul style="padding-left: 1.25rem; color: var(--text-sub); display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.92rem;">
+                        <li>El coltan és clau per als condensadors que permeten emmagatzemar energia en espais diminuts.</li>
+                        <li>Més del 60% de reserves mundials es troben a la R.D. del Congo, sovint en mines il·legals amb <strong>treball infantil</strong> i condicions deplorables.</li>
+                        <li>L'extracció destrueix selves protegides, posant en greu perill d'extinció els goril·les de muntanya.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SIMULADOR ÈTIC DE FABRICACIÓ -->
+            <div class="game-card">
+                <div class="game-title-row">
+                    <div>
+                        <span class="game-badge">Simulador de Gestió Ètica</span>
+                        <h4 style="margin-top: 0.25rem;">Repte 5: Ets el Director/a d'Enginyeria d'un Nou Telèfon</h4>
+                    </div>
+                    <span style="color: var(--accent); font-weight: 700;">+60 XP</span>
+                </div>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Com dissenyaràs i fabricaràs el teu proper model? Tria una estratègia:</p>
+
+                <div class="sim-gauge-grid">
+                    <div class="gauge-card">
+                        <div style="font-size: 0.78rem; color: var(--text-muted);">ECOLOGIA & RECICLATGE</div>
+                        <div class="gauge-val" id="g-eco" style="color: #34d399;">50%</div>
+                    </div>
+                    <div class="gauge-card">
+                        <div style="font-size: 0.78rem; color: var(--text-muted);">ÈTICA I DRETS HUMANS</div>
+                        <div class="gauge-val" id="g-ethics" style="color: #60a5fa;">50%</div>
+                    </div>
+                    <div class="gauge-card">
+                        <div style="font-size: 0.78rem; color: var(--text-muted);">BENEFICI DE L'EMPRESA</div>
+                        <div class="gauge-val" id="g-profit" style="color: #fbbf24;">50%</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                    <button class="btn btn-outline" onclick="applyDecision('cheap')">
+                        <strong>Estratègia A: Màxim benefici i coltan sense traçabilitat</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Costos mínims, sense comprovar si a les mines hi treballen menors d'edat.</span>
+                    </button>
+                    <button class="btn btn-outline" onclick="applyDecision('fair')">
+                        <strong>Estratègia B: Disseny Modular i Coltan Ètic Certificat (Model Fairphone)</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Peces intercanviables amb tornavís, bateria substituïble i sous dignes auditats.</span>
+                    </button>
+                    <button class="btn btn-outline" onclick="applyDecision('obsolete')">
+                        <strong>Estratègia C: Obsolescència Programada agressiva</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Tot enganxat amb resines per impedir la reparació i forçar a canviar de mòbil cada 2 anys.</span>
+                    </button>
+                </div>
+                <div id="decision-msg" class="feedback-box"></div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                <button class="btn btn-outline" onclick="gotoTab(3)">⬅ Mòdul anterior</button>
+                <button class="btn btn-success" onclick="gotoTab(5)">Bloc 6: El Procés Tecnològic ➔</button>
+            </div>
+        </section>
+
+        <!-- MODULE 5: EL PROCÉS TECNOLÒGIC I TEST FINAL -->
+        <section class="module-section" id="sec-5">
+            <div class="hero-card">
+                <div class="timing-chip">⏱️ Bloc 6 · 20 minuts d'aula</div>
+                <h2>El Procés Tecnològic: Com Treballen els Enginyers</h2>
+                <p>El procés tecnològic no és només «anar al taller i construir». És una metodologia metòdica, creativa i cíclica per no improvisar i minimitzar errors.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>🔄 Les 7 Fases Clau (Cícliques)</h3>
+                <p style="margin-bottom: 1.25rem;">Fes clic a qualsevol fase per veure l'exemple de la cadira de taller:</p>
+
+                <div>
+                    <div class="step-item" onclick="openStep(1)">
+                        <div class="step-badge">1</div>
+                        <div>
+                            <strong>1. Plantejament del problema o necessitat</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Què volem resoldre? A qui va dirigit? Quines condicions hem de complir?</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="openStep(2)">
+                        <div class="step-badge">2</div>
+                        <div>
+                            <strong>2. Recerca i generació d'idees</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Mirar què existeix ja, patents, fer pluja d'idees (brainstorming) i esbossos.</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="openStep(3)">
+                        <div class="step-badge">3</div>
+                        <div>
+                            <strong>3. Disseny de la solució</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Plànols a escala amb mides exactes, selecció de materials i càlculs bàsics.</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="openStep(4)">
+                        <div class="step-badge">4</div>
+                        <div>
+                            <strong>4. Planificació</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Llistat d'eines, ordre dels passos, cronograma de feina i pressupost econòmic.</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="openStep(5)">
+                        <div class="step-badge">5</div>
+                        <div>
+                            <strong>5. Construcció o implementació</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Muntatge del prototip al taller respectant les normes de seguretat laboral.</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="openStep(6)">
+                        <div class="step-badge">6</div>
+                        <div>
+                            <strong>6. Prova i avaluació</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Resisteix el pes? Compleix les condicions inicials? Si falla, tornem al disseny!</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="openStep(7)">
+                        <div class="step-badge">7</div>
+                        <div>
+                            <strong>7. Comunicació</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Elaboració de la memòria tècnica, explicació pública i propostes de millora.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-info-card" style="display:none; background: #162035; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 4px; margin-top: 1rem;"></div>
+            </div>
+
+            <!-- REPTE PRACTIC: U.E. SANT ANDREU APP -->
+            <div class="game-card">
+                <div class="game-title-row">
+                    <div>
+                        <span class="game-badge">Cas Real del Dossier</span>
+                        <h4 style="margin-top: 0.25rem;">Repte 6: L'App del Club Esportiu (U.E. Sant Andreu)</h4>
+                    </div>
+                    <span style="color: var(--accent); font-weight: 700;">+100 XP</span>
+                </div>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Un grup d'alumnes de 4t d'ESO va crear una app per a la U.E. Sant Andreu. Assigna cada paràgraf a la seva fase del procés tecnològic:</p>
+
+                <div class="grid-2">
+                    <div class="item-card">
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+                            <em>«Esbossos de les pantalles, selecció de colors i tipografies, definició del menú i prototip navegable a App Inventor...»</em>
+                        </p>
+                        <select class="quiz-opt" id="app-f1">
+                            <option value="">-- Tria fase --</option>
+                            <option value="ko">Recerca i idees</option>
+                            <option value="ok">Fase 3: Disseny de la solució</option>
+                            <option value="ko">Fase 6: Prova i avaluació</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+                            <em>«Es va fer una prova amb un grup reduït de socis: demanaven que també hi hagués notificacions automàtiques...»</em>
+                        </p>
+                        <select class="quiz-opt" id="app-f2">
+                            <option value="">-- Tria fase --</option>
+                            <option value="ko">Fase 4: Planificació</option>
+                            <option value="ok">Fase 6: Prova i avaluació</option>
+                            <option value="ko">Fase 1: Plantejament</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+                            <em>«Repartiment de tasques: programació, disseny gràfic i comunicació, amb un termini fix de quatre setmanes...»</em>
+                        </p>
+                        <select class="quiz-opt" id="app-f3">
+                            <option value="">-- Tria fase --</option>
+                            <option value="ok">Fase 4: Planificació</option>
+                            <option value="ko">Fase 5: Construcció</option>
+                            <option value="ko">Fase 7: Comunicació</option>
+                        </select>
+                    </div>
+
+                    <div class="item-card">
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+                            <em>«Presentació final de l'app davant la directiva del club amb memòria escrita de dificultats i aprenentatges...»</em>
+                        </p>
+                        <select class="quiz-opt" id="app-f4">
+                            <option value="">-- Tria fase --</option>
+                            <option value="ko">Fase 2: Recerca</option>
+                            <option value="ko">Fase 5: Construcció</option>
+                            <option value="ok">Fase 7: Comunicació</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.25rem;">
+                    <button class="btn btn-primary" onclick="verifyAppChallenge()">Comprovar Fases</button>
+                    <span id="app-res" style="margin-left: 1rem; font-weight: 700;"></span>
+                </div>
+            </div>
+
+            <!-- AUTO-AVALUACIÓ I DIPLOMA FINAL -->
+            <div class="content-card" style="margin-top: 2rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.25rem;">
+                    <h3>🎓 Prova Final d'Avaluació: Comprova el que saps</h3>
+                    <span class="tag-pill">Avaluació de la Unitat</span>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <p><strong>1. El procés tecnològic és cíclic perquè:</strong></p>
+                    <button class="quiz-opt" onclick="evalFinal(this, true, 1)">Permet tornar enrere en qualsevol moment si a la prova o avaluació es detecten errors o millores.</button>
+                    <button class="quiz-opt" onclick="evalFinal(this, false, 1)">Perquè només s'aplica a màquines circulars com les rodes.</button>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <p><strong>2. Quin dels següents és un objectiu de la ciència i NO de la tecnologia?</strong></p>
+                    <button class="quiz-opt" onclick="evalFinal(this, false, 2)">Construir un pont resistent de formigó armat.</button>
+                    <button class="quiz-opt" onclick="evalFinal(this, true, 2)">Formular les lleis de la gravitació universal i la termodinàmica.</button>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <p><strong>3. Per què la dependència dels telèfons intel·ligents té un impacte ètic internacional?</strong></p>
+                    <button class="quiz-opt" onclick="evalFinal(this, true, 3)">Perquè minerals com el coltan sovint s'extreuen en condicions d'explotació laboral i conflicte armat.</button>
+                    <button class="quiz-opt" onclick="evalFinal(this, false, 3)">Perquè tots els telèfons funcionen amb la mateixa bateria.</button>
+                </div>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn btn-success" style="font-size: 1.1rem; padding: 0.9rem 2.25rem;" onclick="requestDiploma()">
+                        🏆 Generar el meu Certificat d'Enginyer/a de 4t d'ESO
+                    </button>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                <button class="btn btn-outline" onclick="gotoTab(4)">⬅ Mòdul anterior</button>
+                <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Tornar a dalt</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DIPLOMA -->
+    <div class="modal-bg" id="modal-cert">
+        <div class="diploma-card">
+            <h2>DIPLOMA D'ENGINYERIA & TECNOLOGIA</h2>
+            <p style="font-size: 1rem; color: #475569; margin-top: 0.5rem;">Unitat Didàctica Introductòria de 4t d'ESO</p>
+            <div style="margin: 1.5rem 0; border: 2px solid #2563eb; padding: 1.25rem; border-radius: 8px; background: #f8fafc;">
+                <p style="font-size: 1.1rem; font-weight: 700; color: #1e3a8a;">Acredita que l'alumne/a ha superat amb èxit:</p>
+                <h3 style="color: #0f172a; margin: 0.5rem 0;">«Què és la Tecnologia? Ciència, Tècnica i Procés Tecnològic»</h3>
+                <div style="display: flex; justify-content: space-around; margin-top: 1rem; font-size: 0.9rem; color: #334155;">
+                    <div><strong>Nivell:</strong> 4t d'ESO</div>
+                    <div><strong>Puntuació:</strong> <span id="diploma-xp" style="color:#2563eb; font-weight:bold;">0</span> XP</div>
+                    <div><strong>Resultat:</strong> <span style="color: #16a34a; font-weight: bold;">Competència Assolida</span></div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-primary" onclick="window.print()">🖨️ Descarregar / Imprimir PDF</button>
+                <button class="btn btn-outline" onclick="closeModal()">Tancar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>Tecnologia — 4t d'ESO</strong> | Recurs per a 2 hores lectives de treball autònom i cooperatiu a l'aula.</p>
+        <p style="margin-top: 0.35rem; font-size: 0.8rem; color: #64748b;">Dossier d'aprenentatge interactiu de Tecnologia.</p>
+    </footer>
+
     <script>
-        function saluda() {
-            const missatge = document.getElementById('missatge');
-            missatge.textContent = '🎉 Tot funciona correctament!';
-            missatge.style.color = '#4ade80';
+        let xp = 0;
+        let badges = 0;
+        let finalAnswers = { 1: false, 2: false, 3: false };
+
+        function addExperience(amount) {
+            xp += amount;
+            document.getElementById('stat-xp').textContent = xp + ' XP';
+            document.getElementById('diploma-xp').textContent = xp;
+            updateBar();
+        }
+
+        function countBadge() {
+            badges = Math.min(6, badges + 1);
+            document.getElementById('stat-badges').textContent = badges + ' / 6';
+            updateBar();
+        }
+
+        function updateBar() {
+            let pct = Math.min(100, Math.round((xp / 380) * 100));
+            document.getElementById('main-progress-bar').style.width = pct + '%';
+        }
+
+        function gotoTab(idx) {
+            document.querySelectorAll('.module-section').forEach((sec, i) => {
+                sec.classList.toggle('active', i === idx);
+            });
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === idx);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleInfo(id) {
+            let el = document.getElementById('info-' + id);
+            if (el) {
+                el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+                addExperience(10);
+            }
+        }
+
+        function answerQ(btn, isOk, fbId, text, reward = 0, badgeNum = null) {
+            let parent = btn.parentElement;
+            parent.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+            let fb = document.getElementById(fbId);
+            fb.classList.add('show');
+            if (isOk) {
+                btn.classList.add('correct');
+                fb.className = 'feedback-box show correct';
+                fb.innerHTML = '<strong>Molt bé!</strong> ' + text;
+                if (reward) addExperience(reward);
+                if (badgeNum) countBadge();
+            } else {
+                btn.classList.add('wrong');
+                fb.className = 'feedback-box show wrong';
+                fb.innerHTML = '<strong>Pensa-hi bé:</strong> ' + text;
+            }
+        }
+
+        function verifyTimeline() {
+            let r = document.getElementById('time-roda').value;
+            let s = document.getElementById('time-sol').value;
+            let i = document.getElementById('time-imp').value;
+            let v = document.getElementById('time-vap').value;
+            let b = document.getElementById('time-bomb').value;
+            let t = document.getElementById('time-tel').value;
+            let out = document.getElementById('timeline-res');
+
+            if (r === 'ok' && s === 'ok' && i === 'ok' && v === 'ok' && b === 'ok' && t === 'ok') {
+                out.innerHTML = '🎉 Excel·lent! Has ordenat tots els invents a la perfecció!';
+                out.style.color = '#34d399';
+                addExperience(80);
+                countBadge();
+            } else {
+                out.innerHTML = '⚠️ Algun invent té la data incorrecta. Revisa la roda, el sol o el vapor!';
+                out.style.color = '#f87171';
+            }
+        }
+
+        function verifyScienceMatch() {
+            let o1 = document.getElementById('sci-opt-1').value;
+            let o2 = document.getElementById('sci-opt-2').value;
+            let o3 = document.getElementById('sci-opt-3').value;
+            let o4 = document.getElementById('sci-opt-4').value;
+            let o5 = document.getElementById('sci-opt-5').value;
+            let out = document.getElementById('sci-res');
+
+            if (o1 === 'ok' && o2 === 'ok' && o3 === 'ok' && o4 === 'ok' && o5 === 'ok') {
+                out.innerHTML = '🌟 Extraordinari! Has connectat tots els descobriments amb la seva tecnologia!';
+                out.style.color = '#34d399';
+                addExperience(70);
+                countBadge();
+            } else {
+                out.innerHTML = '⚠️ Alguna connexió no és correcta. Torna a intentar-ho!';
+                out.style.color = '#f87171';
+            }
+        }
+
+        function applyDecision(type) {
+            let eco = document.getElementById('g-eco');
+            let ethics = document.getElementById('g-ethics');
+            let profit = document.getElementById('g-profit');
+            let msg = document.getElementById('decision-msg');
+            msg.style.display = 'block';
+
+            if (type === 'cheap') {
+                eco.textContent = '20%'; eco.style.color = '#ef4444';
+                ethics.textContent = '10%'; ethics.style.color = '#ef4444';
+                profit.textContent = '95%'; profit.style.color = '#10b981';
+                msg.className = 'feedback-box show wrong';
+                msg.innerHTML = '⚠️ <strong>Impacte Negatiu:</strong> Molt benefici monetari, però finançant mines il·legals i milers de tones de residus tòxics!';
+            } else if (type === 'fair') {
+                eco.textContent = '90%'; eco.style.color = '#10b981';
+                ethics.textContent = '95%'; ethics.style.color = '#10b981';
+                profit.textContent = '65%'; profit.style.color = '#60a5fa';
+                msg.className = 'feedback-box show correct';
+                msg.innerHTML = '🌱 <strong>Model Sostenible:</strong> Has triat una solució ètica amb coltan traçat, treball digne i facilitat per canviar la bateria!';
+                addExperience(60);
+                countBadge();
+            } else if (type === 'obsolete') {
+                eco.textContent = '15%'; eco.style.color = '#ef4444';
+                ethics.textContent = '35%'; ethics.style.color = '#f59e0b';
+                profit.textContent = '85%'; profit.style.color = '#10b981';
+                msg.className = 'feedback-box show wrong';
+                msg.innerHTML = '📉 <strong>Obsolescència:</strong> Els usuaris es queixen perquè la bateria es degrada al cap de 2 anys i el mòbil queda inservible.';
+            }
+        }
+
+        function openStep(num) {
+            let card = document.getElementById('step-info-card');
+            card.style.display = 'block';
+            let steps = {
+                1: '<strong>1. Plantejament:</strong> Ex: La cadira del taller ha de suportar 120 kg de pes, ser reciclable i costar menys de 30 €.',
+                2: '<strong>2. Recerca d’idees:</strong> Investigar cadires fetes amb palets vells o tubs metàl·lics recuperats, fer esbossos ràpids.',
+                3: '<strong>3. Disseny:</strong> Plànol amb vistes (alçat, planta, perfil) i mesures exactes en mil·límetres.',
+                4: '<strong>4. Planificació:</strong> Llistat de cargols, serra, trepant, paper de vidre i ordre de feina a seguir en equip.',
+                5: '<strong>5. Construcció:</strong> Serrar, polir la fusta i cargolar seguint les normes de seguretat del taller de tecnologia.',
+                6: '<strong>6. Prova i avaluació:</strong> Seiem a la cadira: és còmoda? aguanta el pes? Si falla, tornem a la fase 3 de disseny!',
+                7: '<strong>7. Comunicació:</strong> Redacció de la memòria tècnica, fotografies del procés i presentació a classe.'
+            };
+            card.innerHTML = steps[num];
+            addExperience(5);
+        }
+
+        function verifyAppChallenge() {
+            let f1 = document.getElementById('app-f1').value;
+            let f2 = document.getElementById('app-f2').value;
+            let f3 = document.getElementById('app-f3').value;
+            let f4 = document.getElementById('app-f4').value;
+            let out = document.getElementById('app-res');
+
+            if (f1 === 'ok' && f2 === 'ok' && f3 === 'ok' && f4 === 'ok') {
+                out.innerHTML = '⚽ Excel·lent! Has identificat les 4 fases de l’App de Sant Andreu!';
+                out.style.color = '#34d399';
+                addExperience(100);
+                countBadge();
+            } else {
+                out.innerHTML = '⚠️ Hi ha fases mal assignades. Revisa el disseny, prova o planificació!';
+                out.style.color = '#f87171';
+            }
+        }
+
+        function evalFinal(btn, isOk, qNum) {
+            btn.parentElement.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+            if (isOk) {
+                btn.classList.add('correct');
+                finalAnswers[qNum] = true;
+                addExperience(30);
+            } else {
+                btn.classList.add('wrong');
+                finalAnswers[qNum] = false;
+            }
+        }
+
+        function requestDiploma() {
+            let correctCount = Object.values(finalAnswers).filter(Boolean).length;
+            if (correctCount < 2) {
+                alert('Respon correctament a les preguntes de la prova final per obtenir el diploma!');
+                return;
+            }
+            document.getElementById('modal-cert').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-cert').classList.remove('active');
         }
     </script>
 </body>
