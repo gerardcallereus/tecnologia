@@ -974,9 +974,9 @@
                     <strong id="header-name">Carregant...</strong>
                     <span style="color:var(--text-muted);" id="header-group">(4t ESO)</span>
                 </div>
-                <button class="level-pill-badge" id="header-level-btn" onclick="toggleLevel()" title="Fes clic per canviar entre Nivell Inicial i Avançat">
-                    <span id="header-level-icon">🟢</span> <span id="header-level-text">Nivell Inicial</span> 🔄
-                </button>
+                <div class="stat-pill" id="header-level-badge-display" title="El nivell queda fixat en iniciar la unitat per garantir la validesa del diploma">
+                    <span id="header-level-icon">🟢</span> <strong id="header-level-text">Nivell Inicial</strong>
+                </div>
                 <div class="stat-pill">
                     <span>⭐ Punts XP:</span>
                     <strong id="header-xp">0</strong>
@@ -1512,9 +1512,9 @@
                         </div>
                     </div>
 
-                    <!-- LLISTA DE REPTES A SUPERAR (AVANÇAT: 5 CONDICIONS ACTIVES) -->
+                    <!-- LLISTA DE REPTES A SUPERAR (AVANÇAT: 6 CONDICIONS ACTIVES) -->
                     <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:1rem; margin-bottom:1.5rem;">
-                        <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.5rem;">🎯 Els 5 Llindars d'Enginyeria que cal complir per avançar:</strong>
+                        <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.5rem;">🎯 Els 6 Llindars d'Enginyeria que cal complir per avançar:</strong>
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem; font-size:0.84rem;">
                             <div id="chk-av-cov" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
                                 <span>❌</span> <span>1. Cobertura: <strong>98% - 102%</strong></span>
@@ -1530,6 +1530,9 @@
                             </div>
                             <div id="chk-av-disp" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
                                 <span>❌</span> <span>5. Suport: <strong>&ge; 20%</strong></span>
+                            </div>
+                            <div id="chk-av-div" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
+                                <span>❌</span> <span>6. Mix Diversificat: <strong>Totes &gt; 0% (Hidro &le; 20%)</strong></span>
                             </div>
                         </div>
                     </div>
@@ -1570,7 +1573,7 @@
                                     <span id="val-hydro" style="font-weight:800; color:#0284c7;">0%</span>
                                 </div>
                                 <input type="range" class="energy-range" id="range-hydro" min="0" max="40" value="0" oninput="runEnergySimulation()">
-                                <span style="font-size:0.75rem; color:var(--text-muted);">Renovable, 0 CO₂ i regulable a l'instant. Clau com a suport i bateria d'aigua.</span>
+                                <span style="font-size:0.75rem; color:var(--text-muted);">Renovable, 0 CO₂ i regulable a l'instant. Límit natural dels rius: màx. 20% de la xarxa!</span>
                             </div>
 
                             <div class="energy-slider-group">
@@ -1658,7 +1661,7 @@
                                     🌿 Has assolit un Mix Sostenible! Passar a la Fase 4 ➔
                                 </button>
                                 <span style="font-size:0.8rem; color:var(--text-muted); display:block; margin-top:0.4rem;" id="sim-hint">
-                                    Compleix els 5 reptes per desbloquejar el botó de continuació.
+                                    Compleix els 6 reptes per desbloquejar el botó de continuació.
                                 </span>
                             </div>
                         </div>
@@ -1687,33 +1690,96 @@
                     </p>
                 </div>
 
-                <!-- EXPLICACIÓ GENERAL (SENSE EXEMPLES CONCRETS) -->
+                <!-- EXPLICACIÓ GENERAL (SENSE EXEMPLES CONCRETS) EN FLUX VERTICAL -->
                 <div class="card" style="border-left: 5px solid #10b981;">
-                    <h3 style="color:#059669;">🔄 Els 4 Grans Passos de Qualsevol Invent</h3>
-                    <div class="grid-2" style="gap:0.9rem; margin-top:0.75rem;">
-                        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:0.9rem;">
-                            <strong style="color:#166534; font-size:1rem; display:block; margin-bottom:0.25rem;">🎯 1. Pensar i Plantejar la Necessitat</strong>
-                            <p style="font-size:0.9rem; color:#334155; margin:0; line-height:1.45;">
-                                Primer de tot, ens preguntem: <em>Quin problema tenim? Què necessita la gent? Com ha de ser l'objecte per ser segur i no fer malbé el planeta?</em>
+                    <div style="margin-bottom:1.25rem;">
+                        <h3 style="color:#059669; font-size:1.35rem; margin-bottom:0.35rem;">🔄 Els 4 Grans Passos de Qualsevol Invent</h3>
+                        <p style="color:var(--text-muted); font-size:0.92rem; margin:0;">
+                            Aquest és el camí ordenat que segueix la tecnologia. Cada pas porta al següent, i si hi ha un error al final, tornem enrere a dibuixar per millorar la solució:
+                        </p>
+                    </div>
+
+                    <!-- SEQÜÈNCIA VERTICAL DELS 4 PASSOS AMB FLETXES -->
+                    <div style="display:flex; flex-direction:column; gap:0;">
+                        <!-- PAS 1 -->
+                        <div style="background:#ffffff; border:1.5px solid #bbf7d0; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(16,185,129,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#dcfce7; color:#15803d; font-weight:800; border-radius:50%; font-size:0.9rem;">1</span>
+                                <strong style="color:#15803d; font-size:1.05rem;">🎯 Pas 1: Pensar i Plantejar la Necessitat</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Ens aturem a pensar abans de fabricar res. Ens preguntem: <em>Quin problema tenim? Què necessita la gent? Com ha de ser l'objecte per ser útil, segur i respectuós amb la natura?</em>
                             </p>
                         </div>
-                        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:0.9rem;">
-                            <strong style="color:#166534; font-size:1rem; display:block; margin-bottom:0.25rem;">📐 2. Dibuixar i Dissenyar la Solució</strong>
-                            <p style="font-size:0.9rem; color:#334155; margin:0; line-height:1.45;">
-                                Fem croquis a mà i plànols a l'ordinador amb les mides exactes, i triem quins materials (fusta, plàstic, metall o electrònica) farem servir.
+
+                        <!-- FLETXA 1 -> 2 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:50%; color:#16a34a; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+                                ↓
+                            </div>
+                        </div>
+
+                        <!-- PAS 2 (AMB PUNT DE RETORN CÍCLIC) -->
+                        <div style="background:#ffffff; border:2px solid #86efac; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(22,163,74,0.06);">
+                            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.35rem;">
+                                <div style="display:flex; align-items:center; gap:0.6rem;">
+                                    <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#dcfce7; color:#15803d; font-weight:800; border-radius:50%; font-size:0.9rem;">2</span>
+                                    <strong style="color:#15803d; font-size:1.05rem;">📐 Pas 2: Dibuixar i Dissenyar la Solució</strong>
+                                </div>
+                                <span style="font-size:0.78rem; background:#dcfce7; color:#166534; font-weight:700; padding:0.2rem 0.6rem; border-radius:999px; border:1px solid #86efac;">
+                                    🔄 Punt de Retorn Cíclic
+                                </span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Fem croquis a mà alçada i plànols a l'ordinador amb les mides exactes, calculem quant costarà i triem quins materials (fusta, plàstic, metall o electrònica) seran més adients.
+                            </p>
+                            <div style="margin-top:0.5rem; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:0.4rem 0.75rem; font-size:0.83rem; color:#166534;">
+                                <strong>⚠️ Per què tornem aquí?</strong> Si en el pas 4 el prototip no funciona o no és segur, tornem directament a aquest pas 2 per dibuixar una versió millorada i corregida.
+                            </div>
+                        </div>
+
+                        <!-- FLETXA 2 -> 3 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:50%; color:#16a34a; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+                                ↓
+                            </div>
+                        </div>
+
+                        <!-- PAS 3 -->
+                        <div style="background:#ffffff; border:1.5px solid #bbf7d0; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(16,185,129,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#dcfce7; color:#15803d; font-weight:800; border-radius:50%; font-size:0.9rem;">3</span>
+                                <strong style="color:#15803d; font-size:1.05rem;">⚙️ Pas 3: Construir i Fabricar al Taller</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Passem a l'acció amb les mans i les màquines. Tallem peces, fem forats, cargolem i soldem o programem codi, respectant sempre les <strong>normes de seguretat</strong> (ulleres, bates i ordre).
                             </p>
                         </div>
-                        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:0.9rem;">
-                            <strong style="color:#166534; font-size:1rem; display:block; margin-bottom:0.25rem;">⚙️ 3. Construir i Fabricar al Taller</strong>
-                            <p style="font-size:0.9rem; color:#334155; margin:0; line-height:1.45;">
-                                Tallem peces, fem forats, ajuntem cargols o programem circuits, respectant sempre les normes de seguretat i protegint-nos els ulls i les mans.
-                            </p>
+
+                        <!-- FLETXA 3 -> 4 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:50%; color:#16a34a; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+                                ↓
+                            </div>
                         </div>
-                        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:0.9rem;">
-                            <strong style="color:#166534; font-size:1rem; display:block; margin-bottom:0.25rem;">🧪 4. Provar, Avaluar i Bucle Cíclic</strong>
-                            <p style="font-size:0.9rem; color:#334155; margin:0; line-height:1.45;">
-                                Provem si funciona bé. <strong>Si falla, no passa res!</strong> Tornem a dibuixar el pas 2 per corregir-ho fins que funcioni a la perfecció.
+
+                        <!-- PAS 4 -->
+                        <div style="background:#ffffff; border:1.5px solid #bbf7d0; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(16,185,129,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#dcfce7; color:#15803d; font-weight:800; border-radius:50%; font-size:0.9rem;">4</span>
+                                <strong style="color:#15803d; font-size:1.05rem;">🧪 Pas 4: Provar, Avaluar i el Bucle Cíclic</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Provem l'objecte per veure si resol el problema inicial. Avaluem dues opcions:
                             </p>
+                            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem; margin-top:0.5rem;">
+                                <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:6px; padding:0.45rem 0.65rem; font-size:0.83rem; color:#166534;">
+                                    ✅ <strong>Funciona bé:</strong> L'expliquem a tothom i l'utilitzem amb èxit!
+                                </div>
+                                <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:6px; padding:0.45rem 0.65rem; font-size:0.83rem; color:#92400e;">
+                                    🔁 <strong>Si falla o es trenca:</strong> No passa res! Tornem al <strong>Pas 2 (Dibuixar i Dissenyar)</strong> per fer-ho millor.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1732,7 +1798,6 @@
                             🎯 Encerts: <span id="lbl-score-table-ini" style="font-size:1.1rem; color:#059669;">0</span> / 12 caselles
                         </span>
                         <div style="display:flex; gap:0.5rem;">
-                            <button class="btn btn-outline" style="padding:0.4rem 0.8rem; font-size:0.85rem;" onclick="solveOneCellIni()">💡 Pista</button>
                             <button class="btn btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;" onclick="checkTableInicial()">🔍 Comprovar Taula</button>
                         </div>
                     </div>
@@ -1902,136 +1967,152 @@
                     </p>
                 </div>
 
-                <!-- EXPLICACIÓ GENERAL DETALLADA DE LES 7 FASES (SENSE ENTRAR EN L'EXEMPLE) -->
+                <!-- EXPLICACIÓ GENERAL DETALLADA DE LES 7 FASES (CADA FASE EN UNA LÍNIA CONNECTADA AMB FLETXA) -->
                 <div class="card" style="border-left: 5px solid #2563eb;">
-                    <h3 style="color:#1d4ed8;">🔄 Les 7 Fases del Procés Tecnològic: Què es fa a cadascuna?</h3>
-                    <p style="font-size:0.96rem; color:#334155; line-height:1.5; margin-bottom:1rem;">
-                        Tots els projectes tècnics —siguin objectes físics de taller, grans construccions civils o aplicacions informàtiques— segueixen aquest cicle rigorós:
+                    <h3 style="color:#1d4ed8; margin-bottom:0.4rem;">🔄 Les 7 Fases del Procés Tecnològic: Què es fa a cadascuna?</h3>
+                    <p style="font-size:0.96rem; color:#334155; line-height:1.5; margin-bottom:1.25rem;">
+                        Tots els projectes tècnics —siguin objectes de taller, grans construccions d'enginyeria civil o aplicacions informàtiques— segueixen aquest cicle ordenat pas a pas:
                     </p>
 
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0.85rem;">
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem;">
-                            <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.25rem;">🎯 1. Plantejament de la Necessitat</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                S'identifica el problema a resoldre i els beneficiaris. S'estableixen les condicions inicials i requisits tècnics, límits econòmics, de seguretat, ergonòmics i mediambientals.
+                    <div style="display:flex; flex-direction:column; gap:0;">
+                        <!-- FASE 1 -->
+                        <div style="background:#ffffff; border:1.5px solid #bae6fd; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(2,132,199,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#e0f2fe; color:#0369a1; font-weight:800; border-radius:50%; font-size:0.9rem;">1</span>
+                                <strong style="color:#0369a1; font-size:1.05rem;">🎯 Fase 1: Plantejament de la Necessitat o Problema</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> S'identifica de forma precisa quina necessitat humana, social o tècnica cal resoldre i a quins usuaris va dirigida. S'analitzen les condicions de partida i es fixen els <strong>requisits obligatoris</strong>: dimensions màximes, materials permesos, pressupost límit, normes de seguretat i criteris de sostenibilitat mediambiental.
                             </p>
-                        </div>
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem;">
-                            <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.25rem;">💡 2. Recerca d'Idees i Alternatives</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                S'investiga en publicacions tècniques o patents com s'ha resolt abans. Es fan tempestes d'idees (*brainstorming*), s'analitzen materials i tecnologies i es tria la solució òptima.
-                            </p>
-                        </div>
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem;">
-                            <strong style="color:#15803d; font-size:0.95rem; display:block; margin-bottom:0.25rem;">📐 3. Disseny de la Solució (CAD/Plànols)</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                Es defineix la solució mitjançant dibuix tècnic (croquis, esquemes de circuit, plànols 2D o models 3D per ordinador). S'indiquen cotes, materials, toleràncies i càlculs estructurals.
-                            </p>
-                        </div>
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem;">
-                            <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.25rem;">📋 4. Planificació del Treball i Eines</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                S'organitza la feina abans de fabricar: s'elabora el <strong>full de procés</strong> (seqüència d'operacions), es trien les eines o màquines, es calcula el pressupost i es fa el calendari.
-                            </p>
-                        </div>
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem;">
-                            <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.25rem;">⚙️ 5. Construcció i Desenvolupament</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                Es fa realitat el disseny: mecanitzar peces, tallar materials, soldar components, programar el codi font o acoblar mòduls seguint estrictament les normes de seguretat.
-                            </p>
-                        </div>
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem;">
-                            <strong style="color:#b45309; font-size:0.95rem; display:block; margin-bottom:0.25rem;">🧪 6. Prova, Avaluació i Caràcter Cíclic</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                Es verifica el prototip en condicions reals. <strong>Si falla o presenta errades</strong> (de càrrega, de programari o de consum), s'aplica el bucle cíclic: es retrocedeix al disseny per rectificar.
-                            </p>
-                        </div>
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; grid-column:1 / -1;">
-                            <strong style="color:#059669; font-size:0.95rem; display:block; margin-bottom:0.25rem;">📢 7. Comunicació, Memòria Tècnica i Difusió</strong>
-                            <p style="font-size:0.86rem; color:#475569; margin:0; line-height:1.4;">
-                                Es tanca el cicle amb la memòria tècnica final (informe amb plànols definitius, pressupost real, codi font i manual d'usuari) i es presenta el resultat als usuaris o a la societat.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- DIAGRAMA VECTORIAL CÍCLIC -->
-                    <div style="background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem 1rem; margin-top: 1.25rem;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
-                            <span style="font-weight:700; color:#0369a1; font-size:0.92rem;">📐 El Bucle de Millora Contínua d'Enginyeria</span>
-                            <span style="font-size:0.78rem; background:#fee2e2; color:#b91c1c; padding:0.2rem 0.6rem; border-radius:999px; font-weight:700; border:1px solid #fca5a5;">🔁 Retorn Cíclic davant d'Errades</span>
                         </div>
 
-                        <div style="width:100%; overflow-x:auto;">
-                            <svg viewBox="0 0 920 220" style="width:100%; min-width:760px; height:auto; display:block; font-family:system-ui, sans-serif;" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <marker id="arrow-flow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
-                                    </marker>
-                                    <marker id="arrow-return" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626" />
-                                    </marker>
-                                </defs>
+                        <!-- FLETXA 1 -> 2 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:50%; color:#1d4ed8; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                                ↓
+                            </div>
+                        </div>
 
-                                <!-- Fletxa Cíclica de Retorn -->
-                                <path d="M 700 75 C 700 15, 395 15, 395 68" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-return)" />
-                                <g transform="translate(547, 18)">
-                                    <rect x="-140" y="-12" width="280" height="24" rx="12" fill="#fef2f2" stroke="#f87171" stroke-width="1.5" />
-                                    <text x="0" y="4" text-anchor="middle" font-size="11" font-weight="bold" fill="#b91c1c">⚠️ Si a la Prova falla: RETORN CÍCLIC AL DISSENY</text>
-                                </g>
+                        <!-- FASE 2 -->
+                        <div style="background:#ffffff; border:1.5px solid #bae6fd; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(2,132,199,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#e0f2fe; color:#0369a1; font-weight:800; border-radius:50%; font-size:0.9rem;">2</span>
+                                <strong style="color:#0369a1; font-size:1.05rem;">💡 Fase 2: Recerca d'Idees i Alternatives</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Es recopila informació tècnica consultant com s'ha resolt aquest repte anteriorment (llibres especialitzats, patents, catàlegs de fabricants o Internet). L'equip realitza una pluja d'idees (<em>brainstorming</em>) aportant diverses alternatives de solució, s'estudien els seus avantatges i inconvenients i se selecciona la proposta tècnicament i econòmicament més viable.
+                            </p>
+                        </div>
 
-                                <!-- Línies connectores -->
-                                <line x1="100" y1="110" x2="140" y2="110" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-flow)" />
-                                <line x1="225" y1="110" x2="265" y2="110" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-flow)" />
-                                <line x1="350" y1="110" x2="390" y2="110" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-flow)" />
-                                <line x1="475" y1="110" x2="515" y2="110" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-flow)" />
-                                <line x1="600" y1="110" x2="640" y2="110" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-flow)" />
-                                <line x1="725" y1="110" x2="765" y2="110" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-flow)" />
+                        <!-- FLETXA 2 -> 3 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:50%; color:#1d4ed8; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                                ↓
+                            </div>
+                        </div>
 
-                                <!-- Fases 1 a 7 -->
-                                <g transform="translate(15, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">🎯</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">1. Plantejament</text>
-                                </g>
-                                <g transform="translate(140, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">💡</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">2. Recerca</text>
-                                </g>
-                                <g transform="translate(265, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="2" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">📐</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">3. Disseny</text>
-                                    <text x="55" y="65" text-anchor="middle" font-size="8" font-weight="bold" fill="#166534">Recepció Bucle</text>
-                                </g>
-                                <g transform="translate(390, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">📋</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">4. Planificació</text>
-                                </g>
-                                <g transform="translate(515, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">⚙️</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">5. Construcció</text>
-                                </g>
-                                <g transform="translate(640, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="2" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">🧪</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">6. Prova & Aval.</text>
-                                </g>
-                                <g transform="translate(765, 75)">
-                                    <rect width="110" height="70" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" />
-                                    <text x="55" y="32" text-anchor="middle" font-size="16">📢</text>
-                                    <text x="55" y="52" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">7. Comunicació</text>
-                                </g>
+                        <!-- FASE 3 (AMB PUNT DE RETORN CÍCLIC) -->
+                        <div style="background:#ffffff; border:2px solid #86efac; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(22,163,74,0.06);">
+                            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.35rem;">
+                                <div style="display:flex; align-items:center; gap:0.6rem;">
+                                    <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#dcfce7; color:#15803d; font-weight:800; border-radius:50%; font-size:0.9rem;">3</span>
+                                    <strong style="color:#15803d; font-size:1.05rem;">📐 Fase 3: Disseny de la Solució (CAD / Plànols Tècnics)</strong>
+                                </div>
+                                <span style="font-size:0.78rem; background:#dcfce7; color:#166534; font-weight:700; padding:0.2rem 0.6rem; border-radius:999px; border:1px solid #86efac;">
+                                    🔄 Punt de Retorn Cíclic
+                                </span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Es defineix formalment la idea escollida mitjançant el dibuix tècnic: croquis acotats, esquemes elèctrics o electrònics, plànols de peces a escala 2D i models tridimensionals per ordinador (CAD/BIM). S'especifiquen mides mil·limètriques, càlculs de resistència de materials i toleràncies mecàniques.
+                            </p>
+                            <div style="margin-top:0.5rem; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:0.4rem 0.75rem; font-size:0.83rem; color:#166534;">
+                                <strong>⚠️ Per què és el punt de retorn?</strong> Si durant la fase posterior de proves (Fase 6) el prototip falla o no compleix els requisits, és aquí on els enginyers tornen per redissenyar les peces, ajustar toleràncies o corregir el circuit.
+                            </div>
+                        </div>
 
-                                <g transform="translate(640, 165)">
-                                    <rect x="75" y="5" width="80" height="18" rx="4" fill="#dcfce7" stroke="#86efac" />
-                                    <text x="115" y="17" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#15803d">Si funciona ✅</text>
-                                    <rect x="-20" y="5" width="85" height="18" rx="4" fill="#fee2e2" stroke="#fca5a5" />
-                                    <text x="22" y="17" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#b91c1c">Si falla ❌ Bucle</text>
-                                </g>
-                            </svg>
+                        <!-- FLETXA 3 -> 4 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:50%; color:#1d4ed8; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                                ↓
+                            </div>
+                        </div>
+
+                        <!-- FASE 4 -->
+                        <div style="background:#ffffff; border:1.5px solid #bae6fd; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(2,132,199,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#e0f2fe; color:#0369a1; font-weight:800; border-radius:50%; font-size:0.9rem;">4</span>
+                                <strong style="color:#0369a1; font-size:1.05rem;">📋 Fase 4: Planificació del Treball, Eines i Pressupost</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> S'organitzen metòdicament tots els recursos necessaris abans d'iniciar la fabricació. S'elabora el <strong>full de procés</strong> (on s'indica la seqüència cronològica d'operacions, el temps previst i les eines manuals o màquines necessàries), es prepara la configuració dels equips (CAM), es calcula el pressupost econòmic detallat i es reparteixen les tasques en l'equip.
+                            </p>
+                        </div>
+
+                        <!-- FLETXA 4 -> 5 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:50%; color:#1d4ed8; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                                ↓
+                            </div>
+                        </div>
+
+                        <!-- FASE 5 -->
+                        <div style="background:#ffffff; border:1.5px solid #bae6fd; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(2,132,199,0.05);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#e0f2fe; color:#0369a1; font-weight:800; border-radius:50%; font-size:0.9rem;">5</span>
+                                <strong style="color:#0369a1; font-size:1.05rem;">⚙️ Fase 5: Construcció, Fabricació i Desenvolupament</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Es materialitza el disseny seguint fidelment la planificació. Al taller, fàbrica o laboratori es mecanitzen els materials (mesurar, marcar, tallar, llimar o fresar), se solden els components electrònics, s'escriu el codi de programació i s'acoblen totes les peces, complint estrictament les <strong>normes de seguretat i salut</strong> (protecció ocular, extracció de fums, equips EPI).
+                            </p>
+                        </div>
+
+                        <!-- FLETXA 5 -> 6 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:50%; color:#1d4ed8; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                                ↓
+                            </div>
+                        </div>
+
+                        <!-- FASE 6 (AMB BIFURCACIO CÍCLICA) -->
+                        <div style="background:#ffffff; border:2px solid #fde68a; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(217,119,6,0.06);">
+                            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.35rem;">
+                                <div style="display:flex; align-items:center; gap:0.6rem;">
+                                    <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#fef3c7; color:#b45309; font-weight:800; border-radius:50%; font-size:0.9rem;">6</span>
+                                    <strong style="color:#b45309; font-size:1.05rem;">🧪 Fase 6: Prova, Avaluació Funcional i Caràcter Cíclic</strong>
+                                </div>
+                                <span style="font-size:0.78rem; background:#fee2e2; color:#b91c1c; font-weight:700; padding:0.2rem 0.6rem; border-radius:999px; border:1px solid #fca5a5;">
+                                    ⚖️ Verificació del Prototip
+                                </span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Es posa en marxa el producte, estructura o programari en condicions d'ús real per avaluar si respon satisfactòriament als requisits inicials fixats a la Fase 1. S'analitza la seva resistència, consum energètic, seguretat i facilitat d'ús.
+                            </p>
+                            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:0.6rem; margin-top:0.65rem;">
+                                <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:0.5rem 0.75rem; font-size:0.83rem; color:#166534;">
+                                    <strong>✅ Si el resultat és favorable:</strong> L'objecte ha superat les proves de qualitat i s'avança amb èxit cap a la <strong>Fase 7 (Comunicació)</strong>.
+                                </div>
+                                <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:6px; padding:0.5rem 0.75rem; font-size:0.83rem; color:#991b1b;">
+                                    <strong>🔁 Si hi ha errades o fallades:</strong> No es descarta el projecte! S'activa el <strong>bucle cíclic de retorn cap a la Fase 3 (Disseny)</strong> per modificar plànols o circuits i repetir la prova.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FLETXA 6 -> 7 -->
+                        <div style="display:flex; justify-content:center; align-items:center; padding:0.4rem 0;">
+                            <div style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:50%; color:#1d4ed8; font-weight:800; font-size:1rem; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                                ↓
+                            </div>
+                        </div>
+
+                        <!-- FASE 7 -->
+                        <div style="background:#ffffff; border:1.5px solid #86efac; border-radius:10px; padding:1rem 1.25rem; box-shadow:0 2px 8px rgba(22,163,74,0.06);">
+                            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+                                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; background:#dcfce7; color:#15803d; font-weight:800; border-radius:50%; font-size:0.9rem;">7</span>
+                                <strong style="color:#15803d; font-size:1.05rem;">📢 Fase 7: Comunicació, Memòria Tècnica i Difusió</strong>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.5;">
+                                <strong>Què es fa:</strong> Es documenta tot el projecte per tal que altres persones el puguin conèixer, reproduir o mantenir en el futur. S'elabora la <strong>memòria tècnica</strong> (que inclou la descripció del problema, plànols finals detallats, pressupost real, codi font comentat i manual d'instruccions per a l'usuari) i es divulga el resultat davant l'equip, la classe, els clients o el mercat.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -2057,20 +2138,19 @@
                             <span style="font-size:0.8rem; color:#64748b; display:block;">Assigna l'acció exacta a cada fase i columna per completar la matriu d'enginyeria.</span>
                         </div>
                         <div style="display:flex; gap:0.5rem; align-items:center;">
-                            <button class="btn btn-outline" style="padding:0.45rem 0.9rem; font-size:0.85rem;" onclick="giveHintAvancat()">💡 Pista</button>
                             <button class="btn btn-primary" style="padding:0.45rem 1.1rem; font-size:0.85rem;" onclick="checkTableAvancat()">🔍 Comprovar Totes les Caselles</button>
                         </div>
                     </div>
 
                     <!-- TAULA COMPARATIVA DE 4 COLUMNES -->
                     <div style="width:100%; overflow-x:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px;">
-                        <table style="width:100%; min-width:860px; border-collapse:collapse; font-size:0.84rem; text-align:left;" id="matrix-tech-table">
+                        <table style="width:100%; min-width:1100px; border-collapse:collapse; font-size:0.84rem; text-align:left;" id="matrix-tech-table">
                             <thead>
                                 <tr style="background:#f8fafc; border-bottom:2px solid #cbd5e1;">
-                                    <th style="padding:0.85rem 0.75rem; width:16%; color:#0f172a; font-weight:800; border-right:2px solid #e2e8f0;">🔄 1. Fase del Procés</th>
-                                    <th style="padding:0.85rem 0.75rem; width:28%; color:#065f46; font-weight:800; border-right:1px solid #e2e8f0; background:#f0fdf4;">💡 2. Làmpada IoT (Fusta & Làser)</th>
-                                    <th style="padding:0.85rem 0.75rem; width:28%; color:#1e3a8a; font-weight:800; border-right:1px solid #e2e8f0; background:#eff6ff;">🌉 3. Pont Penjant (Infraestructura)</th>
-                                    <th style="padding:0.85rem 0.75rem; width:28%; color:#581c87; font-weight:800; background:#faf5ff;">📱 4. App Mòbil (Software)</th>
+                                    <th style="padding:0.85rem 0.75rem; width:15%; color:#0f172a; font-weight:800; border-right:2px solid #e2e8f0;">🔄 1. Fase del Procés</th>
+                                    <th style="padding:0.85rem 0.75rem; width:28.3%; color:#065f46; font-weight:800; border-right:1px solid #e2e8f0; background:#f0fdf4;">💡 2. Làmpada IoT (Fusta & Làser)</th>
+                                    <th style="padding:0.85rem 0.75rem; width:28.3%; color:#1e3a8a; font-weight:800; border-right:1px solid #e2e8f0; background:#eff6ff;">🌉 3. Pont Penjant (Infraestructura)</th>
+                                    <th style="padding:0.85rem 0.75rem; width:28.3%; color:#581c87; font-weight:800; background:#faf5ff;">📱 4. App Mòbil (Software)</th>
                                 </tr>
                             </thead>
                             <tbody id="tech-table-body-av">
@@ -2160,26 +2240,39 @@
                     <option value="4t ESO B">4t ESO B</option>
                 </select>
 
-                <label style="font-size:0.85rem; font-weight:700; color:#1d4ed8; display:block; margin-bottom:0.45rem;">Tria el teu Nivell de Treball:</label>
-                <div style="margin-bottom:1.25rem;">
-                    <div class="level-card-option selected" id="opt-level-inicial" onclick="selectModalLevel('inicial')">
-                        <div style="font-size:1.7rem;">🟢</div>
-                        <div>
-                            <strong style="color:#34d399; font-size:0.95rem; display:block;">Nivell Inicial (Suport i Lectura Fàcil)</strong>
-                            <span style="font-size:0.8rem; color:#64748b; display:block; line-height:1.35; margin-top:0.2rem;">
-                                Textos breus i molt clars, 8 objectes quotidians a la fase 1, 7 grans invents icònics a la línia del temps i simuladors simplificats amb ajudes visuals.
-                            </span>
+                <div id="modal-level-selection-box">
+                    <label style="font-size:0.85rem; font-weight:700; color:#1d4ed8; display:block; margin-bottom:0.35rem;">
+                        Tria el teu Nivell de Treball: <span style="color:#dc2626; font-size:0.8rem; font-weight:normal;">(⚠️ Atenció: Quedarà fixat durant tota la unitat i al diploma)</span>
+                    </label>
+                    <div style="margin-bottom:1.25rem;">
+                        <div class="level-card-option selected" id="opt-level-inicial" onclick="selectModalLevel('inicial')">
+                            <div style="font-size:1.7rem;">🟢</div>
+                            <div>
+                                <strong style="color:#34d399; font-size:0.95rem; display:block;">Nivell Inicial (Suport i Lectura Fàcil)</strong>
+                                <span style="font-size:0.8rem; color:#64748b; display:block; line-height:1.35; margin-top:0.2rem;">
+                                    Textos breus i molt clars, 8 objectes quotidians a la fase 1, 7 grans invents icònics a la línia del temps i simuladors simplificats amb ajudes visuals.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="level-card-option" id="opt-level-avancat" onclick="selectModalLevel('avancat')">
+                            <div style="font-size:1.7rem;">🔵</div>
+                            <div>
+                                <strong style="color:#1d4ed8; font-size:0.95rem; display:block;">Nivell Avançat (Estàndard 4t ESO)</strong>
+                                <span style="font-size:0.8rem; color:#64748b; display:block; line-height:1.35; margin-top:0.2rem;">
+                                    Teoria completa de la tecnologia, 12 objectes d'anàlisi, repte de 20 invents històrics per ordenar i simulador energètic amb 6 fonts.
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    <div class="level-card-option" id="opt-level-avancat" onclick="selectModalLevel('avancat')">
-                        <div style="font-size:1.7rem;">🔵</div>
-                        <div>
-                            <strong style="color:#1d4ed8; font-size:0.95rem; display:block;">Nivell Avançat (Estàndard 4t ESO)</strong>
-                            <span style="font-size:0.8rem; color:#64748b; display:block; line-height:1.35; margin-top:0.2rem;">
-                                Teoria completa de la tecnologia, 12 objectes d'anàlisi, repte de 20 invents històrics per ordenar i simulador energètic amb 6 fonts.
-                            </span>
-                        </div>
+                </div>
+                <div id="modal-level-locked-box" style="display:none; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.85rem; margin-bottom:1.25rem;">
+                    <div style="display:flex; align-items:center; gap:0.5rem; color:#0f172a; font-weight:700; font-size:0.92rem; margin-bottom:0.25rem;">
+                        <span>🔒 Nivell de la Unitat Bloquejat:</span>
+                        <span id="modal-locked-level-badge" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; border-radius:999px; padding:0.15rem 0.65rem; font-size:0.82rem;">🟢 Nivell Inicial</span>
                     </div>
+                    <p style="font-size:0.8rem; color:#64748b; margin:0; line-height:1.35;">
+                        Has iniciat i superat tasques en aquest nivell. Per garantir el rigor pedagògic i la validesa del teu Diploma Oficial, el nivell no es pot canviar a mitja unitat. (Si necessites canviar de nivell, cal reiniciar la unitat amb un nou nom).
+                    </p>
                 </div>
 
                 <label style="font-size:0.85rem; font-weight:700; color:#1d4ed8; display:block; margin-bottom:0.35rem;">Tria el teu Avatar:</label>
@@ -2231,6 +2324,11 @@
             unlockedStage: 1,
             completedStages: [],
             totalXP: 0,
+            penalties: {
+                stage1: 0,
+                stage2: 0,
+                stage4: 0
+            },
             g1Answers: {},
             g3Cleared: false,
             g4Cleared: false
@@ -2241,12 +2339,14 @@
             if (saved) {
                 try {
                     appState = Object.assign(appState, JSON.parse(saved));
+                    if (!appState.penalties) {
+                        appState.penalties = { stage1: 0, stage2: 0, stage4: 0 };
+                    }
                 } catch(e) {
                     console.error("Error carregant estat", e);
                 }
             }
 
-            // Aplicar classe de nivell al body
             document.body.className = (appState.level === 'inicial' ? 'level-inicial' : 'level-avancat');
 
             updateHeader();
@@ -2263,6 +2363,14 @@
             localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(appState));
             updateHeader();
             updateNavigationLocks();
+        }
+
+        function notifyScoreChange() {
+            const xpHeader = document.getElementById('header-xp');
+            if (xpHeader) {
+                xpHeader.classList.add('pop');
+                setTimeout(() => xpHeader.classList.remove('pop'), 500);
+            }
         }
 
         function setLevel(newLevel) {
@@ -2284,8 +2392,7 @@
         }
 
         function toggleLevel() {
-            const nextLevel = (appState.level === 'inicial') ? 'avancat' : 'inicial';
-            setLevel(nextLevel);
+            alert("🔒 El nivell queda fixat en iniciar la unitat per garantir la integritat del progrés i del Diploma Oficial.");
         }
 
         function updateHeader() {
@@ -2295,12 +2402,11 @@
             document.getElementById('header-xp').textContent = appState.totalXP;
             document.getElementById('header-unlocked-stage').textContent = `${Math.min(4, appState.unlockedStage)} / 4`;
 
-            const lvlBtn = document.getElementById('header-level-btn');
-            if (lvlBtn) {
-                const isIni = (appState.level === 'inicial');
-                document.getElementById('header-level-icon').textContent = isIni ? '🟢' : '🔵';
-                document.getElementById('header-level-text').textContent = isIni ? 'Nivell Inicial' : 'Nivell Avançat';
-            }
+            const isIni = (appState.level === 'inicial');
+            const iconEl = document.getElementById('header-level-icon');
+            const textEl = document.getElementById('header-level-text');
+            if (iconEl) iconEl.textContent = isIni ? '🟢' : '🔵';
+            if (textEl) textEl.textContent = isIni ? 'Nivell Inicial' : 'Nivell Avançat';
         }
 
         const STAGE_TITLES = {
@@ -2348,12 +2454,10 @@
             appState.currentStage = stageNum;
             saveState();
 
-            // Amagar totes les vistes
             document.querySelectorAll('.section-view').forEach(v => v.classList.remove('active'));
             const targetView = document.getElementById(`stage-view-${stageNum}`);
             if (targetView) targetView.classList.add('active');
 
-            // Actualitzar pestanyes actives
             document.querySelectorAll('.stage-nav-btn').forEach((b, idx) => {
                 b.classList.toggle('active', idx + 1 === stageNum);
             });
@@ -2382,6 +2486,27 @@
             selectedModalLevel = appState.level || 'inicial';
             selectModalLevel(selectedModalLevel);
             pickAvatar(appState.avatar || '👩‍🔧');
+
+            const hasProgress = (appState.completedStages && appState.completedStages.length > 0) || (appState.totalXP > 0) || (appState.unlockedStage > 1);
+            const levelSelectBox = document.getElementById('modal-level-selection-box');
+            const levelLockedBox = document.getElementById('modal-level-locked-box');
+            const lockedBadge = document.getElementById('modal-locked-level-badge');
+
+            if (hasProgress) {
+                if (levelSelectBox) levelSelectBox.style.display = 'none';
+                if (levelLockedBox) levelLockedBox.style.display = 'block';
+                if (lockedBadge) {
+                    const isIni = (appState.level === 'inicial');
+                    lockedBadge.textContent = isIni ? '🟢 Nivell Inicial (Assignat)' : '🔵 Nivell Avançat (Assignat)';
+                    lockedBadge.style.background = isIni ? '#dcfce7' : '#eff6ff';
+                    lockedBadge.style.color = isIni ? '#15803d' : '#1d4ed8';
+                    lockedBadge.style.borderColor = isIni ? '#86efac' : '#93c5fd';
+                }
+            } else {
+                if (levelSelectBox) levelSelectBox.style.display = 'block';
+                if (levelLockedBox) levelLockedBox.style.display = 'none';
+            }
+
             document.getElementById('profile-modal').classList.add('active');
         }
 
@@ -2402,25 +2527,75 @@
                 alert("Si us plau, introdueix el teu nom i cognoms!");
                 return;
             }
+
+            const hasProgress = (appState.completedStages && appState.completedStages.length > 0) || (appState.totalXP > 0) || (appState.unlockedStage > 1);
+
+            // Si ja hi ha progrés, no es permet canviar el nivell a posteriori
+            if (hasProgress && appState.level && selectedModalLevel !== appState.level) {
+                alert("🔒 No pots canviar de nivell un cop iniciades les fases de la unitat!");
+                selectedModalLevel = appState.level;
+            }
+
             appState.studentName = name;
             appState.studentGroup = group || '4t ESO A';
-            appState.level = selectedModalLevel;
-            setLevel(selectedModalLevel);
+            
+            if (!hasProgress) {
+                appState.level = selectedModalLevel;
+                setLevel(selectedModalLevel);
+            }
 
             saveState();
             document.getElementById('profile-modal').classList.remove('active');
             goToStage(appState.currentStage || 1);
         }
 
+        // LÒGICA DE PENALITZACIÓ D'XP EN CAS D'ERRORS
+        function applyXpPenalty(stageKey, pointsToDeduct) {
+            if (!appState.penalties) appState.penalties = { stage1: 0, stage2: 0, stage4: 0 };
+            appState.penalties[stageKey] = (appState.penalties[stageKey] || 0) + pointsToDeduct;
+            // Si l'alumne ja té punts XP acumulats, els restem immediatament (mínim 0)
+            if (appState.totalXP > 0) {
+                appState.totalXP = Math.max(0, appState.totalXP - pointsToDeduct);
+            }
+            saveState();
+            flashXpLoss(pointsToDeduct);
+        }
+
+        function flashXpLoss(points) {
+            const xpHeader = document.getElementById('header-xp');
+            if (xpHeader) {
+                xpHeader.style.color = '#ef4444';
+                xpHeader.style.transform = 'scale(1.25)';
+                xpHeader.style.transition = 'all 0.3s ease';
+                setTimeout(() => {
+                    xpHeader.style.color = '';
+                    xpHeader.style.transform = '';
+                }, 750);
+            }
+        }
+
         let pendingNextStage = 1;
-        function showVictory(stageNum, title, desc, xp) {
+        function showVictory(stageNum, title, desc, baseXp) {
+            const stageKeyMap = { 1: 'stage1', 2: 'stage2', 3: 'stage3', 4: 'stage4' };
+            const stageKey = stageKeyMap[stageNum];
+            const penalty = (appState.penalties && appState.penalties[stageKey]) ? appState.penalties[stageKey] : 0;
+            // Calculem la puntuació XP neta assolida en aquesta fase (mínim el 40% del base per garantir l'assoliment)
+            const minXp = Math.round(baseXp * 0.4);
+            const finalAwardedXp = Math.max(minXp, baseXp - penalty);
+
             document.getElementById('vic-title').textContent = title;
             document.getElementById('vic-desc').textContent = desc;
-            document.getElementById('vic-xp').textContent = `+${xp} XP`;
+
+            const vicXpEl = document.getElementById('vic-xp');
+            if (penalty > 0) {
+                vicXpEl.innerHTML = `+${finalAwardedXp} XP <span style="font-size:0.85rem; color:#dc2626; font-weight:normal; display:block; margin-top:0.25rem;">(Puntuació base: ${baseXp} - ${penalty} per errors)</span>`;
+            } else {
+                vicXpEl.textContent = `+${finalAwardedXp} XP (Puntuació Perfecta! 🎯)`;
+            }
 
             if (!appState.completedStages.includes(stageNum)) {
                 appState.completedStages.push(stageNum);
-                appState.totalXP += xp;
+                appState.totalXP += finalAwardedXp;
             }
             if (appState.unlockedStage <= stageNum) {
                 appState.unlockedStage = stageNum + 1;
@@ -2546,12 +2721,18 @@
             const isCorrect = (chosenType === item.type);
             if (!appState.cstAnswers) appState.cstAnswers = {};
             appState.cstAnswers[itemId] = isCorrect;
+
+            if (!isCorrect) {
+                applyXpPenalty('stage1', 5);
+            }
+
             saveState();
 
             const fb = document.getElementById(`fb-${itemId}`);
             if (fb) {
                 fb.className = isCorrect ? 'obj-feedback show-correct' : 'obj-feedback show-wrong';
-                fb.innerHTML = `<strong>${isCorrect ? '✅ Encertat!' : '⚠️ Pensa-hi bé:'}</strong> ${item.why}`;
+                const penaltyMsg = !isCorrect ? `<span style="display:block; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">⚠️ Error detectat: -5 XP a la puntuació final</span>` : '';
+                fb.innerHTML = `<strong>${isCorrect ? '✅ Encertat!' : '⚠️ Pensa-hi bé:'}</strong> ${item.why}${penaltyMsg}`;
             }
 
             let completedCount = 0;
@@ -2812,11 +2993,17 @@
 
             const isCorrect = (userSaysYes === item.isTech);
             appState.g1Answers[itemId] = isCorrect;
+
+            if (!isCorrect) {
+                applyXpPenalty('stage1', 5);
+            }
+
             saveState();
 
             const fb = document.getElementById(`fb-${itemId}`);
             fb.className = isCorrect ? 'obj-feedback show-correct' : 'obj-feedback show-wrong';
-            fb.innerHTML = `<strong>${isCorrect ? '✅ Encertat!' : '⚠️ Pensa-hi bé:'}</strong> ${item.why}`;
+            const penaltyMsg = !isCorrect ? `<span style="display:block; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">⚠️ Error detectat: -5 XP a la puntuació final</span>` : '';
+            fb.innerHTML = `<strong>${isCorrect ? '✅ Encertat!' : '⚠️ Pensa-hi bé:'}</strong> ${item.why}${penaltyMsg}`;
 
             let completedCount = 0;
             items.forEach(i => {
@@ -3120,7 +3307,10 @@
                 // Desactivem els botons de moviment per deixar la línia fixa
                 document.querySelectorAll('.btn-order-move').forEach(b => b.disabled = true);
             } else {
-                msg.textContent = `🔍 Has encertat ${correctCount} de ${list.length} posicions correctes! Fixa't en les pistes de les targetes vermelles per saber si van més amunt o més avall.`;
+                const errors = list.length - correctCount;
+                const penaltyToApply = Math.min(25, errors * 3);
+                applyXpPenalty('stage2', penaltyToApply);
+                msg.innerHTML = `🔍 Has encertat <strong>${correctCount} de ${list.length}</strong> posicions correctes. Hi ha ${errors} invents desordenats (-${penaltyToApply} XP a la puntuació final). Fixa't en les pistes de les targetes vermelles per col·locar-los al seu lloc!`;
                 msg.style.color = '#dc2626';
                 if (victActions) victActions.style.display = 'none';
             }
@@ -3392,14 +3582,17 @@
                 barBackup.style.background = backupPower >= 20 ? '#10b981' : '#ef4444';
             }
 
-            // 5 CONDICIONS INDISPENSABLES PER AVANÇAR:
+            // 6 CONDICIONS INDISPENSABLES PER AVANÇAR:
             const condCoverage = (totalPct >= 98 && totalPct <= 102);
             const condCO2 = (co2Tons <= 20000 && totalPct > 0);
             const condWaste = (wasteScore <= 28 && totalPct > 0);
             const condCost = (costKwh <= 0.13 && totalPct > 0);
             const condBackup = (backupPower >= 20);
+            const allUsed = (coal > 0 && gas > 0 && nuclear > 0 && hydro > 0 && solar > 0 && wind > 0);
+            const hydroRealistic = (hydro <= 20);
+            const condDiversified = allUsed && hydroRealistic;
 
-            // Actualització visual dels 5 reptes (Checklist interactiu)
+            // Actualització visual dels 6 reptes (Checklist interactiu)
             const chkCov = document.getElementById('chk-av-cov');
             if (chkCov) {
                 chkCov.innerHTML = condCoverage ? '<span>✅</span> <span style="color:#0369a1;">1. Cobertura: <strong>98%-102% (' + totalPct + '%)</strong></span>' : '<span>❌</span> <span>1. Cobertura: <strong>98%-102% (' + totalPct + '%)</strong></span>';
@@ -3435,7 +3628,31 @@
                 chkDisp.style.background = condBackup ? '#f0f9ff' : '#ffffff';
             }
 
-            // Diagnòstic d'Enginyeria: BLOQUEJA si emissions, residus o cost són molt alts
+            const chkDiv = document.getElementById('chk-av-div');
+            if (chkDiv) {
+                const missingSources = [];
+                if (coal === 0) missingSources.push('Carbó');
+                if (gas === 0) missingSources.push('Gas');
+                if (nuclear === 0) missingSources.push('Nuclear');
+                if (hydro === 0) missingSources.push('Hidro');
+                if (solar === 0) missingSources.push('Solar');
+                if (wind === 0) missingSources.push('Eòlica');
+
+                let divStatusText = '';
+                if (!allUsed) {
+                    divStatusText = `Falta: ${missingSources.slice(0, 2).join(', ')}${missingSources.length > 2 ? '...' : ''}`;
+                } else if (!hydroRealistic) {
+                    divStatusText = `Hidro excessiva (${hydro}% &gt; 20%)`;
+                } else {
+                    divStatusText = 'Totes operatives (Hidro &le; 20%)';
+                }
+
+                chkDiv.innerHTML = condDiversified ? '<span>✅</span> <span style="color:#0369a1;">6. Mix Diversificat: <strong>' + divStatusText + '</strong></span>' : '<span>❌</span> <span>6. Mix Diversificat: <strong>' + divStatusText + '</strong></span>';
+                chkDiv.style.borderColor = condDiversified ? '#7dd3fc' : '#e2e8f0';
+                chkDiv.style.background = condDiversified ? '#f0f9ff' : '#ffffff';
+            }
+
+            // Diagnòstic d'Enginyeria: BLOQUEJA si emissions, residus o cost són molt alts o si falta diversificació
             const diagTitle = document.getElementById('sim-diag-title');
             const diagText = document.getElementById('sim-diag-text');
             const btnFinish = document.getElementById('btn-finish-stage-3');
@@ -3454,6 +3671,25 @@
                 diagTitle.textContent = "⚠️ Sobreproducció Elèctrica a la Xarxa";
                 diagTitle.style.color = '#f59e0b';
                 diagText.textContent = `S'està generant un ${totalPct}% (${totalPct - 100}% de més), posant en risc de cremar transformadors i cables d'alta tensió. Reajusta cap al 100%.`;
+                btnFinish.style.display = 'none';
+            } else if (!condDiversified) {
+                if (!hydroRealistic) {
+                    diagTitle.textContent = "🌊 LÍMIT HIDROELÈCTRIC SOBREPASSAT (Falta de Cabal Fluvial)!";
+                    diagTitle.style.color = '#dc2626';
+                    diagText.textContent = `Has assignat un ${hydro}% a la central hidroelèctrica! En el món real, la geografia i els cabals dels rius no permeten cobrir més d'un 20% de la demanda nacional sense assecar les conques ni col·lapsar el medi ambient. Rebaixa l'aigua al 20% o menys i diversifica amb altres centrals!`;
+                } else {
+                    const unselected = [];
+                    if (coal === 0) unselected.push('🏭 Carbó');
+                    if (gas === 0) unselected.push('🔥 Gas');
+                    if (nuclear === 0) unselected.push('☢️ Nuclear');
+                    if (hydro === 0) unselected.push('🌊 Hidroelèctrica');
+                    if (solar === 0) unselected.push('☀️ Solar');
+                    if (wind === 0) unselected.push('💨 Eòlica');
+
+                    diagTitle.textContent = "🌐 MIX NO DIVERSIFICAT: Cal que totes les centrals participin!";
+                    diagTitle.style.color = '#dc2626';
+                    diagText.textContent = `Un sistema elèctric real i robust requereix totes les tecnologies disponibles en proporció equilibrada. Actualment tens a zero: ${unselected.join(', ')}. Activa totes les centrals (almenys amb un percentatge mínim) per garantir la transició i la resiliència del sistema!`;
+                }
                 btnFinish.style.display = 'none';
             } else if (!condCO2) {
                 diagTitle.textContent = "🏭 EMISSIONS DE CO₂ MOLT ALTES (Emergència Climàtica)!";
@@ -3478,7 +3714,7 @@
             } else {
                 diagTitle.textContent = "🌟 EQUILIBRI PLANETARI D'ENGINYERIA ASSOLIT!";
                 diagTitle.style.color = '#059669';
-                diagText.textContent = `Extraordinària feina d'enginyeria! Has aconseguit cobrir la demanda (${totalPct}%), amb emissions mínimes (${co2Tons.toLocaleString()} t CO₂/dia), residus radioactius controlats (índex ${wasteScore.toFixed(0)}), factura assequible per a les llars (${costKwh.toFixed(2)} €/kWh) i reserva de suport 24/7 (${backupPower}%). Has desbloquejat el pas a la Fase 4!`;
+                diagText.textContent = `Extraordinària feina d'enginyeria! Has aconseguit cobrir la demanda (${totalPct}%), amb emissions mínimes (${co2Tons.toLocaleString()} t CO₂/dia), residus radioactius controlats (índex ${wasteScore.toFixed(0)}), factura assequible per a les llars (${costKwh.toFixed(2)} €/kWh), reserva de suport 24/7 (${backupPower}%) i un mix diversificat amb totes les centrals operatives. Has desbloquejat el pas a la Fase 4!`;
                 btnFinish.style.display = 'block';
             }
         }
@@ -3574,60 +3810,99 @@
 
         function createSelectCell(projectKey, phaseId, optionsArray) {
             const td = document.createElement('td');
-            td.style.padding = '0.5rem';
+            td.style.padding = '0.65rem 0.5rem';
             td.style.borderRight = '1px solid #e2e8f0';
             td.id = `cell-av-${projectKey}-${phaseId}`;
 
             const sel = document.createElement('select');
             sel.id = `sel-av-${projectKey}-${phaseId}`;
             sel.style.width = '100%';
-            sel.style.fontSize = '0.8rem';
-            sel.style.padding = '0.45rem';
+            sel.style.fontSize = '0.82rem';
+            sel.style.padding = '0.5rem';
             sel.style.borderRadius = '6px';
             sel.style.border = '1px solid #cbd5e1';
             sel.style.background = '#ffffff';
             sel.style.color = '#1e293b';
-            sel.style.lineHeight = '1.3';
+            sel.style.lineHeight = '1.35';
             sel.onchange = () => autoCheckCellAvancat(projectKey, phaseId);
 
             const optDefault = document.createElement('option');
             optDefault.value = "";
-            optDefault.textContent = `-- Tria la tasca d'aquesta fase --`;
+            optDefault.textContent = `-- Tria l'acció corresponent a aquesta fase --`;
             sel.appendChild(optDefault);
 
             optionsArray.forEach(item => {
                 const opt = document.createElement('option');
                 opt.value = item.phase;
-                // Escurcem una mica per al títol del select si és llarg
-                opt.textContent = item.text.length > 95 ? item.text.substring(0, 92) + "..." : item.text;
+                // Mostrem el text complet a la llista desplegable sense cap tall
+                opt.textContent = item.text;
                 opt.title = item.text;
                 sel.appendChild(opt);
             });
 
             td.appendChild(sel);
+
+            // Text descriptiu complet seleccionat per a una lectura clara i còmoda a sota
+            const preview = document.createElement('div');
+            preview.id = `preview-av-${projectKey}-${phaseId}`;
+            preview.style.fontSize = '0.8rem';
+            preview.style.color = '#475569';
+            preview.style.marginTop = '0.4rem';
+            preview.style.lineHeight = '1.35';
+            preview.style.display = 'none';
+            preview.style.padding = '0.35rem 0.5rem';
+            preview.style.background = '#ffffff';
+            preview.style.borderRadius = '4px';
+            preview.style.border = '1px dashed #cbd5e1';
+            td.appendChild(preview);
+
             return td;
         }
 
         function autoCheckCellAvancat(projectKey, phaseId) {
             const sel = document.getElementById(`sel-av-${projectKey}-${phaseId}`);
             const cell = document.getElementById(`cell-av-${projectKey}-${phaseId}`);
+            const preview = document.getElementById(`preview-av-${projectKey}-${phaseId}`);
             if (!sel || !cell) return;
 
             const val = parseInt(sel.value);
             if (isNaN(val) || val === 0) {
                 cell.style.background = '';
                 sel.style.borderColor = '#cbd5e1';
-            } else if (val === phaseId) {
-                cell.style.background = '#f0fdf4';
-                sel.style.borderColor = '#10b981';
-                sel.style.background = '#ecfdf5';
-                sel.style.color = '#065f46';
-                sel.style.fontWeight = '600';
+                if (preview) {
+                    preview.style.display = 'none';
+                    preview.textContent = '';
+                }
             } else {
-                cell.style.background = '#fef2f2';
-                sel.style.borderColor = '#f87171';
-                sel.style.background = '#fff1f2';
-                sel.style.color = '#991b1b';
+                // Trobem el text de l'opció triada
+                const selectedText = sel.options[sel.selectedIndex]?.text || '';
+                if (preview) {
+                    preview.style.display = 'block';
+                    preview.textContent = selectedText;
+                }
+
+                if (val === phaseId) {
+                    cell.style.background = '#f0fdf4';
+                    sel.style.borderColor = '#10b981';
+                    sel.style.background = '#ecfdf5';
+                    sel.style.color = '#065f46';
+                    sel.style.fontWeight = '600';
+                    if (preview) {
+                        preview.style.borderColor = '#86efac';
+                        preview.style.background = '#ffffff';
+                        preview.style.color = '#065f46';
+                    }
+                } else {
+                    cell.style.background = '#fef2f2';
+                    sel.style.borderColor = '#f87171';
+                    sel.style.background = '#fff1f2';
+                    sel.style.color = '#991b1b';
+                    if (preview) {
+                        preview.style.borderColor = '#fca5a5';
+                        preview.style.background = '#ffffff';
+                        preview.style.color = '#991b1b';
+                    }
+                }
             }
             updateTableScoreAvancat();
         }
@@ -3668,7 +3943,10 @@
                 }
                 alert("🎉 Enhorabona! Has completat perfectament la Taula del Procés Tecnològic en les 3 disciplines d'enginyeria (21/21)! Ja pots generar el Diploma Oficial.");
             } else {
-                alert(`Has encertat ${correctCount} de les 21 caselles. Les caselles en vermell estan desordenades o pendents. Revisa el tipus d'acció de cada fase i corregeix-les!`);
+                const errors = 21 - correctCount;
+                const penaltyToApply = Math.min(30, errors * 2);
+                applyXpPenalty('stage4', penaltyToApply);
+                alert(`Has encertat ${correctCount} de les 21 caselles. Les ${errors} caselles en vermell o buides resten ${penaltyToApply} XP a la puntuació final de la fase. Revisa el tipus d'acció de cada fase i corregeix-les!`);
             }
         }
 
@@ -3784,7 +4062,10 @@
             if (count === 12) {
                 alert("🎉 Fantàstic! Has completat totes les 12 caselles correctament. El teu Diploma està a punt!");
             } else {
-                alert(`Portes ${count} de 12 caselles correctes. Revisa les que estan en vermell i pensa quin pas és!`);
+                const errors = 12 - count;
+                const penaltyToApply = Math.min(20, errors * 2);
+                applyXpPenalty('stage4', penaltyToApply);
+                alert(`Portes ${count} de 12 caselles correctes. Les ${errors} caselles errònies resten ${penaltyToApply} XP a la puntuació final. Revisa les que estan en vermell i pensa quin pas és!`);
             }
         }
 
