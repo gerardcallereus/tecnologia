@@ -169,6 +169,18 @@
             transform: translateY(-1px);
         }
 
+        .btn-header-exit {
+            background: #fef2f2;
+            color: #b91c1c;
+            border-color: #fecaca;
+        }
+
+        .btn-header-exit:hover {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fca5a5;
+        }
+
         /* NAVIGATION TABS (LOCKED / UNLOCKED) */
         nav.nav-stages {
             background: #ffffff;
@@ -985,7 +997,7 @@
                     <span>🔓 Fase:</span>
                     <strong id="header-unlocked-stage">1 / 4</strong>
                 </div>
-                <button class="btn-header" onclick="openProfileModal()">👤 Canviar Alumne/a</button>
+                <button class="btn-header btn-header-exit" onclick="confirmExitGame()" title="Sortir i reiniciar la unitat">🚪 Sortir del Joc</button>
             </div>
         </div>
     </header>
@@ -1370,11 +1382,15 @@
                             </div>
 
                             <div style="margin-top:1.25rem; text-align:center;">
-                                <button class="btn btn-success" id="btn-finish-stage-3-ini" style="width:100%; display:none;" onclick="finishStage3()">
+                                <button class="btn btn-primary" id="btn-check-stage-3-ini" style="width:100%; font-size:1.05rem; padding:0.85rem;" onclick="checkEnergySimulationInicial()">
+                                    🔍 Comprovar Distribució Elèctrica
+                                </button>
+                                <div id="check-feedback-3-ini" style="display:none; margin-top:0.75rem; padding:0.75rem; border-radius:10px; font-weight:600; font-size:0.92rem;"></div>
+                                <button class="btn btn-success" id="btn-finish-stage-3-ini" style="width:100%; display:none; margin-top:0.75rem;" onclick="finishStage3()">
                                     🎉 Reptes Superats! Planeta en Equilibri! Passar a la Fase 4 ➔
                                 </button>
                                 <span style="font-size:0.8rem; color:var(--text-muted); display:block; margin-top:0.4rem;" id="sim-ini-hint">
-                                    Compleix els 4 reptes de dalt per desbloquejar el botó d'avançar.
+                                    Ajusta les palanques i prem "Comprovar Distribució Elèctrica" per avaluar el teu mix. Compte: cada comprovació amb errors resta -10 punts XP!
                                 </span>
                             </div>
                         </div>
@@ -1657,11 +1673,15 @@
                             </div>
 
                             <div style="margin-top:1.25rem; text-align:center;">
-                                <button class="btn btn-success" id="btn-finish-stage-3" style="width:100%; display:none;" onclick="finishStage3()">
+                                <button class="btn btn-primary" id="btn-check-stage-3-av" style="width:100%; font-size:1.05rem; padding:0.85rem;" onclick="checkEnergySimulationAvancat()">
+                                    🔍 Comprovar Distribució Elèctrica
+                                </button>
+                                <div id="check-feedback-3-av" style="display:none; margin-top:0.75rem; padding:0.75rem; border-radius:10px; font-weight:600; font-size:0.92rem;"></div>
+                                <button class="btn btn-success" id="btn-finish-stage-3" style="width:100%; display:none; margin-top:0.75rem;" onclick="finishStage3()">
                                     🌿 Has assolit un Mix Sostenible! Passar a la Fase 4 ➔
                                 </button>
                                 <span style="font-size:0.8rem; color:var(--text-muted); display:block; margin-top:0.4rem;" id="sim-hint">
-                                    Compleix els 6 reptes per desbloquejar el botó de continuació.
+                                    Compleix els 6 reptes tècnics i prem "Comprovar Distribució Elèctrica". Compte: cada intent erroni resta -10 punts XP!
                                 </span>
                             </div>
                         </div>
@@ -2327,6 +2347,7 @@
             penalties: {
                 stage1: 0,
                 stage2: 0,
+                stage3: 0,
                 stage4: 0
             },
             g1Answers: {},
@@ -2340,7 +2361,9 @@
                 try {
                     appState = Object.assign(appState, JSON.parse(saved));
                     if (!appState.penalties) {
-                        appState.penalties = { stage1: 0, stage2: 0, stage4: 0 };
+                        appState.penalties = { stage1: 0, stage2: 0, stage3: 0, stage4: 0 };
+                    } else if (appState.penalties.stage3 === undefined) {
+                        appState.penalties.stage3 = 0;
                     }
                 } catch(e) {
                     console.error("Error carregant estat", e);
@@ -2478,6 +2501,17 @@
             const optAdv = document.getElementById('opt-level-avancat');
             if (optIni) optIni.classList.toggle('selected', lvl === 'inicial');
             if (optAdv) optAdv.classList.toggle('selected', lvl === 'avancat');
+        }
+
+        function confirmExitGame() {
+            const userConfirmed = confirm(
+                "⚠️ ATENCIÓ: Estàs segur/a que vols sortir del joc?\n\n" +
+                "Si surts, s'esborrarà tot el teu progrés, punts XP acumulats i fases superades, i el joc es reiniciarà a l'estat inicial per a un nou alumne/a."
+            );
+            if (userConfirmed) {
+                localStorage.removeItem(APP_STORAGE_KEY);
+                window.location.reload();
+            }
         }
 
         function openProfileModal() {
@@ -3438,37 +3472,78 @@
                 diagTitle.textContent = "🔌 Xarxa Apagada (0%)";
                 diagTitle.style.color = '#ef4444';
                 diagText.textContent = "No hi ha gens d'electricitat generada. Mou les palanques per donar llum a les ciutats i hospitals!";
-                btnFinish.style.display = 'none';
             } else if (total < 100) {
                 diagTitle.textContent = "🔌 Falta Electricitat!";
                 diagTitle.style.color = '#d97706';
                 diagText.textContent = `La producció suma ${total}%, falta un ${100 - total}% per cobrir la demanda de totes les cases. Puja les energies netes o l'aigua!`;
-                btnFinish.style.display = 'none';
             } else if (total > 100) {
                 diagTitle.textContent = "⚠️ Massa Electricitat a la Xarxa!";
                 diagTitle.style.color = '#dc2626';
                 diagText.textContent = `Estàs generant un ${total}% (${total - 100}% de més). Ajusta les palanques perquè sumin exactament el 100%.`;
-                btnFinish.style.display = 'none';
             } else if (!cond2_air) {
                 diagTitle.textContent = "😷 Alerta de Fum Negre i Contaminació!";
                 diagTitle.style.color = '#dc2626';
                 diagText.textContent = `L'ús d'energies fòssils (${fossil}%) és massa alt (màxim permès: 20%). L'aire està brut i fa mal als pulmons. Abaixa el carbó i gas i aprofita el Sol i el Vent!`;
-                btnFinish.style.display = 'none';
             } else if (!cond3_cost) {
                 diagTitle.textContent = "💸 Factura de la Llum Molt Cara!";
                 diagTitle.style.color = '#dc2626';
                 diagText.textContent = `Només tens un ${clean}% d'energies netes (mínim recomanat: 50%). Com que el Sol i el Vent són gratuïts, augmenta'ls per rebaixar la factura de les famílies!`;
-                btnFinish.style.display = 'none';
             } else if (!cond4_storage) {
                 diagTitle.textContent = "🌙 Perill d'Apagada a la Nit!";
                 diagTitle.style.color = '#d97706';
                 diagText.textContent = `Només tens un ${storage}% d'aigua/bateries (mínim cal un 10%). Quan es faci de nit i el Sol s'apagui ens quedarem a les fosques! Puja l'aigua.`;
-                btnFinish.style.display = 'none';
             } else {
-                diagTitle.textContent = "🌱 Equilibri Planetari Assolit!";
+                diagTitle.textContent = "🌱 Proposta d'Equilibri Preparada!";
                 diagTitle.style.color = '#059669';
-                diagText.textContent = "Extraordinari! Has aconseguit el 100% d'electricitat, amb aire pur (fòssils ≤ 20%), factura molt econòmica (netes ≥ 50%) i reserva hidràulica per a la nit (≥ 10%). Has superat el repte!";
-                btnFinish.style.display = 'block';
+                diagText.textContent = "Les mètriques compleixen els 4 criteris bàsics. Prem 'Comprovar Distribució Elèctrica' per validar definitivament el mix!";
+            }
+
+            // En moure els controls s'amaga el botó final fins que es comprovi
+            if (btnFinish) btnFinish.style.display = 'none';
+            const fbBox = document.getElementById('check-feedback-3-ini');
+            if (fbBox) fbBox.style.display = 'none';
+        }
+
+        function checkEnergySimulationInicial() {
+            const fossil = parseInt(document.getElementById('range-ini-fossil').value);
+            const clean = parseInt(document.getElementById('range-ini-clean').value);
+            const storage = parseInt(document.getElementById('range-ini-storage').value);
+            const total = fossil + clean + storage;
+
+            const cond1_power = (total === 100);
+            const cond2_air = (fossil <= 20 && total > 0);
+            const cond3_cost = (clean >= 50 && total > 0);
+            const cond4_storage = (storage >= 10);
+
+            const allPassed = cond1_power && cond2_air && cond3_cost && cond4_storage;
+            const fbBox = document.getElementById('check-feedback-3-ini');
+            const btnFinish = document.getElementById('btn-finish-stage-3-ini');
+
+            if (allPassed) {
+                if (fbBox) {
+                    fbBox.style.display = 'block';
+                    fbBox.style.background = '#dcfce7';
+                    fbBox.style.border = '1px solid #86efac';
+                    fbBox.style.color = '#166534';
+                    fbBox.innerHTML = `✅ <strong>Comprovació correcta!</strong> Has assolit el 100% de cobertura, aire net (&le; 20% fòssils), energia neta (&ge; 50%) i reserva d'aigua per a la nit (&ge; 10%). Ja pots avançar a la Fase 4!`;
+                }
+                if (btnFinish) btnFinish.style.display = 'block';
+            } else {
+                applyXpPenalty('stage3', 10);
+                const errors = [];
+                if (!cond1_power) errors.push(total < 100 ? `Falta electricitat (${total}%, cal 100%)` : `Massa electricitat (${total}%, cal 100%)`);
+                if (!cond2_air) errors.push(`Massa fòssils (${fossil}%, límit 20%)`);
+                if (!cond3_cost) errors.push(`Poca energia neta (${clean}%, cal mínim 50%)`);
+                if (!cond4_storage) errors.push(`Falta reserva d'aigua (${storage}%, cal mínim 10%)`);
+
+                if (fbBox) {
+                    fbBox.style.display = 'block';
+                    fbBox.style.background = '#fee2e2';
+                    fbBox.style.border = '1px solid #fca5a5';
+                    fbBox.style.color = '#991b1b';
+                    fbBox.innerHTML = `⚠️ <strong>Distribució incorrecta (-10 XP):</strong><br>• ${errors.join('<br>• ')}<br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">Revisa els reptes marcats amb ❌ i torna a provar.</small>`;
+                }
+                if (btnFinish) btnFinish.style.display = 'none';
             }
         }
 
@@ -3652,7 +3727,7 @@
                 chkDiv.style.background = condDiversified ? '#f0f9ff' : '#ffffff';
             }
 
-            // Diagnòstic d'Enginyeria: BLOQUEJA si emissions, residus o cost són molt alts o si falta diversificació
+            // Diagnòstic d'Enginyeria: actualitza el text d'anàlisi tècnica
             const diagTitle = document.getElementById('sim-diag-title');
             const diagText = document.getElementById('sim-diag-text');
             const btnFinish = document.getElementById('btn-finish-stage-3');
@@ -3661,17 +3736,14 @@
                 diagTitle.textContent = "🚨 APAGADA GENERAL (0%)";
                 diagTitle.style.color = '#ef4444';
                 diagText.textContent = "La xarxa elèctrica està completament apagada. Mou les palanques per encendre les centrals i alimentar ciutats i indústries.";
-                btnFinish.style.display = 'none';
             } else if (totalPct < 98) {
                 diagTitle.textContent = "🚨 ALERTA: Apagades Elèctriques per Dèficit!";
                 diagTitle.style.color = '#ef4444';
                 diagText.textContent = `La generació total suma només un ${totalPct}% (falta un ${100 - totalPct}%). Llars i hospitals pateixen talls de subministrament greus.`;
-                btnFinish.style.display = 'none';
             } else if (totalPct > 102) {
                 diagTitle.textContent = "⚠️ Sobreproducció Elèctrica a la Xarxa";
                 diagTitle.style.color = '#f59e0b';
                 diagText.textContent = `S'està generant un ${totalPct}% (${totalPct - 100}% de més), posant en risc de cremar transformadors i cables d'alta tensió. Reajusta cap al 100%.`;
-                btnFinish.style.display = 'none';
             } else if (!condDiversified) {
                 if (!hydroRealistic) {
                     diagTitle.textContent = "🌊 LÍMIT HIDROELÈCTRIC SOBREPASSAT (Falta de Cabal Fluvial)!";
@@ -3690,32 +3762,101 @@
                     diagTitle.style.color = '#dc2626';
                     diagText.textContent = `Un sistema elèctric real i robust requereix totes les tecnologies disponibles en proporció equilibrada. Actualment tens a zero: ${unselected.join(', ')}. Activa totes les centrals (almenys amb un percentatge mínim) per garantir la transició i la resiliència del sistema!`;
                 }
-                btnFinish.style.display = 'none';
             } else if (!condCO2) {
                 diagTitle.textContent = "🏭 EMISSIONS DE CO₂ MOLT ALTES (Emergència Climàtica)!";
                 diagTitle.style.color = '#dc2626';
                 diagText.textContent = `Les emissions (${co2Tons.toLocaleString()} tones CO₂/dia) superen el límit permès de 20.000 t/dia degut a l'excés de Carbó (${coal}%) o Gas (${gas}%). Aquest model provoca canvi climàtic i no pot ser autoritzat. Redueix els combustibles fòssils i substitueix-los per solar, eòlica o hidràulica!`;
-                btnFinish.style.display = 'none';
             } else if (!condWaste) {
                 diagTitle.textContent = "☢️ ALERTA: RESIDUS TÒXICS I RADIOACTIUS MOLT ALTS!";
                 diagTitle.style.color = '#dc2626';
                 diagText.textContent = `L'índex de residus perillosos (${wasteScore.toFixed(0)}) supera el límit ecològic segur de 28 punts! Has concentrat massa energia nuclear (${nuclear}%), generant tones de combustible gastat radioactiu que trigarà mil·lennis a desactivar-se, o massa carbó (${coal}%) amb cendres tòxiques. Abaixa la nuclear (màxim 18%) o el carbó i aprofita el Sol, el Vent i l'Aigua!`;
-                btnFinish.style.display = 'none';
             } else if (!condCost) {
                 diagTitle.textContent = "💸 FACTURA ELÈCTRICA INASSUMIBLE (Pobresa Energètica)!";
                 diagTitle.style.color = '#dc2626';
                 diagText.textContent = `El cost mitjà per kWh (${costKwh.toFixed(2)} €/kWh) és molt alt (límit assequible: 0,13 €/kWh). El preu del gas natural (${gas}%) o centrals cares disparen el rebut de les famílies. Augmenta les energies renovables més econòmiques (Solar Fotovoltaica a 0,05 € i Eòlica a 0,06 €) per fer caure la factura!`;
-                btnFinish.style.display = 'none';
             } else if (!condBackup) {
                 diagTitle.textContent = "🌙 INESTABILITAT PER INTERMITTÈNCIA (Manca de Suport 24/7)!";
                 diagTitle.style.color = '#f59e0b';
                 diagText.textContent = `Les fonts fermes de suport (Gas + Nuclear + Hidràulica) sumen només el ${backupPower}% (cal com a mínim un 20%). Com que el Sol i el Vent depenen del clima, quan sigui de nit o no faci vent les ciutats patiran un zero elèctric. Afegeix Hidroelèctrica o una mica de Nuclear/Gas per assegurar la xarxa!`;
-                btnFinish.style.display = 'none';
             } else {
-                diagTitle.textContent = "🌟 EQUILIBRI PLANETARI D'ENGINYERIA ASSOLIT!";
+                diagTitle.textContent = "🌟 PROPOSTA D'EQUILIBRI PREPARADA!";
                 diagTitle.style.color = '#059669';
-                diagText.textContent = `Extraordinària feina d'enginyeria! Has aconseguit cobrir la demanda (${totalPct}%), amb emissions mínimes (${co2Tons.toLocaleString()} t CO₂/dia), residus radioactius controlats (índex ${wasteScore.toFixed(0)}), factura assequible per a les llars (${costKwh.toFixed(2)} €/kWh), reserva de suport 24/7 (${backupPower}%) i un mix diversificat amb totes les centrals operatives. Has desbloquejat el pas a la Fase 4!`;
-                btnFinish.style.display = 'block';
+                diagText.textContent = `Totes les condicions d'enginyeria s'han assolit! Prem el botó 'Comprovar Distribució Elèctrica' per validar la solució oficialment.`;
+            }
+
+            // En moure els controls s'amaga el botó final fins que es comprovi
+            if (btnFinish) btnFinish.style.display = 'none';
+            const fbBox = document.getElementById('check-feedback-3-av');
+            if (fbBox) fbBox.style.display = 'none';
+        }
+
+        function checkEnergySimulationAvancat() {
+            const coal = parseInt(document.getElementById('range-coal').value);
+            const gas = parseInt(document.getElementById('range-gas').value);
+            const nuclear = parseInt(document.getElementById('range-nuclear').value);
+            const hydro = parseInt(document.getElementById('range-hydro').value);
+            const solar = parseInt(document.getElementById('range-solar').value);
+            const wind = parseInt(document.getElementById('range-wind').value);
+
+            const totalPct = coal + gas + nuclear + hydro + solar + wind;
+            const co2Tons = (coal * 1000) + (gas * 450);
+            const wasteScore = (nuclear * 1.5) + (coal * 0.8);
+            const costKwh = totalPct === 0 ? 0 : (coal*0.10 + gas*0.18 + nuclear*0.13 + hydro*0.08 + solar*0.05 + wind*0.06) / totalPct;
+            const backupPower = gas + nuclear + hydro;
+
+            const condCoverage = (totalPct >= 98 && totalPct <= 102);
+            const condCO2 = (co2Tons <= 20000 && totalPct > 0);
+            const condWaste = (wasteScore <= 28 && totalPct > 0);
+            const condCost = (costKwh <= 0.13 && totalPct > 0);
+            const condBackup = (backupPower >= 20);
+            const allUsed = (coal > 0 && gas > 0 && nuclear > 0 && hydro > 0 && solar > 0 && wind > 0);
+            const hydroRealistic = (hydro <= 20);
+            const condDiversified = allUsed && hydroRealistic;
+
+            const allPassed = condCoverage && condCO2 && condWaste && condCost && condBackup && condDiversified;
+            const fbBox = document.getElementById('check-feedback-3-av');
+            const btnFinish = document.getElementById('btn-finish-stage-3');
+
+            if (allPassed) {
+                if (fbBox) {
+                    fbBox.style.display = 'block';
+                    fbBox.style.background = '#dcfce7';
+                    fbBox.style.border = '1px solid #86efac';
+                    fbBox.style.color = '#166534';
+                    fbBox.innerHTML = `✅ <strong>Mix Energètic Validat!</strong> Cobertura (${totalPct}%), CO₂ sota control (${co2Tons.toLocaleString()} t), residus segurs (índex ${wasteScore.toFixed(0)}), preu assequible (${costKwh.toFixed(2)} €/kWh), suport garantit (${backupPower}%) i diversificació total (hidro &le; 20%). Ja pots avançar a la Fase 4!`;
+                }
+                if (btnFinish) btnFinish.style.display = 'block';
+            } else {
+                applyXpPenalty('stage3', 10);
+                const errors = [];
+                if (!condCoverage) errors.push(totalPct < 98 ? `Falta cobertura (${totalPct}%, marge 98%-102%)` : `Excés de cobertura (${totalPct}%, marge 98%-102%)`);
+                if (!condCO2) errors.push(`Emissions de CO₂ massa altes (${co2Tons.toLocaleString()} t, màx 20.000 t)`);
+                if (!condWaste) errors.push(`Residus perillosos/tòxics massa alts (índex ${wasteScore.toFixed(0)}, màx 28)`);
+                if (!condCost) errors.push(`Cost massa elevat (${costKwh.toFixed(2)} €/kWh, màx 0,13 €/kWh)`);
+                if (!condBackup) errors.push(`Manca de suport 24/7 de gas+nuclear+hidro (${backupPower}%, mín 20%)`);
+                if (!condDiversified) {
+                    if (!hydroRealistic) {
+                        errors.push(`Hidroelèctrica per sobre del límit ecològic (${hydro}%, màx 20%)`);
+                    } else {
+                        const missing = [];
+                        if (coal === 0) missing.push('Carbó');
+                        if (gas === 0) missing.push('Gas');
+                        if (nuclear === 0) missing.push('Nuclear');
+                        if (hydro === 0) missing.push('Hidro');
+                        if (solar === 0) missing.push('Solar');
+                        if (wind === 0) missing.push('Eòlica');
+                        errors.push(`Centrals inactives (${missing.join(', ')}). Totes han de produir!`);
+                    }
+                }
+
+                if (fbBox) {
+                    fbBox.style.display = 'block';
+                    fbBox.style.background = '#fee2e2';
+                    fbBox.style.border = '1px solid #fca5a5';
+                    fbBox.style.color = '#991b1b';
+                    fbBox.innerHTML = `⚠️ <strong>Distribució incorrecta (-10 XP):</strong><br>• ${errors.join('<br>• ')}<br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">Ajusta les palanques per complir tots els reptes i torna a comprovar.</small>`;
+                }
+                if (btnFinish) btnFinish.style.display = 'none';
             }
         }
         
