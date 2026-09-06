@@ -805,6 +805,174 @@
             color: #92400e;
         }
 
+
+        /* ========================================================
+           ESTILS FASE 5: QÜESTIONARI TEÒRIC (20 PREGUNTES)
+        ======================================================== */
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .quiz-summary-kpi {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-around;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .quiz-kpi-item {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .quiz-kpi-item strong {
+            display: block;
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            font-weight: 800;
+        }
+        .quiz-block-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .quiz-block-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-q-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-bottom: 1.35rem;
+            transition: all 0.2s ease;
+        }
+        .quiz-q-item:hover {
+            border-color: #cbd5e1;
+        }
+        .quiz-q-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #0f172a;
+            margin-bottom: 0.85rem;
+            line-height: 1.45;
+        }
+        .quiz-options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .quiz-option-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            background: white;
+            border: 1.5px solid #cbd5e1;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .quiz-option-label:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+        }
+        .quiz-option-label.selected {
+            background: #eff6ff;
+            border-color: #2563eb;
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+        .quiz-option-label input[type="radio"] {
+            margin-top: 0.25rem;
+            accent-color: #2563eb;
+            cursor: pointer;
+            transform: scale(1.15);
+        }
+        .quiz-q-feedback {
+            margin-top: 0.85rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            display: none;
+        }
+        .quiz-q-feedback.correct {
+            display: block;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+        .quiz-q-feedback.wrong {
+            display: block;
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+
+        /* ========================================================
+           DIPLOMA: ANÀLISI DE PUNTS FORTS I FEBLES
+        ======================================================== */
+        .dip-analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            text-align: left;
+            margin-top: 1.5rem;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 1.25rem;
+        }
+        @media (max-width: 640px) {
+            .dip-analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .dip-box {
+            border-radius: 8px;
+            padding: 1.1rem 1.2rem;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+        .dip-strengths-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+        .dip-weaknesses-box {
+            background: #fefce8;
+            border: 1px solid #fef08a;
+            color: #854d0e;
+        }
+        .dip-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .dip-box ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
         /* APARTAT 5: DIPLOMA FINAL */
         .diploma-frame {
             background: #ffffff;
@@ -952,7 +1120,7 @@
         }
 
         @media print {
-            header, nav, footer, .btn, .obj-actions, .phase-tag {
+            header, nav, footer, .btn, .obj-actions, .phase-tag, .hero-banner {
                 display: none !important;
             }
             body, main {
@@ -961,11 +1129,27 @@
                 padding: 0 !important;
                 margin: 0 !important;
             }
+            .section-view:not(#stage-view-6) {
+                display: none !important;
+            }
+            #stage-view-6 {
+                display: block !important;
+            }
             .diploma-frame {
-                border: 6px double #000 !important;
+                border: 4px double #1e3a8a !important;
                 box-shadow: none !important;
-                margin: 2cm auto !important;
+                margin: 0 auto !important;
+                padding: 1.25rem !important;
                 max-width: 100% !important;
+                page-break-inside: avoid !important;
+            }
+            .dip-analysis-grid {
+                margin-top: 1rem !important;
+                padding-top: 0.75rem !important;
+            }
+            .dip-box {
+                padding: 0.75rem !important;
+                font-size: 0.82rem !important;
             }
         }
     </style>
@@ -1018,7 +1202,10 @@
                 <span id="nav-label-stage-4">🔒 4. El procés tecnològic</span>
             </button>
             <button class="stage-nav-btn locked" id="tab-btn-5" onclick="goToStage(5)">
-                <span id="nav-label-stage-5">🔒 5. Diploma final</span>
+                <span id="nav-label-stage-5">🔒 5. Qüestionari teòric</span>
+            </button>
+            <button class="stage-nav-btn locked" id="tab-btn-6" onclick="goToStage(6)">
+                <span id="nav-label-stage-6">🔒 6. Diploma final</span>
             </button>
         </div>
     </nav>
@@ -2191,9 +2378,65 @@
 
 
         <!-- ========================================================
-             APARTAT 5: DIPLOMA FINAL D'APROFITAMENT
+             APARTAT 5: QÜESTIONARI TEÒRIC FINAL (20 PREGUNTES)
         ======================================================== -->
         <section class="section-view" id="stage-view-5">
+            <div class="hero-banner">
+                <div class="phase-tag" style="background:#2563eb; color:#fff;">Fase 5 · Avaluació Teòrica Curricular</div>
+                <h2>5. Qüestionari Teòric Final</h2>
+                <p>
+                    Avalua els teus coneixements sobre tota la unitat didàctica a través d'aquestes <strong>20 preguntes teòriques</strong>.
+                    Començaràs amb la teva puntuació global de 1.000 punts XP; <strong>cada errada restarà 15 XP</strong>.
+                    Respon totes les preguntes i comprova els resultats per desbloquejar el teu Diploma Oficial!
+                </p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-summary-kpi">
+                    <div class="quiz-kpi-item">
+                        <span>Preguntes Totals</span>
+                        <strong>20</strong>
+                    </div>
+                    <div class="quiz-kpi-item">
+                        <span>Preguntes Contestades</span>
+                        <strong id="quiz-answered-count">0 / 20</strong>
+                    </div>
+                    <div class="quiz-kpi-item">
+                        <span>Estat del Qüestionari</span>
+                        <strong id="quiz-status-badge" style="font-size:1.1rem; color:#d97706;">Pendent</strong>
+                    </div>
+                </div>
+
+                <div id="quiz-questions-container">
+                    <!-- Es renderitzen dinàmicament les 20 preguntes en 4 blocs temàtics -->
+                </div>
+
+                <div style="text-align:center; margin: 2.5rem 0 1.5rem 0;">
+                    <button class="btn btn-primary" id="btn-check-quiz" onclick="checkQuizAnswers()" style="font-size:1.15rem; padding:0.9rem 2.25rem;">
+                        📝 Comprovar Respostes del Qüestionari
+                    </button>
+                </div>
+
+                <div id="quiz-results-card" style="display:none; background:#ffffff; border:2px solid #2563eb; border-radius:var(--radius-lg); padding:1.75rem; text-align:center; margin-top:1.5rem; box-shadow:0 8px 25px rgba(37,99,235,0.1);">
+                    <div style="font-size:2.5rem; margin-bottom:0.5rem;" id="quiz-results-icon">🎉</div>
+                    <h3 style="color:#1e3a8a; font-size:1.4rem; margin-bottom:0.5rem;" id="quiz-results-title">Qüestionari Corregit!</h3>
+                    <p style="font-size:1.05rem; color:#334155; margin-bottom:1rem;" id="quiz-results-desc">
+                        Has encertat 20 de 20 preguntes.
+                    </p>
+                    <div id="quiz-penalty-msg" style="display:inline-block; padding:0.4rem 1rem; border-radius:999px; font-weight:700; font-size:0.95rem; margin-bottom:1.5rem;"></div>
+                    <div>
+                        <button class="btn btn-primary" onclick="proceedToDiplomaFromQuiz()" style="font-size:1.1rem; padding:0.85rem 2rem;">
+                            🏆 Veure el meu Diploma Oficial (Fase 6) ➔
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             APARTAT 6: DIPLOMA FINAL D'APROFITAMENT
+        ======================================================== -->
+        <section class="section-view" id="stage-view-6">
             <div style="margin-bottom:1.5rem; text-align:center;">
                 <span class="phase-tag" style="background:rgba(16, 185, 129, 0.2); color:#34d399; border-color:#10b981;">
                     Unitat Didàctica de 4t d'ESO Completada amb Èxit
@@ -2220,10 +2463,26 @@
                         «Què és la Tecnologia? Concepte, Història, Transició Energètica i Procés Tecnològic»
                     </h3>
 
-                    <div style="display:flex; justify-content:space-around; margin-top:1.5rem; border-top:1px dashed #94a3b8; padding-top:1rem; font-size:0.95rem; color:#1e293b;">
-                        <div>Puntuació XP: <strong id="dip-xp" style="color:#16a34a; font-size:1.1rem;">0 XP</strong></div>
-                        <div>Fases Superades: <strong>4 de 4 (100%)</strong></div>
-                        <div>Qualificació: <strong style="color:#16a34a; font-size:1.1rem;">Assoliment Excel·lent</strong></div>
+                    <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem; border-top:1px dashed #94a3b8; padding-top:1rem; font-size:0.95rem; color:#1e293b;">
+                        <div>Puntuació XP: <strong id="dip-xp" style="color:#16a34a; font-size:1.15rem;">1000 / 1000 XP</strong></div>
+                        <div>Fases Superades: <strong>5 de 5 (100%)</strong></div>
+                        <div>Nivell d'Assoliment: <strong id="dip-qualification" style="color:#16a34a; font-size:1.15rem;">Assoliment Excel·lent 🏆</strong></div>
+                    </div>
+
+                    <!-- ANÀLISI PEDAGÒGICA DE PUNTS FORTS I FEBLES -->
+                    <div class="dip-analysis-grid">
+                        <div class="dip-box dip-strengths-box">
+                            <h4>🟢 Punts Forts i Competències Assolides</h4>
+                            <ul id="dip-strengths-list">
+                                <!-- Generat automàticament -->
+                            </ul>
+                        </div>
+                        <div class="dip-box dip-weaknesses-box">
+                            <h4>🟡 Aspectes a Millorar i Recomanacions</h4>
+                            <ul id="dip-weaknesses-list">
+                                <!-- Generat automàticament -->
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -2343,16 +2602,22 @@
             currentStage: 1,
             unlockedStage: 1,
             completedStages: [],
-            totalXP: 0,
+            totalXP: 1000,
             penalties: {
                 stage1: 0,
                 stage2: 0,
                 stage3: 0,
-                stage4: 0
+                stage4: 0,
+                stage5: 0
             },
+            cstAnswers: {},
             g1Answers: {},
             g3Cleared: false,
-            g4Cleared: false
+            g4Cleared: false,
+            quizAnswers: {},
+            quizCompleted: false,
+            quizScore: 0,
+            quizErrorsCount: 0
         };
 
         function loadState() {
@@ -2361,10 +2626,14 @@
                 try {
                     appState = Object.assign(appState, JSON.parse(saved));
                     if (!appState.penalties) {
-                        appState.penalties = { stage1: 0, stage2: 0, stage3: 0, stage4: 0 };
-                    } else if (appState.penalties.stage3 === undefined) {
-                        appState.penalties.stage3 = 0;
+                        appState.penalties = { stage1: 0, stage2: 0, stage3: 0, stage4: 0, stage5: 0 };
+                    } else {
+                        if (appState.penalties.stage3 === undefined) appState.penalties.stage3 = 0;
+                        if (appState.penalties.stage5 === undefined) appState.penalties.stage5 = 0;
                     }
+                    if (!appState.quizAnswers) appState.quizAnswers = {};
+                    const totalDeductions = Object.values(appState.penalties).reduce((acc, val) => acc + (val || 0), 0);
+                    appState.totalXP = Math.max(0, 1000 - totalDeductions);
                 } catch(e) {
                     console.error("Error carregant estat", e);
                 }
@@ -2409,7 +2678,8 @@
             }
             if (appState.currentStage === 3) runEnergySimulation();
             if (appState.currentStage === 4 && newLevel === 'avancat') initTechProcessTableAvancat();
-            if (appState.currentStage === 5) renderDiploma();
+            if (appState.currentStage === 5) renderQuiz();
+            if (appState.currentStage === 6) renderDiploma();
 
             saveState();
         }
@@ -2423,7 +2693,7 @@
             document.getElementById('header-name').textContent = appState.studentName || 'Sense identificar';
             document.getElementById('header-group').textContent = `(${appState.studentGroup || '4t ESO'})`;
             document.getElementById('header-xp').textContent = appState.totalXP;
-            document.getElementById('header-unlocked-stage').textContent = `${Math.min(4, appState.unlockedStage)} / 4`;
+            document.getElementById('header-unlocked-stage').textContent = `${Math.min(5, appState.unlockedStage)} / 5`;
 
             const isIni = (appState.level === 'inicial');
             const iconEl = document.getElementById('header-level-icon');
@@ -2437,16 +2707,17 @@
             2: "2. Evolució de la tecnologia",
             3: "3. Tecnologia, societat i medi ambient",
             4: "4. El procés tecnològic",
-            5: "5. Diploma final"
+            5: "5. Qüestionari teòric",
+            6: "6. Diploma final"
         };
 
         function updateNavigationLocks() {
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 6; i++) {
                 const btn = document.getElementById(`tab-btn-${i}`);
                 const lbl = document.getElementById(`nav-label-stage-${i}`);
                 if (!btn) continue;
 
-                const isUnlocked = (i <= appState.unlockedStage || (i === 5 && appState.completedStages.length >= 4));
+                const isUnlocked = (i <= appState.unlockedStage || (i === 6 && appState.completedStages.includes(5)));
                 const isCompleted = appState.completedStages.includes(i);
 
                 if (isUnlocked) {
@@ -2469,7 +2740,7 @@
         }
 
         function goToStage(stageNum) {
-            if (stageNum > appState.unlockedStage && !(stageNum === 5 && appState.completedStages.length >= 4)) {
+            if (stageNum > appState.unlockedStage && !(stageNum === 6 && appState.completedStages.includes(5))) {
                 alert(`⚠️ La Fase ${stageNum} està bloquejada. Has de completar la fase anterior per desbloquejar-la!`);
                 return;
             }
@@ -2491,7 +2762,8 @@
             if (stageNum === 2) initTimelineGame();
             if (stageNum === 3) runEnergySimulation();
             if (stageNum === 4 && appState.level === "avancat") initTechProcessTableAvancat();
-            if (stageNum === 5) renderDiploma();
+            if (stageNum === 5) renderQuiz();
+            if (stageNum === 6) renderDiploma();
         }
 
         let selectedModalLevel = 'inicial';
@@ -2583,14 +2855,17 @@
             goToStage(appState.currentStage || 1);
         }
 
-        // LÒGICA DE PENALITZACIÓ D'XP EN CAS D'ERRORS
+        // LÒGICA DE PENALITZACIÓ D'XP EN CAS D'ERRORS (BASE INICIAL: 1.000 XP)
         function applyXpPenalty(stageKey, pointsToDeduct) {
-            if (!appState.penalties) appState.penalties = { stage1: 0, stage2: 0, stage4: 0 };
-            appState.penalties[stageKey] = (appState.penalties[stageKey] || 0) + pointsToDeduct;
-            // Si l'alumne ja té punts XP acumulats, els restem immediatament (mínim 0)
-            if (appState.totalXP > 0) {
-                appState.totalXP = Math.max(0, appState.totalXP - pointsToDeduct);
+            if (!appState.penalties) {
+                appState.penalties = { stage1: 0, stage2: 0, stage3: 0, stage4: 0, stage5: 0 };
             }
+            appState.penalties[stageKey] = (appState.penalties[stageKey] || 0) + pointsToDeduct;
+            
+            // Recalculem el totalXP restant des dels 1.000 punts inicials
+            const totalDeductions = Object.values(appState.penalties).reduce((acc, val) => acc + (val || 0), 0);
+            appState.totalXP = Math.max(0, 1000 - totalDeductions);
+            
             saveState();
             flashXpLoss(pointsToDeduct);
         }
@@ -2610,31 +2885,27 @@
 
         let pendingNextStage = 1;
         function showVictory(stageNum, title, desc, baseXp) {
-            const stageKeyMap = { 1: 'stage1', 2: 'stage2', 3: 'stage3', 4: 'stage4' };
+            const stageKeyMap = { 1: 'stage1', 2: 'stage2', 3: 'stage3', 4: 'stage4', 5: 'stage5' };
             const stageKey = stageKeyMap[stageNum];
             const penalty = (appState.penalties && appState.penalties[stageKey]) ? appState.penalties[stageKey] : 0;
-            // Calculem la puntuació XP neta assolida en aquesta fase (mínim el 40% del base per garantir l'assoliment)
-            const minXp = Math.round(baseXp * 0.4);
-            const finalAwardedXp = Math.max(minXp, baseXp - penalty);
 
             document.getElementById('vic-title').textContent = title;
             document.getElementById('vic-desc').textContent = desc;
 
             const vicXpEl = document.getElementById('vic-xp');
             if (penalty > 0) {
-                vicXpEl.innerHTML = `+${finalAwardedXp} XP <span style="font-size:0.85rem; color:#dc2626; font-weight:normal; display:block; margin-top:0.25rem;">(Puntuació base: ${baseXp} - ${penalty} per errors)</span>`;
+                vicXpEl.innerHTML = `<span style="color:#16a34a; font-size:1.4rem;">${appState.totalXP} / 1000 XP</span> <span style="font-size:0.85rem; color:#dc2626; font-weight:normal; display:block; margin-top:0.25rem;">(Penalització acumulada en aquesta fase: -${penalty} XP)</span>`;
             } else {
-                vicXpEl.textContent = `+${finalAwardedXp} XP (Puntuació Perfecta! 🎯)`;
+                vicXpEl.innerHTML = `<span style="color:#16a34a; font-size:1.4rem;">${appState.totalXP} / 1000 XP</span> <span style="font-size:0.85rem; color:#16a34a; font-weight:normal; display:block; margin-top:0.25rem;">(Fase perfecta! Sense cap penalització 🎯)</span>`;
             }
 
             if (!appState.completedStages.includes(stageNum)) {
                 appState.completedStages.push(stageNum);
-                appState.totalXP += finalAwardedXp;
             }
             if (appState.unlockedStage <= stageNum) {
                 appState.unlockedStage = stageNum + 1;
             }
-            pendingNextStage = Math.min(5, stageNum + 1);
+            pendingNextStage = Math.min(6, stageNum + 1);
             saveState();
             document.getElementById('victory-modal').classList.add('active');
         }
@@ -2757,7 +3028,7 @@
             appState.cstAnswers[itemId] = isCorrect;
 
             if (!isCorrect) {
-                applyXpPenalty('stage1', 5);
+                applyXpPenalty('stage1', 15);
             }
 
             saveState();
@@ -2765,7 +3036,7 @@
             const fb = document.getElementById(`fb-${itemId}`);
             if (fb) {
                 fb.className = isCorrect ? 'obj-feedback show-correct' : 'obj-feedback show-wrong';
-                const penaltyMsg = !isCorrect ? `<span style="display:block; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">⚠️ Error detectat: -5 XP a la puntuació final</span>` : '';
+                const penaltyMsg = !isCorrect ? `<span style="display:block; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">⚠️ Error detectat: -15 XP a la puntuació global</span>` : '';
                 fb.innerHTML = `<strong>${isCorrect ? '✅ Encertat!' : '⚠️ Pensa-hi bé:'}</strong> ${item.why}${penaltyMsg}`;
             }
 
@@ -3029,14 +3300,14 @@
             appState.g1Answers[itemId] = isCorrect;
 
             if (!isCorrect) {
-                applyXpPenalty('stage1', 5);
+                applyXpPenalty('stage1', 15);
             }
 
             saveState();
 
             const fb = document.getElementById(`fb-${itemId}`);
             fb.className = isCorrect ? 'obj-feedback show-correct' : 'obj-feedback show-wrong';
-            const penaltyMsg = !isCorrect ? `<span style="display:block; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">⚠️ Error detectat: -5 XP a la puntuació final</span>` : '';
+            const penaltyMsg = !isCorrect ? `<span style="display:block; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">⚠️ Error detectat: -15 XP a la puntuació global</span>` : '';
             fb.innerHTML = `<strong>${isCorrect ? '✅ Encertat!' : '⚠️ Pensa-hi bé:'}</strong> ${item.why}${penaltyMsg}`;
 
             let completedCount = 0;
@@ -3342,7 +3613,7 @@
                 document.querySelectorAll('.btn-order-move').forEach(b => b.disabled = true);
             } else {
                 const errors = list.length - correctCount;
-                const penaltyToApply = Math.min(25, errors * 3);
+                const penaltyToApply = Math.min(60, errors * 10);
                 applyXpPenalty('stage2', penaltyToApply);
                 msg.innerHTML = `🔍 Has encertat <strong>${correctCount} de ${list.length}</strong> posicions correctes. Hi ha ${errors} invents desordenats (-${penaltyToApply} XP a la puntuació final). Fixa't en les pistes de les targetes vermelles per col·locar-los al seu lloc!`;
                 msg.style.color = '#dc2626';
@@ -3529,7 +3800,7 @@
                 }
                 if (btnFinish) btnFinish.style.display = 'block';
             } else {
-                applyXpPenalty('stage3', 10);
+                applyXpPenalty('stage3', 25);
                 const errors = [];
                 if (!cond1_power) errors.push(total < 100 ? `Falta electricitat (${total}%, cal 100%)` : `Massa electricitat (${total}%, cal 100%)`);
                 if (!cond2_air) errors.push(`Massa fòssils (${fossil}%, límit 20%)`);
@@ -3541,7 +3812,7 @@
                     fbBox.style.background = '#fee2e2';
                     fbBox.style.border = '1px solid #fca5a5';
                     fbBox.style.color = '#991b1b';
-                    fbBox.innerHTML = `⚠️ <strong>Distribució incorrecta (-10 XP):</strong><br>• ${errors.join('<br>• ')}<br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">Revisa els reptes marcats amb ❌ i torna a provar.</small>`;
+                    fbBox.innerHTML = `⚠️ <strong>Distribució incorrecta (-25 XP a la puntuació global):</strong><br>• ${errors.join('<br>• ')}<br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">Revisa els reptes marcats amb ❌ i torna a provar.</small>`;
                 }
                 if (btnFinish) btnFinish.style.display = 'none';
             }
@@ -3827,7 +4098,7 @@
                 }
                 if (btnFinish) btnFinish.style.display = 'block';
             } else {
-                applyXpPenalty('stage3', 10);
+                applyXpPenalty('stage3', 25);
                 const errors = [];
                 if (!condCoverage) errors.push(totalPct < 98 ? `Falta cobertura (${totalPct}%, marge 98%-102%)` : `Excés de cobertura (${totalPct}%, marge 98%-102%)`);
                 if (!condCO2) errors.push(`Emissions de CO₂ massa altes (${co2Tons.toLocaleString()} t, màx 20.000 t)`);
@@ -3854,7 +4125,7 @@
                     fbBox.style.background = '#fee2e2';
                     fbBox.style.border = '1px solid #fca5a5';
                     fbBox.style.color = '#991b1b';
-                    fbBox.innerHTML = `⚠️ <strong>Distribució incorrecta (-10 XP):</strong><br>• ${errors.join('<br>• ')}<br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">Ajusta les palanques per complir tots els reptes i torna a comprovar.</small>`;
+                    fbBox.innerHTML = `⚠️ <strong>Distribució incorrecta (-25 XP a la puntuació global):</strong><br>• ${errors.join('<br>• ')}<br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">Ajusta les palanques per complir tots els reptes i torna a comprovar.</small>`;
                 }
                 if (btnFinish) btnFinish.style.display = 'none';
             }
@@ -4085,7 +4356,7 @@
                 alert("🎉 Enhorabona! Has completat perfectament la Taula del Procés Tecnològic en les 3 disciplines d'enginyeria (21/21)! Ja pots generar el Diploma Oficial.");
             } else {
                 const errors = 21 - correctCount;
-                const penaltyToApply = Math.min(30, errors * 2);
+                const penaltyToApply = Math.min(60, errors * 10);
                 applyXpPenalty('stage4', penaltyToApply);
                 alert(`Has encertat ${correctCount} de les 21 caselles. Les ${errors} caselles en vermell o buides resten ${penaltyToApply} XP a la puntuació final de la fase. Revisa el tipus d'acció de cada fase i corregeix-les!`);
             }
@@ -4204,7 +4475,7 @@
                 alert("🎉 Fantàstic! Has completat totes les 12 caselles correctament. El teu Diploma està a punt!");
             } else {
                 const errors = 12 - count;
-                const penaltyToApply = Math.min(20, errors * 2);
+                const penaltyToApply = Math.min(50, errors * 10);
                 applyXpPenalty('stage4', penaltyToApply);
                 alert(`Portes ${count} de 12 caselles correctes. Les ${errors} caselles errònies resten ${penaltyToApply} XP a la puntuació final. Revisa les que estan en vermell i pensa quin pas és!`);
             }
@@ -4229,29 +4500,629 @@
         }
 
         function finishStage4() {
-            showVictory(4, "Unitat Didàctica Superada!", "Has dominat el procés tecnològic i el seu caràcter cíclic en totes les disciplines d'enginyeria. Ja pots generar el teu diploma oficial!", 300);
+            showVictory(4, "Fase 4 Superada!", "Has dominat el procés tecnològic i el seu caràcter cíclic en totes les disciplines d'enginyeria. Ja pots passar al Qüestionari Teòric Final (Fase 5)!", 0);
         }
 
         // =========================================================================
-        // APARTAT 5: DIPLOMA FINAL
+        // APARTAT 5: QÜESTIONARI TEÒRIC FINAL (20 PREGUNTES)
+        // =========================================================================
+        const QUIZ_QUESTIONS = [
+            // BLOC 1: CONCEPTE DE TECNOLOGIA, CIÈNCIA I TÈCNICA (Q1 - Q5)
+            {
+                id: 'q1',
+                block: 1,
+                blockTitle: "🔬 Bloc 1: Concepte de Tecnologia, Ciència i Tècnica",
+                question: "1. Què és exactament la tecnologia des d'un punt de vista rigorós?",
+                options: [
+                    "L'aplicació coordinada del coneixement científic i les habilitats tècniques per dissenyar i crear solucions que resolen necessitats humanes.",
+                    "L'estudi purament teòric de la natura i l'univers sense cap aplicació pràctica ni intencionalitat transformadora.",
+                    "Exclusivament la fabricació d'aparells electrònics, ordinadors d'última generació i xarxes socials digitals.",
+                    "Una habilitat manual transmesa per tradició sense necessitat de cap tipus de ciència ni planificació."
+                ],
+                correct: 0,
+                explanation: "La tecnologia combina ciència (coneixement teòric) i tècnica (destresa pràctica) mitjançant un mètode de projectes per satisfer necessitats humanes."
+            },
+            {
+                id: 'q2',
+                block: 1,
+                blockTitle: "🔬 Bloc 1: Concepte de Tecnologia, Ciència i Tècnica",
+                question: "2. Quina és la diferència fonamental entre el propòsit de la Ciència i el de la Tecnologia?",
+                options: [
+                    "La ciència s'aplica exclusivament a màquines industrials i la tecnologia només s'estudia en laboratoris amb provetes.",
+                    "La ciència cerca explicar el 'per què' dels fenòmens naturals (saber pur), mentre que la tecnologia busca solucionar problemes pràctics (transformar la realitat).",
+                    "La tecnologia només crea teories matemàtiques abstractes i la ciència s'encarrega de comercialitzar productes al mercat.",
+                    "Són dos termes exactament sinònims que expressen la mateixa acció d'assaig i error al taller."
+                ],
+                correct: 1,
+                explanation: "La ciència descobreix i explica les lleis de la natura tal com són; la tecnologia crea objectes i sistemes artificials que abans no existien."
+            },
+            {
+                id: 'q3',
+                block: 1,
+                blockTitle: "🔬 Bloc 1: Concepte de Tecnologia, Ciència i Tècnica",
+                question: "3. Com es distingeix la 'Tècnica' de la 'Tecnologia' pròpiament dita?",
+                options: [
+                    "La tècnica només la poden realitzar màquines automàtiques o robots industrials, mai persones humanes.",
+                    "La tecnologia no requereix cap tipus d'habilitat pràctica, només pensament filosòfic.",
+                    "La tècnica és la destresa, habilitat manual o procediment artesanal d'execució, mentre que la tecnologia hi afegeix mètode científic, planificació i anàlisi sistemàtica.",
+                    "La tècnica és sempre digital i la tecnologia és sempre analògica o mecànica."
+                ],
+                correct: 2,
+                explanation: "La tècnica (del grec tékhne) és el saber fer pràctic o artesanal. La tecnologia (tékhne + lógos) és la reflexió científica, estructurada i planificada d'aquesta acció."
+            },
+            {
+                id: 'q4',
+                block: 1,
+                blockTitle: "🔬 Bloc 1: Concepte de Tecnologia, Ciència i Tècnica",
+                question: "4. Quina distinció hi ha entre Necessitats Primàries i Necessitats Secundàries en tecnologia?",
+                options: [
+                    "Les primàries són vitals per a la supervivència biològica (alimentació, salut, refugi, vestit); les secundàries augmenten el benestar, la comoditat, la cultura o l'oci.",
+                    "Les primàries van sorgir amb l'aparició d'Internet i les secundàries existien a la prehistòria.",
+                    "Les primàries només les satisfà la natura sense intervenció humana i les secundàries requereixen fàbriques químiques.",
+                    "La tecnologia s'ocupa exclusivament de satisfer necessitats secundàries de consum superflu."
+                ],
+                correct: 0,
+                explanation: "Les necessitats primàries són imprescindibles per subsistir (potabilització d'aigua, habitatge, medicina), mentre que les secundàries enriqueixen la vida i el confort."
+            },
+            {
+                id: 'q5',
+                block: 1,
+                blockTitle: "🔬 Bloc 1: Concepte de Tecnologia, Ciència i Tècnica",
+                question: "5. Quina condició defineix que un objecte sigui considerat estrictament un 'objecte tecnològic' o artificial?",
+                options: [
+                    "Ha de contenir circuits electrònics integrats, microxips o connexió sense fils a Internet.",
+                    "Ha d'haver estat trobat a la natura exactament igual com és, sense cap transformació humana.",
+                    "Ha d'estar fabricat exclusivament amb polímers sintètics no biodegradables.",
+                    "Ha estat ideat, dissenyat, modificat o manufacturat per l'ésser humà amb una intencionalitat funcional per satisfer una necessitat."
+                ],
+                correct: 3,
+                explanation: "Des d'un llapis de fusta o un got de vidre fins a un satèl·lit artificial, qualsevol objecte transformat per l'ésser humà amb finalitat pràctica és tecnològic."
+            },
+
+            // BLOC 2: EVOLUCIÓ HISTÒRICA I GRANS FITES (Q6 - Q10)
+            {
+                id: 'q6',
+                block: 2,
+                blockTitle: "📜 Bloc 2: Evolució Històrica i Grans Fites Tecnològiques",
+                question: "6. Quin impacte tecnològic i evolutiu decisiu va tenir el domini del foc durant el Paleolític?",
+                options: [
+                    "Va permetre coure aliments (facilitant l'absorció de calories i el desenvolupament del cervell), escalfar-se en climes freds, protegir-se de depredadors i il·luminar la foscor.",
+                    "Va iniciar de manera immediata la producció industrial d'acer inoxidable per a màquines d'alta precisió.",
+                    "Va servir únicament com a sistema de telegrafia òptica codificada per comunicar coves allunyades.",
+                    "Va aturar totalment la recerca d'eines perquè els aliments es caçaven sols atrets per les flames."
+                ],
+                correct: 0,
+                explanation: "El control del foc va ser el primer gran salt tècnic: la cocció va estalviar una gran despesa d'energia metabòlica, clau per a l'expansió del cervell humà."
+            },
+            {
+                id: 'q7',
+                block: 2,
+                blockTitle: "📜 Bloc 2: Evolució Històrica i Grans Fites Tecnològiques",
+                question: "7. Quina transformació radical va comportar la Revolució Neolítica per a la humanitat?",
+                options: [
+                    "La invenció del telègraf elèctric i la màquina de vapor que van unificar els mercats mundials.",
+                    "El naixement de l'agricultura, la ramaderia i la ceràmica, convertint tribus caçadores nòmades en poblats sedentaris amb excedents d'aliments.",
+                    "La substitució de totes les eines manuals per braços robòtics moguts per energia solar.",
+                    "L'abandonament definitiu de qualsevol eina de pedra a favor del plàstic injectat."
+                ],
+                correct: 1,
+                explanation: "Al Neolític, la domesticació de plantes i animals va permetre l'assentament permanent, el creixement demogràfic i el desenvolupament de la terrissa i el teler."
+            },
+            {
+                id: 'q8',
+                block: 2,
+                blockTitle: "📜 Bloc 2: Evolució Històrica i Grans Fites Tecnològiques",
+                question: "8. Per què la impremta de tipus mòbils de Gutenberg (segle XV) es considera una fita tecnològica cabdal?",
+                options: [
+                    "Va ser el primer dispositiu de la història que consumia energia elèctrica de xarxa a les ciutats.",
+                    "Va permetre la transmissió instantània de missatges de veu mitjançant cables submarins.",
+                    "Va fer possible la reproducció ràpida i assequible de llibres, democratitzant i difonent el coneixement científic i tècnic per tota la societat.",
+                    "Va substituir totalment el paper vegetal per suports d'emmagatzematge magnètic reutilitzables."
+                ],
+                correct: 2,
+                explanation: "Abans de la impremta, copiar un llibre exigia mesos de treball manual d'un copista. La impremta va multiplicar la velocitat de difusió de la ciència i el pensament."
+            },
+            {
+                id: 'q9',
+                block: 2,
+                blockTitle: "📜 Bloc 2: Evolució Històrica i Grans Fites Tecnològiques",
+                question: "9. Quin invent va ser el motor tècnic de la Primera Revolució Industrial (segle XVIII) i quina energia utilitzava?",
+                options: [
+                    "La màquina de vapor de Newcomen millorada per James Watt, alimentada per la combustió de carbó mineral.",
+                    "El motor elèctric d'inducció alimentat per panells fotovoltaics de silici monocristal·lí.",
+                    "El motor de combustió interna dièsel alimentat per derivats refinats del petroli.",
+                    "La roda hidràulica de fusta impulsada pel cabal lliure dels rius sense cap combustible."
+                ],
+                correct: 0,
+                explanation: "La màquina de vapor va convertir l'energia tèrmica del carbó en moviment mecànic continu, mecanitzant fàbriques i impulsant la locomotora de vapor."
+            },
+            {
+                id: 'q10',
+                block: 2,
+                blockTitle: "📜 Bloc 2: Evolució Històrica i Grans Fites Tecnològiques",
+                question: "10. Què caracteritza tecnològicament la Tercera i Quarta Revolució Industrial (segles XX i XXI)?",
+                options: [
+                    "El retorn generalitzat a la tracció animal per evitar l'ús de qualsevol tipus d'energia primària.",
+                    "La prohibició estricta de tot dispositiu que emeti camps electromagnètics o ones de ràdio.",
+                    "La construcció exclusiva d'edificis de fang i fusta sense cap estructura de formigó ni acer.",
+                    "L'electrònica digital, la computació, la xarxa Internet, l'automatització industrial, la intel·ligència artificial i els sistemes ciberfísics connectats."
+                ],
+                correct: 3,
+                explanation: "La microelectrònica, Internet, la digitalització i la IA han transformat el tractament de la informació i la producció en temps real a nivell global."
+            },
+
+            // BLOC 3: TECNOLOGIA, SOCIETAT I MEDI AMBIENT (Q11 - Q15)
+            {
+                id: 'q11',
+                block: 3,
+                blockTitle: "🌱 Bloc 3: Tecnologia, Societat i Sostenibilitat Ambiental",
+                question: "11. Què diferencia una font d'energia renovable d'una font d'energia no renovable?",
+                options: [
+                    "La renovable sempre genera més gasos d'efecte hivernacle que el petroli i el carbó durant el seu funcionament.",
+                    "La renovable es regenera de forma natural i contínua a una velocitat superior a la del seu consum humà; la no renovable prové de jaciments finits que s'exhaureixen.",
+                    "La renovable no requereix cap tipus d'inversió inicial ni manteniment mecànic al llarg de la seva vida útil.",
+                    "La no renovable és infinita perquè la terra en genera nous dipòsits de forma instantània cada any."
+                ],
+                correct: 1,
+                explanation: "La radiació solar, el vent i la biomassa es regeneren de manera contínua; el carbó, el petroli, el gas i l'urani van requerir milions d'anys per formar-se i són limitats."
+            },
+            {
+                id: 'q12',
+                block: 3,
+                blockTitle: "🌱 Bloc 3: Tecnologia, Societat i Sostenibilitat Ambiental",
+                question: "12. Quin és el gas d'efecte hivernacle més abundant emès per la combustió de carbó, petroli i gas natural que accelera el canvi climàtic?",
+                options: [
+                    "El diòxid de carboni (CO₂), que atrapa la radiació infraroja reflectida per la terra a l'atmosfera provocant l'escalfament global.",
+                    "L'oxigen molecular pur (O₂), que provoca el refredament sobtat dels oceans i mars.",
+                    "El nitrogen gasós inert (N₂), que neutralitza qualsevol tipus de reacció química a l'aire.",
+                    "L'heli noble (He), que disminueix la densitat atmosfèrica i fa flotar els objectes pesants."
+                ],
+                correct: 0,
+                explanation: "El CO₂ generat per la crema massiva de combustibles fòssils des de la Rev. Industrial és el principal responsable de l'augment de l'efecte hivernacle antròpic."
+            },
+            {
+                id: 'q13',
+                block: 3,
+                blockTitle: "🌱 Bloc 3: Tecnologia, Societat i Sostenibilitat Ambiental",
+                question: "13. Què significa el repte de la 'intermitència' en energies com la solar fotovoltaica i l'eòlica?",
+                options: [
+                    "Que les línies de transport elèctric s'apaguen per descans automàtic cada tres hores de forma obligatòria.",
+                    "Que els panells solars i els aerogeneradors gasten més electricitat de la que aconsegueixen produir.",
+                    "Que la seva generació depèn del clima (radiació solar diürna, força del vent) i exigeix suport ferm o bateries per garantir el subministrament 24 hores.",
+                    "Que només poden funcionar durant les estacions càlides d'estiu i primavera."
+                ],
+                correct: 2,
+                explanation: "La demanda elèctrica de la societat és contínua (les cases i hospitals necessiten llum de nit o sense vent); per això calen bateries, centrals reversibles o suport ferm."
+            },
+            {
+                id: 'q14',
+                block: 3,
+                blockTitle: "🌱 Bloc 3: Tecnologia, Societat i Sostenibilitat Ambiental",
+                question: "14. Què s'entén per 'obsolescència programada' i quina és la seva principal conseqüència mediambiental?",
+                options: [
+                    "La planificació deliberada de la fi de la vida útil d'un producte pel fabricant per incentivar-ne la recompra, generant milions de tones de residus electrònics (e-waste).",
+                    "El disseny de maquinària extremadament duradora perquè pugui passar de generació en generació sense fallades.",
+                    "El reciclatge obligatori de tots els components interns d'un ordinador mitjançant processos biològics nets.",
+                    "L'actualització gratuïta i perpètua de tot el programari per evitar haver de canviar d'aparell."
+                ],
+                correct: 0,
+                explanation: "L'obsolescència programada escurça artificialment la durada dels aparells per augmentar les vendes, exhaurint recursos valuosos i omplint abocadors tòxics."
+            },
+            {
+                id: 'q15',
+                block: 3,
+                blockTitle: "🌱 Bloc 3: Tecnologia, Societat i Sostenibilitat Ambiental",
+                question: "15. Què implica el concepte de 'Transició Energètica Justa' en el disseny del mix elèctric del futur?",
+                options: [
+                    "Aturar d'un dia per l'altre tot subministrament energètic a la població sense alternatives viables.",
+                    "Descarbonitzar la matriu de generació (reduint CO₂) garantint la seguretat de subministrament continu i un cost del kWh assequible que eviti la pobresa energètica.",
+                    "Potenciar indefinidament la construcció de centrals tèrmiques de carbó perquè la seva matèria primera és econòmica.",
+                    "Obligar cada família a generar tota la seva energia pedalant sobre una dinamo a casa seva."
+                ],
+                correct: 1,
+                explanation: "Una transició justa ha de combinar sostenibilitat ecològica (0 emissions), seguretat d'abastament (estabilitat de xarxa) i justícia social (preus justos)."
+            },
+
+            // BLOC 4: EL PROCÉS TECNOLÒGIC I METODOLOGIA DE PROJECTES (Q16 - Q20)
+            {
+                id: 'q16',
+                block: 4,
+                blockTitle: "🛠️ Bloc 4: El Procés Tecnològic i Metodologia de Projectes",
+                question: "16. Quina és la seqüència metodològica canònica de les 7 fases del procés tecnològic?",
+                options: [
+                    "1. Identificar la necessitat → 2. Cercar informació → 3. Dissenyar → 4. Planificar → 5. Construir → 6. Avaluar → 7. Comercialitzar o divulgar.",
+                    "1. Construir ràpidament → 2. Avaluar els danys → 3. Dibuixar un plànol → 4. Demanar el pressupost → 5. Cercar informació.",
+                    "1. Comercialitzar i cobrar → 2. Buscar clients → 3. Idear el producte → 4. Desmuntar el prototip.",
+                    "1. Planificar el cost → 2. Fabricar peces a l'atzar → 3. Pensar el problema → 4. Fer anuncis publicitaris."
+                ],
+                correct: 0,
+                explanation: "El mètode tecnològic comença sempre per entendre la necessitat, cercar antecedents, idear solucions, planificar l'execució, fabricar, comprovar i difondre."
+            },
+            {
+                id: 'q17',
+                block: 4,
+                blockTitle: "🛠️ Bloc 4: El Procés Tecnològic i Metodologia de Projectes",
+                question: "17. Quins documents tècnics fonamentals es generen durant la Fase 3 de Disseny abans de passar a fabricar?",
+                options: [
+                    "El contracte laboral dels treballadors del taller i la pòlissa d'assegurances del vehicle d'empresa.",
+                    "Únicament el lema publicitari i el logotip en colors per estampar a les samarretes.",
+                    "L'autorització judicial per enderrocar estructures velles i l'acta de deixalleria.",
+                    "Esbossos inicials, croquis acotats amb mides, plànols tècnics detallats (en CAD 2D/3D) i la memòria descriptiva de la solució triada."
+                ],
+                correct: 3,
+                explanation: "A la fase de disseny s'especifiquen totes les formes, dimensions, materials i toleràncies en documents tècnics normalitzats per poder construir sense errors."
+            },
+            {
+                id: 'q18',
+                block: 4,
+                blockTitle: "🛠️ Bloc 4: El Procés Tecnològic i Metodologia de Projectes",
+                question: "18. Quina és la finalitat del 'Full de Procés' i del 'Pressupost' en la Fase 4 de Planificació?",
+                options: [
+                    "Són formalitats burocràtiques que no tenen cap utilitat pràctica a l'hora de construir al taller.",
+                    "El full de procés estableix l'ordre seqüencial de les operacions, eines i normes de seguretat; el pressupost calcula el cost econòmic exacte de materials i hores de feina.",
+                    "Serveixen exclusivament per decidir el disseny de la caixa de cartró d'embalatge exterior.",
+                    "S'utilitzen per triar a quin contenidor d'escombraries es llençaran les peces que hagin sortit malament."
+                ],
+                correct: 1,
+                explanation: "Planificar evita improvisar: el full de procés garanteix un muntatge ordenat i segur, i el pressupost assegura la viabilitat econòmica del projecte."
+            },
+            {
+                id: 'q19',
+                block: 4,
+                blockTitle: "🛠️ Bloc 4: El Procés Tecnològic i Metodologia de Projectes",
+                question: "19. Què s'ha de fer si durant la Fase 6 d'Avaluació el prototip o maqueta no funciona correctament?",
+                options: [
+                    "Analitzar les causes de la fallada i retornar a la fase adient (redissenyar peces o replanificar el muntatge) aplicant el bucle de millora contínua.",
+                    "Comercialitzar el producte immediatament ignorant el defecte abans que els compradors se n'adonin.",
+                    "Falsejar els resultats de les proves de resistència per poder tancar el projecte sense fer més feina.",
+                    "Abandonar per sempre la disciplina tecnològica i desballestar totes les eines disponibles."
+                ],
+                correct: 0,
+                explanation: "L'avaluació és el punt crític del bucle tecnològic: si el prototip falla, cal detectar l'origen de l'error i corregir el disseny o la fabricació en una nova iteració."
+            },
+            {
+                id: 'q20',
+                block: 4,
+                blockTitle: "🛠️ Bloc 4: El Procés Tecnològic i Metodologia de Projectes",
+                question: "20. Per què afirmem que el procés tecnològic té un caràcter cíclic i iteratiu (bucle d'enginyeria)?",
+                options: [
+                    "Perquè els eixos dels motors elèctrics sempre giren en cercles tancats de 360 graus.",
+                    "Perquè la legislació obliga a destruir tots els invents quan compleixen sis mesos per tornar a començar.",
+                    "Perquè cap producte és definitiu: sempre és optimitzable amb noves versions, materials més sostenibles o solucions a noves necessitats socials.",
+                    "Perquè la tecnologia mai aconsegueix trobar cap solució que duri més d'un dia sencer."
+                ],
+                correct: 2,
+                explanation: "La tecnologia evoluciona per cicles continus de millora (versions de software, vehicles més eficients, ponts més segurs); cada solució obre noves oportunitats d'optimització."
+            }
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-questions-container');
+            if (!container) return;
+
+            if (!appState.quizAnswers) appState.quizAnswers = {};
+
+            let html = '';
+            let currentBlock = 0;
+
+            QUIZ_QUESTIONS.forEach((q, idx) => {
+                if (q.block !== currentBlock) {
+                    if (currentBlock !== 0) html += `</div></div>`;
+                    currentBlock = q.block;
+                    html += `
+                        <div class="quiz-block-card">
+                            <div class="quiz-block-header">
+                                ${q.blockTitle}
+                            </div>
+                            <div>
+                    `;
+                }
+
+                const userSelected = appState.quizAnswers[idx];
+
+                html += `
+                    <div class="quiz-q-item" id="quiz-item-${idx}">
+                        <div class="quiz-q-title">${q.question}</div>
+                        <div class="quiz-options-list">
+                `;
+
+                q.options.forEach((optText, optIdx) => {
+                    const isChecked = (userSelected === optIdx);
+                    const selClass = isChecked ? 'selected' : '';
+                    html += `
+                        <label class="quiz-option-label quiz-opt-lbl-q${idx} ${selClass}" onclick="selectQuizOption(${idx}, ${optIdx})">
+                            <input type="radio" name="quiz_opt_${idx}" value="${optIdx}" ${isChecked ? 'checked' : ''}>
+                            <span>${optText}</span>
+                        </label>
+                    `;
+                });
+
+                html += `
+                        </div>
+                        <div class="quiz-q-feedback" id="quiz-fb-q${idx}"></div>
+                    </div>
+                `;
+            });
+
+            if (currentBlock !== 0) html += `</div></div>`;
+            container.innerHTML = html;
+
+            // Actualitzem indicadors
+            const answeredCount = Object.keys(appState.quizAnswers).length;
+            const countEl = document.getElementById('quiz-answered-count');
+            if (countEl) countEl.textContent = `${answeredCount} / 20`;
+
+            const badgeEl = document.getElementById('quiz-status-badge');
+            if (badgeEl) {
+                if (appState.quizCompleted) {
+                    badgeEl.textContent = `Comprovat (${appState.quizScore || 20}/20 encerts)`;
+                    badgeEl.style.color = "#16a34a";
+                } else if (answeredCount === 20) {
+                    badgeEl.textContent = "A punt per comprovar!";
+                    badgeEl.style.color = "#16a34a";
+                } else {
+                    badgeEl.textContent = `${20 - answeredCount} pendents`;
+                    badgeEl.style.color = "#d97706";
+                }
+            }
+
+            if (appState.quizCompleted) {
+                checkQuizAnswers(true); // mode visualització sense tornar a penalitzar
+            }
+        }
+
+        function selectQuizOption(qIndex, optIndex) {
+            if (appState.quizCompleted) return; // Si ja s'ha comprovat, no es pot canviar
+            if (!appState.quizAnswers) appState.quizAnswers = {};
+            appState.quizAnswers[qIndex] = optIndex;
+
+            const labels = document.querySelectorAll(`.quiz-opt-lbl-q${qIndex}`);
+            labels.forEach((lbl, idx) => {
+                lbl.classList.toggle('selected', idx === optIndex);
+                const radio = lbl.querySelector('input[type="radio"]');
+                if (radio) radio.checked = (idx === optIndex);
+            });
+
+            const answeredCount = Object.keys(appState.quizAnswers).length;
+            const countEl = document.getElementById('quiz-answered-count');
+            if (countEl) countEl.textContent = `${answeredCount} / 20`;
+
+            const badgeEl = document.getElementById('quiz-status-badge');
+            if (badgeEl) {
+                if (answeredCount === 20) {
+                    badgeEl.textContent = "A punt per comprovar!";
+                    badgeEl.style.color = "#16a34a";
+                } else {
+                    badgeEl.textContent = `${20 - answeredCount} pendents`;
+                    badgeEl.style.color = "#d97706";
+                }
+            }
+
+            saveState();
+        }
+
+        function checkQuizAnswers(isRestore = false) {
+            if (!appState.quizAnswers) appState.quizAnswers = {};
+            const answeredCount = Object.keys(appState.quizAnswers).length;
+            if (answeredCount < 20 && !isRestore) {
+                const missing = [];
+                for (let i = 0; i < 20; i++) {
+                    if (appState.quizAnswers[i] === undefined) missing.push(i + 1);
+                }
+                alert(`⚠️ Encara tens ${missing.length} preguntes pendents de respondre!
+
+Preguntes sense respondre: ${missing.join(', ')}
+
+Si us plau, respon totes les 20 preguntes per avaluar la unitat.`);
+                return;
+            }
+
+            let correctCount = 0;
+            let errorsCount = 0;
+
+            QUIZ_QUESTIONS.forEach((q, idx) => {
+                const userChoice = appState.quizAnswers[idx];
+                const isCorrect = (userChoice === q.correct);
+                const fbEl = document.getElementById(`quiz-fb-q${idx}`);
+
+                if (isCorrect) {
+                    correctCount++;
+                    if (fbEl) {
+                        fbEl.className = 'quiz-q-feedback correct';
+                        fbEl.innerHTML = `<strong>✅ Resposta correcta!</strong> ${q.explanation}`;
+                    }
+                } else {
+                    errorsCount++;
+                    if (fbEl) {
+                        fbEl.className = 'quiz-q-feedback wrong';
+                        const chosenText = (userChoice !== undefined) ? q.options[userChoice] : "No resposta";
+                        const correctText = q.options[q.correct];
+                        fbEl.innerHTML = `<strong>❌ Resposta incorrecta (-15 XP):</strong><br>• La teva tria: <em>«${chosenText}»</em><br>• Resposta correcta: <strong>«${correctText}»</strong><br><small style="margin-top:0.35rem; display:block; color:#7f1d1d;">💡 ${q.explanation}</small>`;
+                    }
+                }
+            });
+
+            appState.quizCompleted = true;
+            appState.quizScore = correctCount;
+            appState.quizErrorsCount = errorsCount;
+
+            if (!isRestore) {
+                const quizPenalty = errorsCount * 15;
+                if (quizPenalty > 0) {
+                    applyXpPenalty('stage5', quizPenalty);
+                }
+            }
+
+            // Targeta de resultats
+            const resCard = document.getElementById('quiz-results-card');
+            const resTitle = document.getElementById('quiz-results-title');
+            const resDesc = document.getElementById('quiz-results-desc');
+            const penMsg = document.getElementById('quiz-penalty-msg');
+
+            if (resCard) {
+                resCard.style.display = 'block';
+                if (!isRestore) resCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            const pct = Math.round((correctCount / 20) * 100);
+            if (resTitle) resTitle.textContent = `Qüestionari Corregit: ${correctCount} de 20 encerts (${pct}%)`;
+            if (resDesc) resDesc.textContent = `Has respost correctament ${correctCount} de les 20 preguntes teòriques globals.`;
+
+            const totalPen = (appState.penalties && appState.penalties.stage5) || 0;
+            if (penMsg) {
+                if (totalPen > 0) {
+                    penMsg.style.background = '#fee2e2';
+                    penMsg.style.color = '#dc2626';
+                    penMsg.style.border = '1px solid #fca5a5';
+                    penMsg.textContent = `⚠️ Penalització del qüestionari: -${totalPen} XP (${errorsCount} errades × 15 XP) | Puntuació actual: ${appState.totalXP} / 1000 XP`;
+                } else {
+                    penMsg.style.background = '#dcfce7';
+                    penMsg.style.color = '#15803d';
+                    penMsg.style.border = '1px solid #86efac';
+                    penMsg.textContent = `🎯 Puntuació Perfecta! 20 de 20 encerts (0 penalitzacions) | Puntuació actual: ${appState.totalXP} / 1000 XP`;
+                }
+            }
+
+            const btnCheck = document.getElementById('btn-check-quiz');
+            if (btnCheck) {
+                btnCheck.disabled = true;
+                btnCheck.textContent = "✅ Qüestionari Finalitzat i Avaluat";
+                btnCheck.classList.remove('btn-primary');
+                btnCheck.classList.add('btn-secondary');
+            }
+
+            saveState();
+        }
+
+        function proceedToDiplomaFromQuiz() {
+            showVictory(5, "Qüestionari Teòric Finalitzat!", `Has completat l'avaluació teòrica de la unitat amb ${appState.quizScore || 20}/20 encerts. Ja pots accedir al teu Diploma Oficial d'Aprofitament!`, 0);
+        }
+
+        function getQuizBlockErrors(blockNum) {
+            if (!appState.quizAnswers) return 0;
+            let errs = 0;
+            QUIZ_QUESTIONS.filter(q => q.block === blockNum).forEach(q => {
+                const qIdx = parseInt(q.id.replace('q', '')) - 1;
+                if (appState.quizAnswers[qIdx] !== q.correct) errs++;
+            });
+            return errs;
+        }
+
+        // =========================================================================
+        // APARTAT 6: DIPLOMA FINAL D'APROFITAMENT
         // =========================================================================
         function renderDiploma() {
             document.getElementById('dip-name').textContent = appState.studentName || "Nom de l'Alumne";
             document.getElementById('dip-group').textContent = appState.studentGroup || '4t ESO';
-            document.getElementById('dip-xp').textContent = `${appState.totalXP} XP`;
+            document.getElementById('dip-xp').textContent = `${appState.totalXP} / 1000 XP`;
 
             const badge = document.getElementById('dip-level-badge');
             if (badge) {
                 if (appState.level === 'inicial') {
-                    badge.textContent = "Nivell: 🟢 Inicial (Currículum Adaptat i Lectura Fàcil)";
+                    badge.textContent = "Itinerari: 🟢 Inicial Adaptat (Lectura Fàcil i Fonaments)";
                     badge.style.background = "#dcfce7";
                     badge.style.color = "#15803d";
                     badge.style.borderColor = "#86efac";
                 } else {
-                    badge.textContent = "Nivell: 🔵 Avançat (Enginyeria i Tecnologia 4t ESO)";
+                    badge.textContent = "Itinerari: 🔵 Avançat (Tecnologia i Enginyeria 4t ESO)";
                     badge.style.background = "#dbeafe";
                     badge.style.color = "#1d4ed8";
                     badge.style.borderColor = "#93c5fd";
+                }
+            }
+
+            // Nivell d'assoliment segons XP sobre 1.000
+            const xp = appState.totalXP;
+            let qualText = "Assoliment Excel·lent 🏆";
+            let qualColor = "#16a34a";
+
+            if (xp >= 900) {
+                qualText = "Assoliment Excel·lent 🏆";
+                qualColor = "#16a34a";
+            } else if (xp >= 750) {
+                qualText = "Assoliment Notable 🎖️";
+                qualColor = "#2563eb";
+            } else if (xp >= 600) {
+                qualText = "Assoliment Satisfactori 🥉";
+                qualColor = "#d97706";
+            } else {
+                qualText = "En Procés de Millora ⚠️";
+                qualColor = "#dc2626";
+            }
+
+            const qualEl = document.getElementById('dip-qualification');
+            if (qualEl) {
+                qualEl.textContent = qualText;
+                qualEl.style.color = qualColor;
+            }
+
+            // Anàlisi individualitzada de punts forts i aspectes a millorar
+            const strengths = [];
+            const weaknesses = [];
+
+            // Mòdul 1: Ciència, Tècnica i Concepte de Tecnologia
+            const p1 = (appState.penalties && appState.penalties.stage1) || 0;
+            const qb1 = getQuizBlockErrors(1);
+            if (p1 === 0 && qb1 === 0) {
+                strengths.push("🔬 <strong>Distinció Conceptual Exemplar:</strong> Diferenciació impecable entre Ciència (explicar les lleis naturals), Tècnica (destresa artesanal) i Tecnologia (transformació útil de la realitat).");
+            } else if (p1 <= 15 && qb1 <= 1) {
+                strengths.push("🔬 <strong>Bona Fonamentació Teòrica:</strong> Domini correcte de la definició de tecnologia i les necessitats humanes primàries i secundàries.");
+            } else {
+                weaknesses.push("🔬 <strong>Fonaments Ciència / Tecnologia:</strong> Cal consolidar la diferència entre el coneixement científic pur (lleis de la natura) i el caràcter projectual i resolutiu de la tecnologia.");
+            }
+
+            // Mòdul 2: Evolució Històrica i Revolucions
+            const p2 = (appState.penalties && appState.penalties.stage2) || 0;
+            const qb2 = getQuizBlockErrors(2);
+            if (p2 === 0 && qb2 === 0) {
+                strengths.push("📜 <strong>Cronologia i Fites Històriques:</strong> Visió històrica excel·lent de les grans revolucions tecnològiques (del domini del foc al Neolític, la màquina de vapor i la societat digital).");
+            } else if (p2 <= 20 && qb2 <= 1) {
+                strengths.push("📜 <strong>Comprensió Històrica Sòlida:</strong> Identificació adequada de la màquina de vapor com a eix de la 1a Rev. Industrial i la impremta de Gutenberg.");
+            } else {
+                weaknesses.push("📜 <strong>Evolució Tecnològica:</strong> Repassar la seqüenciació històrica dels grans invents de la humanitat i el seu vincle directe amb les fonts d'energia disponibles.");
+            }
+
+            // Mòdul 3: Sostenibilitat i Transició Energètica
+            const p3 = (appState.penalties && appState.penalties.stage3) || 0;
+            const qb3 = getQuizBlockErrors(3);
+            if (p3 === 0 && qb3 === 0) {
+                strengths.push("🌱 <strong>Sostenibilitat i Transició Energètica:</strong> Gran visió sistèmica per dissenyar un mix elèctric descarbonitzat, estable 24/7, lliure de dependència fòssil i amb preus assequibles.");
+            } else if (p3 <= 25 && qb3 <= 1) {
+                strengths.push("🌱 <strong>Balanç Energètic Correcte:</strong> Comprensió del compromís entre reducció d'emissions de CO₂ i la necessitat d'energia neta.");
+            } else {
+                weaknesses.push("🌱 <strong>Gestió del Mix Elèctric:</strong> Aprofundir en el repte de la intermitència renovable (solar/eòlica) i la necessitat imprescindible de fonts de suport ferm i emmagatzematge hidràulic.");
+            }
+
+            // Mòdul 4: Metodologia de Projectes i Bucle Iteratiu
+            const p4 = (appState.penalties && appState.penalties.stage4) || 0;
+            const qb4 = getQuizBlockErrors(4);
+            if (p4 === 0 && qb4 === 0) {
+                strengths.push("🛠️ <strong>Metodologia d'Enginyeria:</strong> Domini total de les 7 fases canòniques del procés tecnològic i del caràcter cíclic iteratiu del bucle de millora contínua.");
+            } else if (p4 <= 20 && qb4 <= 1) {
+                strengths.push("🛠️ <strong>Procés Tecnològic Assolit:</strong> Comprensió de les fases de disseny (CAD/plànols) i planificació amb full de procés i pressupost.");
+            } else {
+                weaknesses.push("🛠️ <strong>Metodologia de Projectes:</strong> Repassar la funció del full de procés i el mecanisme de retroalimentació de l'avaluació (redisseny en cas d'assaig fallit).");
+            }
+
+            // Rendiment al Qüestionari Teòric Global
+            const qScore = appState.quizScore || (20 - (appState.quizErrorsCount || 0));
+            if (qScore >= 18) {
+                strengths.push("🧠 <strong>Rigor Conceptual Global:</strong> Domini curricular destacat en el qüestionari teòric final de la unitat amb més del 90% d'encerts.");
+            } else if (qScore <= 12) {
+                weaknesses.push("📖 <strong>Afermar Continguts Teòrics:</strong> Es recomana repassar els conceptes clau i el vocabulari tècnic de la unitat per consolidar l'aprenentatge.");
+            }
+
+            const strengthsEl = document.getElementById('dip-strengths-list');
+            const weaknessesEl = document.getElementById('dip-weaknesses-list');
+
+            if (strengthsEl) {
+                strengthsEl.innerHTML = strengths.map(s => `<li style="margin-bottom:0.45rem;">${s}</li>`).join('');
+            }
+            if (weaknessesEl) {
+                if (weaknesses.length === 0) {
+                    weaknessesEl.innerHTML = `<li style="color:#15803d; font-weight:600;">✨ Rendiment exemplar! No s'han detectat mancances destacables en cap dels blocs teòrics o pràctics.</li>`;
+                } else {
+                    weaknessesEl.innerHTML = weaknesses.map(w => `<li style="margin-bottom:0.45rem;">${w}</li>`).join('');
                 }
             }
 
