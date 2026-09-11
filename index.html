@@ -1517,16 +1517,16 @@
                         <strong style="color:#166534; font-size:0.95rem; display:block; margin-bottom:0.5rem;">🎯 Condicions indispensables per desbloquejar el següent nivell:</strong>
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.6rem; font-size:0.86rem;">
                             <div id="chk-ini-power" style="padding:0.5rem 0.75rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.5rem;">
-                                <span>❌</span> <span>1. Cobertura: <strong>Exactament 100%</strong></span>
+                                <span>⚪</span> <span>1. Cobertura: <strong>Exactament 100%</strong></span>
                             </div>
                             <div id="chk-ini-air" style="padding:0.5rem 0.75rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.5rem;">
-                                <span>❌</span> <span>2. Fum negre: <strong>Fòssils ≤ 20%</strong></span>
+                                <span>⚪</span> <span>2. Fum negre: <strong>Fòssils ≤ 20%</strong></span>
                             </div>
                             <div id="chk-ini-cost" style="padding:0.5rem 0.75rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.5rem;">
-                                <span>❌</span> <span>3. Factura barata: <strong>Netes ≥ 50%</strong></span>
+                                <span>⚪</span> <span>3. Factura barata: <strong>Netes ≥ 50%</strong></span>
                             </div>
                             <div id="chk-ini-storage" style="padding:0.5rem 0.75rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.5rem;">
-                                <span>❌</span> <span>4. Reserva de nit: <strong>Aigua ≥ 10%</strong></span>
+                                <span>⚪</span> <span>4. Reserva de nit: <strong>Aigua ≥ 10%</strong></span>
                             </div>
                         </div>
                     </div>
@@ -1754,22 +1754,22 @@
                         <strong style="color:#0369a1; font-size:0.95rem; display:block; margin-bottom:0.5rem;">🎯 Els 6 Llindars d'Enginyeria que cal complir per avançar:</strong>
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem; font-size:0.84rem;">
                             <div id="chk-av-cov" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
-                                <span>❌</span> <span>1. Cobertura: <strong>98% - 102%</strong></span>
+                                <span>⚪</span> <span>1. Cobertura: <strong>98% - 102%</strong></span>
                             </div>
                             <div id="chk-av-co2" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
-                                <span>❌</span> <span>2. CO₂: <strong>&le; 20.000 t/dia</strong></span>
+                                <span>⚪</span> <span>2. CO₂: <strong>&le; 20.000 t/dia</strong></span>
                             </div>
                             <div id="chk-av-waste" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
-                                <span>❌</span> <span>3. Residus: <strong>Índex &le; 28</strong></span>
+                                <span>⚪</span> <span>3. Residus: <strong>Índex &le; 28</strong></span>
                             </div>
                             <div id="chk-av-cost" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
-                                <span>❌</span> <span>4. Cost: <strong>&le; 0,13 €/kWh</strong></span>
+                                <span>⚪</span> <span>4. Cost: <strong>&le; 0,13 €/kWh</strong></span>
                             </div>
                             <div id="chk-av-disp" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
-                                <span>❌</span> <span>5. Suport: <strong>&ge; 20%</strong></span>
+                                <span>⚪</span> <span>5. Suport: <strong>&ge; 20%</strong></span>
                             </div>
                             <div id="chk-av-div" style="padding:0.5rem 0.65rem; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:0.4rem;">
-                                <span>❌</span> <span>6. Mix Diversificat: <strong>Totes &gt; 0% (Hidro &le; 20%)</strong></span>
+                                <span>⚪</span> <span>6. Mix Diversificat: <strong>Totes &gt; 0% (Hidro &le; 20%)</strong></span>
                             </div>
                         </div>
                     </div>
@@ -3731,7 +3731,7 @@
 
             const barPower = document.getElementById('bar-ini-power');
             barPower.style.width = `${Math.min(100, total)}%`;
-            barPower.style.background = (total === 100) ? '#10b981' : (total < 100 ? '#f59e0b' : '#ef4444');
+            barPower.style.background = '#3b82f6'; // Mantenim neutre mentre s'ajusta
 
             const metricAir = document.getElementById('metric-ini-air');
             const barAir = document.getElementById('bar-ini-air');
@@ -3740,85 +3740,130 @@
             const diagTitle = document.getElementById('sim-ini-diag-title');
             const diagText = document.getElementById('sim-ini-diag-text');
             const btnFinish = document.getElementById('btn-finish-stage-3-ini');
+            const fbBox = document.getElementById('check-feedback-3-ini');
 
-            // 1. Qualitat de l'aire (fums de carbó/gas)
             const airQuality = Math.max(0, 100 - (fossil * 1.5));
             barAir.style.width = `${Math.min(100, airQuality)}%`;
+            barAir.style.background = '#3b82f6';
+            metricAir.textContent = `${fossil}% fòssils`;
+            metricAir.style.color = '#334155';
 
-            if (fossil <= 20) {
-                barAir.style.background = '#10b981';
-                metricAir.textContent = "Net i Pur 😊";
-                metricAir.style.color = '#059669';
-            } else if (fossil <= 35) {
-                barAir.style.background = '#f59e0b';
-                metricAir.textContent = "Fum Moderat 😐";
-                metricAir.style.color = '#d97706';
-            } else {
-                barAir.style.background = '#ef4444';
-                metricAir.textContent = "Molt Contaminat 😷";
-                metricAir.style.color = '#dc2626';
+            barCost.style.width = `${Math.min(100, clean)}%`;
+            barCost.style.background = '#3b82f6';
+            metricCost.textContent = `${clean}% netes`;
+            metricCost.style.color = '#334155';
+
+            // Reset llindars a neutre ⚪
+            const chkPower = document.getElementById('chk-ini-power');
+            if (chkPower) {
+                chkPower.innerHTML = '<span>⚪</span> <span>1. Cobertura: <strong>Exactament 100%</strong></span>';
+                chkPower.style.borderColor = '#e2e8f0';
+                chkPower.style.background = '#ffffff';
+            }
+            const chkAir = document.getElementById('chk-ini-air');
+            if (chkAir) {
+                chkAir.innerHTML = '<span>⚪</span> <span>2. Fum negre: <strong>Fòssils ≤ 20%</strong></span>';
+                chkAir.style.borderColor = '#e2e8f0';
+                chkAir.style.background = '#ffffff';
+            }
+            const chkCost = document.getElementById('chk-ini-cost');
+            if (chkCost) {
+                chkCost.innerHTML = '<span>⚪</span> <span>3. Factura barata: <strong>Netes ≥ 50%</strong></span>';
+                chkCost.style.borderColor = '#e2e8f0';
+                chkCost.style.background = '#ffffff';
+            }
+            const chkStorage = document.getElementById('chk-ini-storage');
+            if (chkStorage) {
+                chkStorage.innerHTML = '<span>⚪</span> <span>4. Reserva de nit: <strong>Aigua ≥ 10%</strong></span>';
+                chkStorage.style.borderColor = '#e2e8f0';
+                chkStorage.style.background = '#ffffff';
             }
 
-            // 2. Factura de la llum (les netes abarateixen, els fòssils encareixen)
-            // Si clean >= 50, factura és assequible
-            const isCostOk = (clean >= 50 && total > 0);
-            if (total === 0) {
-                metricCost.textContent = "Sense consum 🔌";
-                metricCost.style.color = '#64748b';
-                barCost.style.width = '0%';
-            } else if (clean >= 50) {
-                metricCost.textContent = "Econòmica 😊 (Sol i vent)";
-                metricCost.style.color = '#059669';
-                barCost.style.width = '35%';
-                barCost.style.background = '#10b981';
-            } else if (clean >= 30) {
-                metricCost.textContent = "Moderada 💶";
-                metricCost.style.color = '#d97706';
-                barCost.style.width = '65%';
-                barCost.style.background = '#f59e0b';
-            } else {
-                metricCost.textContent = "Molt Cara! 💸 (Fòssils cars)";
-                metricCost.style.color = '#dc2626';
-                barCost.style.width = '95%';
-                barCost.style.background = '#ef4444';
+            if (diagTitle && diagText) {
+                diagTitle.textContent = "⚙️ Simulació en curs";
+                diagTitle.style.color = '#0284c7';
+                diagText.textContent = "Ajusta les palanques i prem 'Comprovar Distribució Elèctrica' per avaluar si el teu mix compleix els 4 criteris bàsics.";
             }
 
-            // Comprovació de reptes individuals (Inicial: 4 condicions)
+            if (btnFinish) btnFinish.style.display = 'none';
+            if (fbBox) fbBox.style.display = 'none';
+        }
+
+        function checkEnergySimulationInicial() {
+            const fossil = parseInt(document.getElementById('range-ini-fossil').value);
+            const clean = parseInt(document.getElementById('range-ini-clean').value);
+            const storage = parseInt(document.getElementById('range-ini-storage').value);
+            const total = fossil + clean + storage;
+
             const cond1_power = (total === 100);
             const cond2_air = (fossil <= 20 && total > 0);
             const cond3_cost = (clean >= 50 && total > 0);
             const cond4_storage = (storage >= 10);
 
-            // Actualització visual dels 4 reptes
+            // Actualització visual de mètriques i barres en prémer comprovar
+            const barPower = document.getElementById('bar-ini-power');
+            if (barPower) barPower.style.background = cond1_power ? '#10b981' : (total < 100 ? '#f59e0b' : '#ef4444');
+
+            const metricAir = document.getElementById('metric-ini-air');
+            const barAir = document.getElementById('bar-ini-air');
+            if (barAir && metricAir) {
+                if (cond2_air) {
+                    barAir.style.background = '#10b981';
+                    metricAir.textContent = "Net i Pur 😊";
+                    metricAir.style.color = '#059669';
+                } else {
+                    barAir.style.background = '#ef4444';
+                    metricAir.textContent = "Molt Contaminat 😷";
+                    metricAir.style.color = '#dc2626';
+                }
+            }
+
+            const metricCost = document.getElementById('metric-ini-cost');
+            const barCost = document.getElementById('bar-ini-cost');
+            if (barCost && metricCost) {
+                if (cond3_cost) {
+                    metricCost.textContent = "Econòmica 😊 (Sol i vent)";
+                    metricCost.style.color = '#059669';
+                    barCost.style.background = '#10b981';
+                } else {
+                    metricCost.textContent = "Molt Cara! 💸 (Fòssils cars)";
+                    metricCost.style.color = '#dc2626';
+                    barCost.style.background = '#ef4444';
+                }
+            }
+
+            // Actualització visual dels 4 reptes amb ✅ o ❌
             const chkPower = document.getElementById('chk-ini-power');
             if (chkPower) {
-                chkPower.innerHTML = cond1_power ? '<span>✅</span> <span style="color:#166534;">1. Cobertura: <strong>Exactament 100%</strong></span>' : '<span>❌</span> <span>1. Cobertura: <strong>Exactament 100%</strong></span>';
-                chkPower.style.borderColor = cond1_power ? '#86efac' : '#e2e8f0';
-                chkPower.style.background = cond1_power ? '#f0fdf4' : '#ffffff';
+                chkPower.innerHTML = cond1_power ? '<span>✅</span> <span style="color:#166534;">1. Cobertura: <strong>Exactament 100%</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">1. Cobertura: <strong>' + total + '% (cal 100%)</strong></span>';
+                chkPower.style.borderColor = cond1_power ? '#86efac' : '#fecaca';
+                chkPower.style.background = cond1_power ? '#f0fdf4' : '#fef2f2';
             }
 
             const chkAir = document.getElementById('chk-ini-air');
             if (chkAir) {
-                chkAir.innerHTML = cond2_air ? '<span>✅</span> <span style="color:#166534;">2. Fum negre: <strong>Fòssils ≤ 20%</strong></span>' : '<span>❌</span> <span>2. Fum negre: <strong>Fòssils ≤ 20%</strong></span>';
-                chkAir.style.borderColor = cond2_air ? '#86efac' : '#e2e8f0';
-                chkAir.style.background = cond2_air ? '#f0fdf4' : '#ffffff';
+                chkAir.innerHTML = cond2_air ? '<span>✅</span> <span style="color:#166534;">2. Fum negre: <strong>Fòssils ≤ 20% (' + fossil + '%)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">2. Fum negre: <strong>Fòssils ≤ 20% (' + fossil + '%)</strong></span>';
+                chkAir.style.borderColor = cond2_air ? '#86efac' : '#fecaca';
+                chkAir.style.background = cond2_air ? '#f0fdf4' : '#fef2f2';
             }
 
             const chkCost = document.getElementById('chk-ini-cost');
             if (chkCost) {
-                chkCost.innerHTML = cond3_cost ? '<span>✅</span> <span style="color:#166534;">3. Factura barata: <strong>Netes ≥ 50%</strong></span>' : '<span>❌</span> <span>3. Factura barata: <strong>Netes ≥ 50%</strong></span>';
-                chkCost.style.borderColor = cond3_cost ? '#86efac' : '#e2e8f0';
-                chkCost.style.background = cond3_cost ? '#f0fdf4' : '#ffffff';
+                chkCost.innerHTML = cond3_cost ? '<span>✅</span> <span style="color:#166534;">3. Factura barata: <strong>Netes ≥ 50% (' + clean + '%)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">3. Factura barata: <strong>Netes ≥ 50% (' + clean + '%)</strong></span>';
+                chkCost.style.borderColor = cond3_cost ? '#86efac' : '#fecaca';
+                chkCost.style.background = cond3_cost ? '#f0fdf4' : '#fef2f2';
             }
 
             const chkStorage = document.getElementById('chk-ini-storage');
             if (chkStorage) {
-                chkStorage.innerHTML = cond4_storage ? '<span>✅</span> <span style="color:#166534;">4. Reserva de nit: <strong>Aigua ≥ 10%</strong></span>' : '<span>❌</span> <span>4. Reserva de nit: <strong>Aigua ≥ 10%</strong></span>';
-                chkStorage.style.borderColor = cond4_storage ? '#86efac' : '#e2e8f0';
-                chkStorage.style.background = cond4_storage ? '#f0fdf4' : '#ffffff';
+                chkStorage.innerHTML = cond4_storage ? '<span>✅</span> <span style="color:#166534;">4. Reserva de nit: <strong>Aigua ≥ 10% (' + storage + '%)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">4. Reserva de nit: <strong>Aigua ≥ 10% (' + storage + '%)</strong></span>';
+                chkStorage.style.borderColor = cond4_storage ? '#86efac' : '#fecaca';
+                chkStorage.style.background = cond4_storage ? '#f0fdf4' : '#fef2f2';
             }
 
-            // Diagnòstic pedagògic adaptat (bloqueja si fums, cost o reserva fallen)
+            // Diagnòstic pedagògic adaptat
+            const diagTitle = document.getElementById('sim-ini-diag-title');
+            const diagText = document.getElementById('sim-ini-diag-text');
             if (total === 0) {
                 diagTitle.textContent = "🔌 Xarxa Apagada (0%)";
                 diagTitle.style.color = '#ef4444';
@@ -3846,25 +3891,8 @@
             } else {
                 diagTitle.textContent = "🌱 Proposta d'Equilibri Preparada!";
                 diagTitle.style.color = '#059669';
-                diagText.textContent = "Les mètriques compleixen els 4 criteris bàsics. Prem 'Comprovar Distribució Elèctrica' per validar definitivament el mix!";
+                diagText.textContent = "Tots els 4 criteris bàsics s'han complert amb èxit!";
             }
-
-            // En moure els controls s'amaga el botó final fins que es comprovi
-            if (btnFinish) btnFinish.style.display = 'none';
-            const fbBox = document.getElementById('check-feedback-3-ini');
-            if (fbBox) fbBox.style.display = 'none';
-        }
-
-        function checkEnergySimulationInicial() {
-            const fossil = parseInt(document.getElementById('range-ini-fossil').value);
-            const clean = parseInt(document.getElementById('range-ini-clean').value);
-            const storage = parseInt(document.getElementById('range-ini-storage').value);
-            const total = fossil + clean + storage;
-
-            const cond1_power = (total === 100);
-            const cond2_air = (fossil <= 20 && total > 0);
-            const cond3_cost = (clean >= 50 && total > 0);
-            const cond4_storage = (storage >= 10);
 
             const allPassed = cond1_power && cond2_air && cond3_cost && cond4_storage;
             const fbBox = document.getElementById('check-feedback-3-ini');
@@ -3918,97 +3946,114 @@
             document.getElementById('metric-coverage').textContent = `${totalPct}%`;
             const barCov = document.getElementById('bar-coverage');
             barCov.style.width = `${Math.min(100, totalPct)}%`;
-            barCov.style.background = (totalPct >= 98 && totalPct <= 102) ? '#10b981' : (totalPct < 98 ? '#f59e0b' : '#ef4444');
+            barCov.style.background = '#3b82f6'; // Neutre mentre s'ajusta
 
-            // 1. Emissions CO2 (Carbó: 1000 tones/pct, Gas: 450 tones/pct, Renovables i nuclear: 0)
+            // 1. Emissions CO2
             const co2Tons = (coal * 1000) + (gas * 450);
             const metricCo2 = document.getElementById('metric-co2');
             const barCo2 = document.getElementById('bar-co2');
-            const co2PctOfMax = Math.min(100, (co2Tons / 60000) * 100);
-            barCo2.style.width = `${co2PctOfMax}%`;
+            barCo2.style.width = `${Math.min(100, (co2Tons / 60000) * 100)}%`;
+            barCo2.style.background = '#3b82f6';
+            metricCo2.textContent = `${co2Tons.toLocaleString()} t/dia`;
+            metricCo2.style.color = '#334155';
 
-            if (co2Tons === 0 && totalPct > 0) {
-                metricCo2.textContent = "0 t/dia · 🟢 0 Emissions!";
-                metricCo2.style.color = '#059669';
-                barCo2.style.background = '#10b981';
-            } else if (co2Tons <= 20000) {
-                metricCo2.textContent = `${co2Tons.toLocaleString()} t/dia · 🟢 Segur`;
-                metricCo2.style.color = '#059669';
-                barCo2.style.background = '#10b981';
-            } else if (co2Tons <= 30000) {
-                metricCo2.textContent = `${co2Tons.toLocaleString()} t/dia · 🟡 Elevat`;
-                metricCo2.style.color = '#d97706';
-                barCo2.style.background = '#f59e0b';
-            } else {
-                metricCo2.textContent = `${co2Tons.toLocaleString()} t/dia · 🔴 Molt Alt!`;
-                metricCo2.style.color = '#dc2626';
-                barCo2.style.background = '#ef4444';
-            }
-
-            // 2. Residus Perillosos i Risc Ecològic (Nuclear: 1.5, Carbó cendres: 0.8)
+            // 2. Residus
             const wasteScore = (nuclear * 1.5) + (coal * 0.8);
             const metricWaste = document.getElementById('metric-waste');
             const barWaste = document.getElementById('bar-waste');
             barWaste.style.width = `${Math.min(100, (wasteScore / 60) * 100)}%`;
+            barWaste.style.background = '#3b82f6';
+            metricWaste.textContent = `Índex: ${wasteScore.toFixed(0)}`;
+            metricWaste.style.color = '#334155';
 
-            if (wasteScore === 0) {
-                metricWaste.textContent = "Cap (0) · 🟢 Net";
-                metricWaste.style.color = '#059669';
-                barWaste.style.background = '#10b981';
-            } else if (wasteScore <= 28) {
-                metricWaste.textContent = `Índex: ${wasteScore.toFixed(0)} · 🟢 Segur`;
-                metricWaste.style.color = '#059669';
-                barWaste.style.background = '#10b981';
-            } else if (wasteScore <= 45) {
-                metricWaste.textContent = `Índex: ${wasteScore.toFixed(0)} · 🟡 Elevat`;
-                metricWaste.style.color = '#d97706';
-                barWaste.style.background = '#f59e0b';
-            } else {
-                metricWaste.textContent = `Índex: ${wasteScore.toFixed(0)} · 🔴 Perill Tòxic!`;
-                metricWaste.style.color = '#dc2626';
-                barWaste.style.background = '#ef4444';
-            }
-
-            // 3. Cost Econòmic (€/kWh a les llars)
-            // Carbó: 0.10, Gas: 0.18, Nuclear: 0.13, Hidro: 0.08, Solar: 0.05, Eòlica: 0.06
+            // 3. Cost
             const costKwh = totalPct === 0 ? 0 : (coal*0.10 + gas*0.18 + nuclear*0.13 + hydro*0.08 + solar*0.05 + wind*0.06) / totalPct;
             const metricCost = document.getElementById('metric-cost');
             const barCost = document.getElementById('bar-cost');
             barCost.style.width = `${Math.min(100, (costKwh / 0.20) * 100)}%`;
+            barCost.style.background = '#3b82f6';
+            metricCost.textContent = `${costKwh.toFixed(2)} €/kWh`;
+            metricCost.style.color = '#334155';
 
-            if (totalPct === 0) {
-                metricCost.textContent = "0,00 € / kWh";
-                metricCost.style.color = '#64748b';
-            } else if (costKwh <= 0.10) {
-                metricCost.textContent = `${costKwh.toFixed(2)} €/kWh · 🟢 Assequible`;
-                metricCost.style.color = '#059669';
-                barCost.style.background = '#10b981';
-            } else if (costKwh <= 0.13) {
-                metricCost.textContent = `${costKwh.toFixed(2)} €/kWh · 🟢 Acceptable`;
-                metricCost.style.color = '#059669';
-                barCost.style.background = '#10b981';
-            } else if (costKwh <= 0.15) {
-                metricCost.textContent = `${costKwh.toFixed(2)} €/kWh · 🟡 Car`;
-                metricCost.style.color = '#d97706';
-                barCost.style.background = '#f59e0b';
-            } else {
-                metricCost.textContent = `${costKwh.toFixed(2)} €/kWh · 🔴 Molt Car!`;
-                metricCost.style.color = '#dc2626';
-                barCost.style.background = '#ef4444';
-            }
-
-            // 4. Energia gestionable de suport o continuïtat (Gas + Nuclear + Hidroelèctrica)
+            // 4. Suport
             const backupPower = gas + nuclear + hydro;
             const metricBackup = document.getElementById('metric-backup');
             const barBackup = document.getElementById('bar-backup');
             if (metricBackup && barBackup) {
-                metricBackup.textContent = `${backupPower}% ${backupPower >= 20 ? '· 🟢 Segur' : '· 🔴 Risc Nocturn'}`;
-                metricBackup.style.color = backupPower >= 20 ? '#059669' : '#dc2626';
+                metricBackup.textContent = `${backupPower}%`;
+                metricBackup.style.color = '#334155';
                 barBackup.style.width = `${Math.min(100, (backupPower / 50) * 100)}%`;
-                barBackup.style.background = backupPower >= 20 ? '#10b981' : '#ef4444';
+                barBackup.style.background = '#3b82f6';
             }
 
-            // 6 CONDICIONS INDISPENSABLES PER AVANÇAR:
+            // Reset checklist interactiu a neutre ⚪
+            const chkCov = document.getElementById('chk-av-cov');
+            if (chkCov) {
+                chkCov.innerHTML = '<span>⚪</span> <span>1. Cobertura: <strong>98% - 102%</strong></span>';
+                chkCov.style.borderColor = '#e2e8f0';
+                chkCov.style.background = '#ffffff';
+            }
+            const chkCo2 = document.getElementById('chk-av-co2');
+            if (chkCo2) {
+                chkCo2.innerHTML = '<span>⚪</span> <span>2. CO₂: <strong>&le; 20.000 t/dia</strong></span>';
+                chkCo2.style.borderColor = '#e2e8f0';
+                chkCo2.style.background = '#ffffff';
+            }
+            const chkWaste = document.getElementById('chk-av-waste');
+            if (chkWaste) {
+                chkWaste.innerHTML = '<span>⚪</span> <span>3. Residus: <strong>Índex &le; 28</strong></span>';
+                chkWaste.style.borderColor = '#e2e8f0';
+                chkWaste.style.background = '#ffffff';
+            }
+            const chkCost = document.getElementById('chk-av-cost');
+            if (chkCost) {
+                chkCost.innerHTML = '<span>⚪</span> <span>4. Cost: <strong>&le; 0,13 €/kWh</strong></span>';
+                chkCost.style.borderColor = '#e2e8f0';
+                chkCost.style.background = '#ffffff';
+            }
+            const chkDisp = document.getElementById('chk-av-disp');
+            if (chkDisp) {
+                chkDisp.innerHTML = '<span>⚪</span> <span>5. Suport: <strong>&ge; 20%</strong></span>';
+                chkDisp.style.borderColor = '#e2e8f0';
+                chkDisp.style.background = '#ffffff';
+            }
+            const chkDiv = document.getElementById('chk-av-div');
+            if (chkDiv) {
+                chkDiv.innerHTML = '<span>⚪</span> <span>6. Mix Diversificat: <strong>Totes &gt; 0% (Hidro &le; 20%)</strong></span>';
+                chkDiv.style.borderColor = '#e2e8f0';
+                chkDiv.style.background = '#ffffff';
+            }
+
+            // Diagnòstic neutre
+            const diagTitle = document.getElementById('sim-diag-title');
+            const diagText = document.getElementById('sim-diag-text');
+            if (diagTitle && diagText) {
+                diagTitle.textContent = "⚙️ Simulació en curs";
+                diagTitle.style.color = '#0369a1';
+                diagText.textContent = "Ajusta les fonts d'energia i prem 'Comprovar Distribució Elèctrica' per avaluar si el mix compleix tots els llindars d'enginyeria.";
+            }
+
+            // En moure els controls s'amaga el botó final i el feedback
+            const btnFinish = document.getElementById('btn-finish-stage-3');
+            if (btnFinish) btnFinish.style.display = 'none';
+            const fbBox = document.getElementById('check-feedback-3-av');
+            if (fbBox) fbBox.style.display = 'none';
+        }
+
+        function checkEnergySimulationAvancat() {
+            const coal = parseInt(document.getElementById('range-coal').value);
+            const gas = parseInt(document.getElementById('range-gas').value);
+            const nuclear = parseInt(document.getElementById('range-nuclear').value);
+            const hydro = parseInt(document.getElementById('range-hydro').value);
+            const solar = parseInt(document.getElementById('range-solar').value);
+            const wind = parseInt(document.getElementById('range-wind').value);
+
+            const totalPct = coal + gas + nuclear + hydro + solar + wind;
+            const co2Tons = (coal * 1000) + (gas * 450);
+            const wasteScore = (nuclear * 1.5) + (coal * 0.8);
+            const costKwh = totalPct === 0 ? 0 : (coal*0.10 + gas*0.18 + nuclear*0.13 + hydro*0.08 + solar*0.05 + wind*0.06) / totalPct;
+            const backupPower = gas + nuclear + hydro;
+
             const condCoverage = (totalPct >= 98 && totalPct <= 102);
             const condCO2 = (co2Tons <= 20000 && totalPct > 0);
             const condWaste = (wasteScore <= 28 && totalPct > 0);
@@ -4018,40 +4063,76 @@
             const hydroRealistic = (hydro <= 20);
             const condDiversified = allUsed && hydroRealistic;
 
-            // Actualització visual dels 6 reptes (Checklist interactiu)
+            // Actualització de colors de mètriques i barres en prémer comprovar
+            const barCov = document.getElementById('bar-coverage');
+            if (barCov) barCov.style.background = condCoverage ? '#10b981' : (totalPct < 98 ? '#f59e0b' : '#ef4444');
+
+            const metricCo2 = document.getElementById('metric-co2');
+            const barCo2 = document.getElementById('bar-co2');
+            if (metricCo2 && barCo2) {
+                metricCo2.textContent = `${co2Tons.toLocaleString()} t/dia · ${condCO2 ? '🟢 Segur' : '🔴 Massa Alt!'}`;
+                metricCo2.style.color = condCO2 ? '#059669' : '#dc2626';
+                barCo2.style.background = condCO2 ? '#10b981' : '#ef4444';
+            }
+
+            const metricWaste = document.getElementById('metric-waste');
+            const barWaste = document.getElementById('bar-waste');
+            if (metricWaste && barWaste) {
+                metricWaste.textContent = `Índex: ${wasteScore.toFixed(0)} · ${condWaste ? '🟢 Segur' : '🔴 Perill Tòxic!'}`;
+                metricWaste.style.color = condWaste ? '#059669' : '#dc2626';
+                barWaste.style.background = condWaste ? '#10b981' : '#ef4444';
+            }
+
+            const metricCost = document.getElementById('metric-cost');
+            const barCost = document.getElementById('bar-cost');
+            if (metricCost && barCost) {
+                metricCost.textContent = `${costKwh.toFixed(2)} €/kWh · ${condCost ? '🟢 Assequible' : '🔴 Molt Car!'}`;
+                metricCost.style.color = condCost ? '#059669' : '#dc2626';
+                barCost.style.background = condCost ? '#10b981' : '#ef4444';
+            }
+
+            const metricBackup = document.getElementById('metric-backup');
+            const barBackup = document.getElementById('bar-backup');
+            if (metricBackup && barBackup) {
+                metricBackup.textContent = `${backupPower}% · ${condBackup ? '🟢 Segur' : '🔴 Risc Nocturn'}`;
+                metricBackup.style.color = condBackup ? '#059669' : '#dc2626';
+                barBackup.style.background = condBackup ? '#10b981' : '#ef4444';
+            }
+
+            // Actualització visual dels 6 reptes amb ✅ o ❌
             const chkCov = document.getElementById('chk-av-cov');
             if (chkCov) {
-                chkCov.innerHTML = condCoverage ? '<span>✅</span> <span style="color:#0369a1;">1. Cobertura: <strong>98%-102% (' + totalPct + '%)</strong></span>' : '<span>❌</span> <span>1. Cobertura: <strong>98%-102% (' + totalPct + '%)</strong></span>';
-                chkCov.style.borderColor = condCoverage ? '#7dd3fc' : '#e2e8f0';
-                chkCov.style.background = condCoverage ? '#f0f9ff' : '#ffffff';
+                chkCov.innerHTML = condCoverage ? '<span>✅</span> <span style="color:#0369a1;">1. Cobertura: <strong>98%-102% (' + totalPct + '%)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">1. Cobertura: <strong>98%-102% (' + totalPct + '%)</strong></span>';
+                chkCov.style.borderColor = condCoverage ? '#7dd3fc' : '#fecaca';
+                chkCov.style.background = condCoverage ? '#f0f9ff' : '#fef2f2';
             }
 
             const chkCo2 = document.getElementById('chk-av-co2');
             if (chkCo2) {
-                chkCo2.innerHTML = condCO2 ? '<span>✅</span> <span style="color:#0369a1;">2. CO₂: <strong>&le; 20.000 t</strong></span>' : '<span>❌</span> <span>2. CO₂: <strong>' + (co2Tons > 20000 ? 'Massa Alt (' + co2Tons.toLocaleString() + ' t)' : '&le; 20.000 t') + '</strong></span>';
-                chkCo2.style.borderColor = condCO2 ? '#7dd3fc' : (co2Tons > 20000 ? '#fecaca' : '#e2e8f0');
-                chkCo2.style.background = condCO2 ? '#f0f9ff' : (co2Tons > 20000 ? '#fef2f2' : '#ffffff');
+                chkCo2.innerHTML = condCO2 ? '<span>✅</span> <span style="color:#0369a1;">2. CO₂: <strong>&le; 20.000 t (' + co2Tons.toLocaleString() + ' t)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">2. CO₂: <strong>Massa Alt (' + co2Tons.toLocaleString() + ' t)</strong></span>';
+                chkCo2.style.borderColor = condCO2 ? '#7dd3fc' : '#fecaca';
+                chkCo2.style.background = condCO2 ? '#f0f9ff' : '#fef2f2';
             }
 
             const chkWaste = document.getElementById('chk-av-waste');
             if (chkWaste) {
-                chkWaste.innerHTML = condWaste ? '<span>✅</span> <span style="color:#0369a1;">3. Residus: <strong>Índex &le; 28</strong></span>' : '<span>❌</span> <span>3. Residus: <strong>' + (wasteScore > 28 ? 'Massa Alt (' + wasteScore.toFixed(0) + ')' : 'Índex &le; 28') + '</strong></span>';
-                chkWaste.style.borderColor = condWaste ? '#7dd3fc' : (wasteScore > 28 ? '#fecaca' : '#e2e8f0');
-                chkWaste.style.background = condWaste ? '#f0f9ff' : (wasteScore > 28 ? '#fef2f2' : '#ffffff');
+                chkWaste.innerHTML = condWaste ? '<span>✅</span> <span style="color:#0369a1;">3. Residus: <strong>Índex &le; 28 (' + wasteScore.toFixed(0) + ')</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">3. Residus: <strong>Massa Alt (' + wasteScore.toFixed(0) + ')</strong></span>';
+                chkWaste.style.borderColor = condWaste ? '#7dd3fc' : '#fecaca';
+                chkWaste.style.background = condWaste ? '#f0f9ff' : '#fef2f2';
             }
 
             const chkCost = document.getElementById('chk-av-cost');
             if (chkCost) {
-                chkCost.innerHTML = condCost ? '<span>✅</span> <span style="color:#0369a1;">4. Cost: <strong>&le; 0,13 €/kWh</strong></span>' : '<span>❌</span> <span>4. Cost: <strong>' + (costKwh > 0.13 ? 'Massa Car (' + costKwh.toFixed(2) + ' €)' : '&le; 0,13 €/kWh') + '</strong></span>';
-                chkCost.style.borderColor = condCost ? '#7dd3fc' : (costKwh > 0.13 ? '#fecaca' : '#e2e8f0');
-                chkCost.style.background = condCost ? '#f0f9ff' : (costKwh > 0.13 ? '#fef2f2' : '#ffffff');
+                chkCost.innerHTML = condCost ? '<span>✅</span> <span style="color:#0369a1;">4. Cost: <strong>&le; 0,13 €/kWh (' + costKwh.toFixed(2) + ' €)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">4. Cost: <strong>Massa Car (' + costKwh.toFixed(2) + ' €)</strong></span>';
+                chkCost.style.borderColor = condCost ? '#7dd3fc' : '#fecaca';
+                chkCost.style.background = condCost ? '#f0f9ff' : '#fef2f2';
             }
 
             const chkDisp = document.getElementById('chk-av-disp');
             if (chkDisp) {
-                chkDisp.innerHTML = condBackup ? '<span>✅</span> <span style="color:#0369a1;">5. Suport: <strong>&ge; 20% (' + backupPower + '%)</strong></span>' : '<span>❌</span> <span>5. Suport: <strong>&ge; 20% (' + backupPower + '%)</strong></span>';
-                chkDisp.style.borderColor = condBackup ? '#7dd3fc' : '#e2e8f0';
-                chkDisp.style.background = condBackup ? '#f0f9ff' : '#ffffff';
+                chkDisp.innerHTML = condBackup ? '<span>✅</span> <span style="color:#0369a1;">5. Suport: <strong>&ge; 20% (' + backupPower + '%)</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">5. Suport: <strong>&ge; 20% (' + backupPower + '%)</strong></span>';
+                chkDisp.style.borderColor = condBackup ? '#7dd3fc' : '#fecaca';
+                chkDisp.style.background = condBackup ? '#f0f9ff' : '#fef2f2';
             }
 
             const chkDiv = document.getElementById('chk-av-div');
@@ -4068,20 +4149,19 @@
                 if (!allUsed) {
                     divStatusText = `Falta: ${missingSources.slice(0, 2).join(', ')}${missingSources.length > 2 ? '...' : ''}`;
                 } else if (!hydroRealistic) {
-                    divStatusText = `Hidro excessiva (${hydro}% &gt; 20%)`;
+                    divStatusText = `Hidro excessiva (${hydro}% > 20%)`;
                 } else {
-                    divStatusText = 'Totes operatives (Hidro &le; 20%)';
+                    divStatusText = 'Totes operatives (Hidro ≤ 20%)';
                 }
 
-                chkDiv.innerHTML = condDiversified ? '<span>✅</span> <span style="color:#0369a1;">6. Mix Diversificat: <strong>' + divStatusText + '</strong></span>' : '<span>❌</span> <span>6. Mix Diversificat: <strong>' + divStatusText + '</strong></span>';
-                chkDiv.style.borderColor = condDiversified ? '#7dd3fc' : '#e2e8f0';
-                chkDiv.style.background = condDiversified ? '#f0f9ff' : '#ffffff';
+                chkDiv.innerHTML = condDiversified ? '<span>✅</span> <span style="color:#0369a1;">6. Mix Diversificat: <strong>' + divStatusText + '</strong></span>' : '<span>❌</span> <span style="color:#991b1b;">6. Mix Diversificat: <strong>' + divStatusText + '</strong></span>';
+                chkDiv.style.borderColor = condDiversified ? '#7dd3fc' : '#fecaca';
+                chkDiv.style.background = condDiversified ? '#f0f9ff' : '#fef2f2';
             }
 
-            // Diagnòstic d'Enginyeria: actualitza el text d'anàlisi tècnica
+            // Diagnòstic d'Enginyeria
             const diagTitle = document.getElementById('sim-diag-title');
             const diagText = document.getElementById('sim-diag-text');
-            const btnFinish = document.getElementById('btn-finish-stage-3');
 
             if (totalPct === 0) {
                 diagTitle.textContent = "🚨 APAGADA GENERAL (0%)";
@@ -4135,35 +4215,6 @@
                 diagText.textContent = `Totes les condicions d'enginyeria s'han assolit! Prem el botó 'Comprovar Distribució Elèctrica' per validar la solució oficialment.`;
             }
 
-            // En moure els controls s'amaga el botó final fins que es comprovi
-            if (btnFinish) btnFinish.style.display = 'none';
-            const fbBox = document.getElementById('check-feedback-3-av');
-            if (fbBox) fbBox.style.display = 'none';
-        }
-
-        function checkEnergySimulationAvancat() {
-            const coal = parseInt(document.getElementById('range-coal').value);
-            const gas = parseInt(document.getElementById('range-gas').value);
-            const nuclear = parseInt(document.getElementById('range-nuclear').value);
-            const hydro = parseInt(document.getElementById('range-hydro').value);
-            const solar = parseInt(document.getElementById('range-solar').value);
-            const wind = parseInt(document.getElementById('range-wind').value);
-
-            const totalPct = coal + gas + nuclear + hydro + solar + wind;
-            const co2Tons = (coal * 1000) + (gas * 450);
-            const wasteScore = (nuclear * 1.5) + (coal * 0.8);
-            const costKwh = totalPct === 0 ? 0 : (coal*0.10 + gas*0.18 + nuclear*0.13 + hydro*0.08 + solar*0.05 + wind*0.06) / totalPct;
-            const backupPower = gas + nuclear + hydro;
-
-            const condCoverage = (totalPct >= 98 && totalPct <= 102);
-            const condCO2 = (co2Tons <= 20000 && totalPct > 0);
-            const condWaste = (wasteScore <= 28 && totalPct > 0);
-            const condCost = (costKwh <= 0.13 && totalPct > 0);
-            const condBackup = (backupPower >= 20);
-            const allUsed = (coal > 0 && gas > 0 && nuclear > 0 && hydro > 0 && solar > 0 && wind > 0);
-            const hydroRealistic = (hydro <= 20);
-            const condDiversified = allUsed && hydroRealistic;
-
             const allPassed = condCoverage && condCO2 && condWaste && condCost && condBackup && condDiversified;
             const fbBox = document.getElementById('check-feedback-3-av');
             const btnFinish = document.getElementById('btn-finish-stage-3');
@@ -4210,7 +4261,7 @@
                 if (btnFinish) btnFinish.style.display = 'none';
             }
         }
-        
+
         function finishStage3() {
             showVictory(3, "Fase 3 Superada!", "Has resolt el dilema de la transició energètica creant un mix elèctric net, segur i sostenible per a la societat.", 250);
         }
@@ -4357,46 +4408,29 @@
             const preview = document.getElementById(`preview-av-${projectKey}-${phaseId}`);
             if (!sel || !cell) return;
 
+            // Reset a estil neutre en canviar per no donar pistes abans de prémer comprovar
+            cell.style.background = '';
+            sel.style.borderColor = '#cbd5e1';
+            sel.style.background = '#ffffff';
+            sel.style.color = '#1e293b';
+            sel.style.fontWeight = 'normal';
+
             const val = parseInt(sel.value);
             if (isNaN(val) || val === 0) {
-                cell.style.background = '';
-                sel.style.borderColor = '#cbd5e1';
                 if (preview) {
                     preview.style.display = 'none';
                     preview.textContent = '';
                 }
             } else {
-                // Trobem el text de l'opció triada
                 const selectedText = sel.options[sel.selectedIndex]?.text || '';
                 if (preview) {
                     preview.style.display = 'block';
                     preview.textContent = selectedText;
-                }
-
-                if (val === phaseId) {
-                    cell.style.background = '#f0fdf4';
-                    sel.style.borderColor = '#10b981';
-                    sel.style.background = '#ecfdf5';
-                    sel.style.color = '#065f46';
-                    sel.style.fontWeight = '600';
-                    if (preview) {
-                        preview.style.borderColor = '#86efac';
-                        preview.style.background = '#ffffff';
-                        preview.style.color = '#065f46';
-                    }
-                } else {
-                    cell.style.background = '#fef2f2';
-                    sel.style.borderColor = '#f87171';
-                    sel.style.background = '#fff1f2';
-                    sel.style.color = '#991b1b';
-                    if (preview) {
-                        preview.style.borderColor = '#fca5a5';
-                        preview.style.background = '#ffffff';
-                        preview.style.color = '#991b1b';
-                    }
+                    preview.style.borderColor = '#cbd5e1';
+                    preview.style.background = '#ffffff';
+                    preview.style.color = '#334155';
                 }
             }
-            updateTableScoreAvancat();
         }
 
         function checkTableAvancat() {
@@ -4407,6 +4441,7 @@
                 for (let p = 1; p <= 7; p++) {
                     const sel = document.getElementById(`sel-av-${k}-${p}`);
                     const cell = document.getElementById(`cell-av-${k}-${p}`);
+                    const preview = document.getElementById(`preview-av-${k}-${p}`);
                     if (!sel || !cell) continue;
 
                     const val = parseInt(sel.value);
@@ -4416,16 +4451,28 @@
                         sel.style.borderColor = '#10b981';
                         sel.style.background = '#ecfdf5';
                         sel.style.color = '#065f46';
+                        sel.style.fontWeight = '600';
+                        if (preview) {
+                            preview.style.borderColor = '#86efac';
+                            preview.style.background = '#ffffff';
+                            preview.style.color = '#065f46';
+                        }
                     } else {
                         cell.style.background = '#fef2f2';
                         sel.style.borderColor = '#f87171';
                         sel.style.background = '#fff1f2';
                         sel.style.color = '#991b1b';
+                        if (preview) {
+                            preview.style.borderColor = '#fca5a5';
+                            preview.style.background = '#ffffff';
+                            preview.style.color = '#991b1b';
+                        }
                     }
                 }
             });
 
-            updateTableScoreAvancat();
+            const lbl = document.getElementById('lbl-score-table-av');
+            if (lbl) lbl.textContent = correctCount;
 
             if (correctCount === 21) {
                 const btnFinish = document.getElementById('btn-finish-stage-4');
@@ -4465,14 +4512,13 @@
 
         function giveHintAvancat() {
             const keys = ['lamp', 'bridge', 'app'];
-            // Busquem una casella no resolta
             for (let p = 1; p <= 7; p++) {
                 for (let k of keys) {
                     const sel = document.getElementById(`sel-av-${k}-${p}`);
                     if (sel && parseInt(sel.value) !== p) {
                         sel.value = p;
                         autoCheckCellAvancat(k, p);
-                        alert(`💡 Pista aplicada a la Fase ${p}: Hem col·locat l'acció correcta per a aquest projecte!`);
+                        alert(`💡 Pista aplicada a la Fase ${p}: Hem seleccionat una opció. Prem 'Comprovar' per validar la taula!`);
                         return;
                     }
                 }
@@ -4486,30 +4532,12 @@
             const cell = document.getElementById(`cell-ini-${projectKey}-${stepNum}`);
             if (!sel || !cell) return;
 
-            const targets = {
-                1: 'pensar',
-                2: 'dibuixar',
-                3: 'construir',
-                4: 'provar'
-            };
-
-            const expected = targets[stepNum];
-            if (sel.value === expected) {
-                cell.style.background = '#f0fdf4';
-                sel.style.borderColor = '#10b981';
-                sel.style.background = '#ecfdf5';
-                sel.style.color = '#065f46';
-                sel.style.fontWeight = 'bold';
-            } else if (sel.value !== "") {
-                cell.style.background = '#fef2f2';
-                sel.style.borderColor = '#f87171';
-                sel.style.background = '#fff1f2';
-                sel.style.color = '#991b1b';
-            } else {
-                cell.style.background = '';
-                sel.style.borderColor = '#cbd5e1';
-            }
-            updateTableScoreIni();
+            // Manté estil neutre abans de prémer comprovar
+            cell.style.background = '';
+            sel.style.borderColor = '#cbd5e1';
+            sel.style.background = '#ffffff';
+            sel.style.color = '#1e293b';
+            sel.style.fontWeight = 'normal';
         }
 
         function updateTableScoreIni() {
@@ -4543,15 +4571,36 @@
 
             keys.forEach(k => {
                 for (let s = 1; s <= 4; s++) {
-                    autoCheckCellIni(k, s);
                     const sel = document.getElementById(`sel-ini-${k}-${s}`);
-                    if (sel && sel.value === targets[s]) count++;
+                    const cell = document.getElementById(`cell-ini-${k}-${s}`);
+                    if (!sel || !cell) continue;
+
+                    const expected = targets[s];
+                    if (sel.value === expected) {
+                        count++;
+                        cell.style.background = '#f0fdf4';
+                        sel.style.borderColor = '#10b981';
+                        sel.style.background = '#ecfdf5';
+                        sel.style.color = '#065f46';
+                        sel.style.fontWeight = 'bold';
+                    } else {
+                        cell.style.background = '#fef2f2';
+                        sel.style.borderColor = '#f87171';
+                        sel.style.background = '#fff1f2';
+                        sel.style.color = '#991b1b';
+                    }
                 }
             });
 
-            updateTableScoreIni();
+            const lbl = document.getElementById('lbl-score-table-ini');
+            if (lbl) lbl.textContent = count;
 
             if (count === 12) {
+                const btn = document.getElementById('btn-finish-stage-4-ini');
+                if (btn) {
+                    btn.style.display = 'inline-flex';
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
                 alert("🎉 Fantàstic! Has completat totes les 12 caselles correctament. El teu Diploma està a punt!");
             } else {
                 const errors = 12 - count;
