@@ -1063,6 +1063,11 @@
             background: #ecfdf5;
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
         }
+        .level-card-option.selected#opt-level-avancat {
+            border-color: #2563eb;
+            background: #eff6ff;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+        }
         .level-pill-badge {
             background: #ecfdf5;
             color: #065f46;
@@ -1170,16 +1175,16 @@
                     <strong id="header-name">Carregant...</strong>
                     <span style="color:var(--text-muted);" id="header-group">(4t ESO)</span>
                 </div>
-                <div class="stat-pill" id="header-level-badge-display" title="El nivell queda fixat en iniciar la unitat per garantir la validesa del diploma">
+                <div class="stat-pill" id="header-level-badge-display" onclick="toggleLevel()" style="cursor:pointer;" title="El nivell queda fixat en iniciar la unitat per garantir la validesa del diploma">
                     <span id="header-level-icon">🟢</span> <strong id="header-level-text">Nivell Inicial</strong>
                 </div>
                 <div class="stat-pill">
                     <span>⭐ Punts XP:</span>
-                    <strong id="header-xp">0</strong>
+                    <strong id="header-xp">1000</strong>
                 </div>
                 <div class="stat-pill">
                     <span>🔓 Fase:</span>
-                    <strong id="header-unlocked-stage">1 / 4</strong>
+                    <strong id="header-unlocked-stage">1 / 5</strong>
                 </div>
                 <button class="btn-header btn-header-exit" onclick="confirmExitGame()" title="Sortir i reiniciar la unitat">🚪 Sortir del Joc</button>
             </div>
@@ -2599,6 +2604,7 @@
             studentGroup: '4t ESO A',
             avatar: '👩‍🔧',
             level: 'inicial', // 'inicial' o 'avancat'
+            gameStarted: false,
             currentStage: 1,
             unlockedStage: 1,
             completedStages: [],
@@ -2634,9 +2640,15 @@
                     if (!appState.quizAnswers) appState.quizAnswers = {};
                     const totalDeductions = Object.values(appState.penalties).reduce((acc, val) => acc + (val || 0), 0);
                     appState.totalXP = Math.max(0, 1000 - totalDeductions);
+                    if (appState.studentName && appState.studentName.trim() !== '') {
+                        appState.gameStarted = true;
+                    }
                 } catch(e) {
                     console.error("Error carregant estat", e);
                 }
+            } else {
+                appState.totalXP = 1000;
+                appState.gameStarted = false;
             }
 
             document.body.className = (appState.level === 'inicial' ? 'level-inicial' : 'level-avancat');
@@ -2665,7 +2677,11 @@
             }
         }
 
-        function setLevel(newLevel) {
+        function setLevel(newLevel, force = false) {
+            if (!force && appState.gameStarted && appState.level && newLevel !== appState.level) {
+                alert("🔒 El nivell queda bloquejat durant tot el transcurs de la unitat per garantir la validesa del Diploma Oficial.");
+                return;
+            }
             appState.level = newLevel;
             document.body.className = (newLevel === 'inicial' ? 'level-inicial' : 'level-avancat');
             updateHeader();
@@ -2685,7 +2701,8 @@
         }
 
         function toggleLevel() {
-            alert("🔒 El nivell queda fixat en iniciar la unitat per garantir la integritat del progrés i del Diploma Oficial.");
+            const lvlName = (appState.level === 'inicial') ? '🟢 Inicial' : '🔵 Avançat';
+            alert(`🔒 El nivell de treball (${lvlName}) queda bloquejat durant tot el transcurs del joc per garantir la validesa del Diploma Oficial.\n\nPer canviar de nivell, fes clic al botó "🚪 Sortir del Joc" de la barra superior per reiniciar la unitat des del principi per a un nou alumne/a.`);
         }
 
         function updateHeader() {
@@ -2793,12 +2810,13 @@
             selectModalLevel(selectedModalLevel);
             pickAvatar(appState.avatar || '👩‍🔧');
 
-            const hasProgress = (appState.completedStages && appState.completedStages.length > 0) || (appState.totalXP > 0) || (appState.unlockedStage > 1);
+            // El nivell només es bloqueja un cop l'alumne ha iniciat la unitat amb el seu nom i començat a jugar
+            const isLocked = Boolean(appState.gameStarted && appState.studentName);
             const levelSelectBox = document.getElementById('modal-level-selection-box');
             const levelLockedBox = document.getElementById('modal-level-locked-box');
             const lockedBadge = document.getElementById('modal-locked-level-badge');
 
-            if (hasProgress) {
+            if (isLocked) {
                 if (levelSelectBox) levelSelectBox.style.display = 'none';
                 if (levelLockedBox) levelLockedBox.style.display = 'block';
                 if (lockedBadge) {
@@ -2834,21 +2852,20 @@
                 return;
             }
 
-            const hasProgress = (appState.completedStages && appState.completedStages.length > 0) || (appState.totalXP > 0) || (appState.unlockedStage > 1);
+            const isLocked = Boolean(appState.gameStarted && appState.studentName);
 
-            // Si ja hi ha progrés, no es permet canviar el nivell a posteriori
-            if (hasProgress && appState.level && selectedModalLevel !== appState.level) {
-                alert("🔒 No pots canviar de nivell un cop iniciades les fases de la unitat!");
+            // Si ja hi ha un nivell iniciat i bloquejat en joc, no es permet canviar
+            if (isLocked && appState.level && selectedModalLevel !== appState.level) {
+                alert("🔒 No es pot canviar de nivell un cop començada la unitat per garantir la integritat del Diploma Oficial.");
                 selectedModalLevel = appState.level;
+            } else {
+                appState.level = selectedModalLevel;
+                setLevel(selectedModalLevel, true);
             }
 
             appState.studentName = name;
             appState.studentGroup = group || '4t ESO A';
-            
-            if (!hasProgress) {
-                appState.level = selectedModalLevel;
-                setLevel(selectedModalLevel);
-            }
+            appState.gameStarted = true;
 
             saveState();
             document.getElementById('profile-modal').classList.remove('active');
