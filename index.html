@@ -1124,37 +1124,143 @@
             margin-top: auto;
         }
 
+        @page {
+            size: A4 portrait;
+            margin: 8mm 10mm;
+        }
+
         @media print {
-            header, nav, footer, .btn, .obj-actions, .phase-tag, .hero-banner {
+            *, *:before, *:after {
+                box-sizing: border-box !important;
+            }
+            html, body {
+                width: 100% !important;
+                height: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                color: #0f172a !important;
+                font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            header, nav, footer, .btn, .obj-actions, .phase-tag, .hero-banner, .modal-overlay, #profile-modal, #btn-exit-game {
                 display: none !important;
             }
-            body, main {
-                background: white !important;
-                color: black !important;
-                padding: 0 !important;
+            main {
                 margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
             }
             .section-view:not(#stage-view-6) {
                 display: none !important;
             }
             #stage-view-6 {
                 display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            #stage-view-6 > div:first-child,
+            #stage-view-6 > div:last-child {
+                display: none !important;
             }
             .diploma-frame {
                 border: 4px double #1e3a8a !important;
+                border-radius: 12px !important;
                 box-shadow: none !important;
                 margin: 0 auto !important;
-                padding: 1.25rem !important;
+                padding: 1rem 1.25rem !important;
                 max-width: 100% !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
                 page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+            .diploma-frame .dip-trophy {
+                font-size: 2rem !important;
+                margin-bottom: 0.15rem !important;
+            }
+            .diploma-frame h1 {
+                font-size: 1.4rem !important;
+                margin: 0 0 0.2rem 0 !important;
+                color: #1e3a8a !important;
+            }
+            .diploma-frame .dip-subtitle {
+                font-size: 0.78rem !important;
+                margin-bottom: 0.55rem !important;
+            }
+            .diploma-frame .dip-inner-card {
+                border: 2px solid #2563eb !important;
+                border-radius: 8px !important;
+                padding: 0.65rem 0.85rem !important;
+                background: #f8fafc !important;
+                margin-bottom: 0.55rem !important;
+            }
+            .diploma-frame #dip-level-badge {
+                padding: 0.15rem 0.65rem !important;
+                font-size: 0.76rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+            .diploma-frame .dip-cert-text {
+                font-size: 0.82rem !important;
+                margin: 0.15rem 0 !important;
+            }
+            .diploma-student-name {
+                font-size: 1.55rem !important;
+                margin: 0.25rem 0 !important;
+                color: #2563eb !important;
+            }
+            .diploma-frame .dip-cert-sub {
+                font-size: 0.8rem !important;
+                margin: 0.15rem 0 !important;
+            }
+            .diploma-frame .dip-unit-title {
+                font-size: 0.95rem !important;
+                margin: 0.25rem 0 !important;
+                color: #2563eb !important;
+            }
+            .diploma-frame .dip-stats-row {
+                margin-top: 0.4rem !important;
+                padding-top: 0.35rem !important;
+                font-size: 0.78rem !important;
+                border-top: 1px dashed #94a3b8 !important;
+                gap: 0.4rem !important;
+            }
+            .diploma-frame .dip-stats-row strong {
+                font-size: 0.85rem !important;
             }
             .dip-analysis-grid {
-                margin-top: 1rem !important;
-                padding-top: 0.75rem !important;
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.5rem !important;
+                margin-top: 0.45rem !important;
+                padding-top: 0.4rem !important;
+                border-top: 1px dashed #cbd5e1 !important;
             }
             .dip-box {
-                padding: 0.75rem !important;
-                font-size: 0.82rem !important;
+                padding: 0.45rem 0.6rem !important;
+                font-size: 0.69rem !important;
+                line-height: 1.3 !important;
+                border-radius: 6px !important;
+            }
+            .dip-box h4 {
+                font-size: 0.74rem !important;
+                margin-bottom: 0.2rem !important;
+            }
+            .dip-box ul {
+                margin: 0 !important;
+                padding-left: 0.8rem !important;
+            }
+            .dip-box li {
+                margin-bottom: 0.18rem !important;
+            }
+            .diploma-frame .dip-footer-row {
+                font-size: 0.72rem !important;
+                margin-top: 0.35rem !important;
+                padding: 0 0.5rem !important;
             }
         }
     </style>
@@ -2478,26 +2584,26 @@
             </div>
 
             <div class="diploma-frame" id="printable-diploma">
-                <div style="font-size:3.5rem; margin-bottom:0.5rem;">🏆</div>
+                <div class="dip-trophy" style="font-size:3.5rem; margin-bottom:0.5rem;">🏆</div>
                 <h1>DIPLOMA D'APROFITAMENT TECNOLÒGIC</h1>
-                <p style="font-size:1rem; color:#475569; letter-spacing:0.05em; margin-bottom:1.5rem;">
+                <p class="dip-subtitle" style="font-size:1rem; color:#475569; letter-spacing:0.05em; margin-bottom:1.5rem;">
                     DEPARTAMENT DE TECNOLOGIA · 4t D'ESO · CURS 2026
                 </p>
 
-                <div style="border: 2px solid #2563eb; border-radius:10px; padding:1.75rem; background:#f8fafc; margin-bottom:1.5rem;">
+                <div class="dip-inner-card" style="border: 2px solid #2563eb; border-radius:10px; padding:1.75rem; background:#f8fafc; margin-bottom:1.5rem;">
                     <div id="dip-level-badge" style="display:inline-block; background:#dcfce7; color:#15803d; border:1px solid #86efac; border-radius:999px; padding:0.35rem 1.1rem; font-weight:700; font-size:0.95rem; margin-bottom:1rem;">
                         Nivell: 🟢 Inicial (Currículum Adaptat i Lectura Fàcil)
                     </div>
-                    <p style="font-size:1.1rem; color:#1e3a8a;">Es certifica oficialment que l'alumne/a:</p>
+                    <p class="dip-cert-text" style="font-size:1.1rem; color:#1e3a8a;">Es certifica oficialment que l'alumne/a:</p>
                     <div class="diploma-student-name" id="dip-name">Nom de l'Alumne</div>
-                    <p style="font-size:1.05rem; color:#334155;">
+                    <p class="dip-cert-sub" style="font-size:1.05rem; color:#334155;">
                         Pertanyent al grup <strong id="dip-group">4t ESO A</strong> ha assolit satisfactòriament les competències d'enginyeria de la unitat:
                     </p>
-                    <h3 style="color:#2563eb; font-size:1.35rem; margin:0.85rem 0;">
+                    <h3 class="dip-unit-title" style="color:#2563eb; font-size:1.35rem; margin:0.85rem 0;">
                         «Què és la Tecnologia? Concepte, Història, Transició Energètica i Procés Tecnològic»
                     </h3>
 
-                    <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem; border-top:1px dashed #94a3b8; padding-top:1rem; font-size:0.95rem; color:#1e293b;">
+                    <div class="dip-stats-row" style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem; border-top:1px dashed #94a3b8; padding-top:1rem; font-size:0.95rem; color:#1e293b;">
                         <div>Puntuació XP: <strong id="dip-xp" style="color:#16a34a; font-size:1.15rem;">1000 / 1000 XP</strong></div>
                         <div>Fases Superades: <strong>5 de 5 (100%)</strong></div>
                         <div>Nivell d'Assoliment: <strong id="dip-qualification" style="color:#16a34a; font-size:1.15rem;">Assoliment Excel·lent 🏆</strong></div>
@@ -2520,14 +2626,15 @@
                     </div>
                 </div>
 
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:#64748b; padding:0 1rem;">
+                <div class="dip-footer-row" style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:#64748b; padding:0 1rem;">
                     <span>Segell del Departament de Tecnologia</span>
                     <span id="dip-date">Setembre de 2026</span>
                 </div>
             </div>
 
-            <div style="text-align:center; margin-top:2rem; display:flex; gap:1rem; justify-content:center;">
-                <button class="btn btn-primary" onclick="window.print()">🖨️ Descarregar / Imprimir Diploma en PDF</button>
+            <div style="text-align:center; margin-top:2rem; display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+                <button class="btn btn-primary" onclick="window.print()">🖨️ Descarregar / Imprimir Diploma en PDF (1 Full A4)</button>
+                <button class="btn btn-success" id="btn-download-img" onclick="downloadDiplomaImage()">🖼️ Descarregar Diploma en Imatge (PNG)</button>
                 <button class="btn btn-outline" onclick="goToStage(1)">↺ Repassar la Unitat</button>
             </div>
         </section>
@@ -2625,6 +2732,7 @@
     </footer>
 
     <!-- LÒGICA I CONTROL DE L'APLICACIÓ -->
+    <script src="js/html2canvas.min.js"></script>
     <script>
         // ESTAT GLOBAL AMB PERSISTÈNCIA A LOCALSTORAGE
         const APP_STORAGE_KEY = 'tecnolab_4eso_unit_state_v2';
@@ -5258,6 +5366,44 @@ Si us plau, respon totes les 20 preguntes per avaluar la unitat.`);
             const today = new Date();
             const dateStr = today.toLocaleDateString('ca-ES', { year: 'numeric', month: 'long', day: 'numeric' });
             document.getElementById('dip-date').textContent = dateStr;
+        }
+
+        function downloadDiplomaImage() {
+            const el = document.getElementById('printable-diploma');
+            if (!el) return;
+
+            if (typeof html2canvas === 'undefined') {
+                alert("La llibreria d'exportació d'imatges s'està carregant. Si us plau, torna a provar en uns segons o utilitza 'Imprimir en PDF'.");
+                return;
+            }
+
+            const btn = document.getElementById('btn-download-img');
+            const originalText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '⏳ Generant imatge en alta resolució...';
+            }
+
+            html2canvas(el, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#ffffff',
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                const rawName = (appState.studentName || 'alumne').trim().toLowerCase().replace(/[^a-z0-9àèéíòóúçñ]/gi, '_');
+                link.download = `diploma_tecnologia_${rawName}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                console.error("Error generant imatge PNG:", err);
+                alert("S'ha produït un inconvenient generant la imatge directa. Pots fer servir 'Descarregar / Imprimir en PDF' per guardar-lo en 1 sol full.");
+            }).finally(() => {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            });
         }
 
         // INICIALITZACIÓ EN CARREGAR LA PÀGINA
