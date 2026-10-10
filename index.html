@@ -2673,7 +2673,7 @@
                         Tria el teu Nivell de Treball: <span style="color:#dc2626; font-size:0.8rem; font-weight:normal;">(⚠️ Atenció: Quedarà fixat durant tota la unitat i al diploma)</span>
                     </label>
                     <div style="margin-bottom:1.25rem;">
-                        <div class="level-card-option selected" id="opt-level-inicial" onclick="selectModalLevel('inicial')">
+                        <div class="level-card-option" id="opt-level-inicial" onclick="selectModalLevel('inicial')">
                             <div style="font-size:1.7rem;">🟢</div>
                             <div>
                                 <strong style="color:#34d399; font-size:0.95rem; display:block;">Nivell Inicial (Suport i Lectura Fàcil)</strong>
@@ -2682,7 +2682,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="level-card-option" id="opt-level-avancat" onclick="selectModalLevel('avancat')">
+                        <div class="level-card-option selected" id="opt-level-avancat" onclick="selectModalLevel('avancat')">
                             <div style="font-size:1.7rem;">🔵</div>
                             <div>
                                 <strong style="color:#1d4ed8; font-size:0.95rem; display:block;">Nivell Avançat (Tecnologia i Enginyeria)</strong>
@@ -2748,7 +2748,7 @@
             studentName: '',
             studentGroup: '1r ESO A',
             avatar: '👩‍🔧',
-            level: 'inicial', // 'inicial' o 'avancat'
+            level: 'avancat', // 'inicial' o 'avancat'
             gameStarted: false,
             currentStage: 1,
             unlockedStage: 1,
@@ -2928,8 +2928,19 @@
             if (stageNum === 6) renderDiploma();
         }
 
-        let selectedModalLevel = 'inicial';
-        function selectModalLevel(lvl) {
+        let selectedModalLevel = 'avancat';
+        function selectModalLevel(lvl, isInitialSetup = false) {
+            if (lvl === 'inicial' && !isInitialSetup && selectedModalLevel !== 'inicial') {
+                const confirmed = confirm(
+                    "⚠️ ATENCIÓ: El Nivell Inicial està adaptat amb contingut simplificat per a necessitats específiques de suport educatiu.\n\n" +
+                    "Has consultat el professor/a abans de triar aquesta opció?\n\n" +
+                    "• Prem [D'acord / Sí] si el teu professor/a t'ha indicat que facis el Nivell Inicial.\n" +
+                    "• Prem [Cancel·la / No] per mantenir el Nivell Avançat per defecte."
+                );
+                if (!confirmed) {
+                    return;
+                }
+            }
             selectedModalLevel = lvl;
             const optIni = document.getElementById('opt-level-inicial');
             const optAdv = document.getElementById('opt-level-avancat');
@@ -2951,8 +2962,8 @@
         function openProfileModal() {
             document.getElementById('modal-input-name').value = appState.studentName || '';
             document.getElementById('modal-input-group').value = appState.studentGroup || '1r ESO A';
-            selectedModalLevel = appState.level || 'inicial';
-            selectModalLevel(selectedModalLevel);
+            selectedModalLevel = appState.level || 'avancat';
+            selectModalLevel(selectedModalLevel, true);
             pickAvatar(appState.avatar || '👩‍🔧');
 
             // El nivell només es bloqueja un cop l'alumne ha iniciat la unitat amb el seu nom i començat a jugar
